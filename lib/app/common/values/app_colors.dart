@@ -24,6 +24,7 @@ class AppColors {
   static const Color kBlack56 = Color(0xFFB5B4B4);
   static const Color kBlackLight1 = Color(0xFF50555C);
   static const Color kBlackLight2 = Color(0xFF979797);
+  static const Color kOrangeLight3 = Color.fromARGB(255, 255, 185, 22);
   static const Color kBlackDot = Color(0xFFBABABA);
 
   static const Color kBlackLight = Color(0XFF1D223821);

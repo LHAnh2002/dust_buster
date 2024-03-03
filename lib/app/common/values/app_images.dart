@@ -28,7 +28,6 @@ class AppImages {
     );
   }
 
-
   static Widget svgUrl(String name,
       {Color? color,
       double? width,
@@ -53,6 +52,7 @@ class AppImages {
   }
 
   //auth
-  static const String backgroudImg = 'assets/images/backgroud_img.png';
-  static const String categoryImg = 'assets/images/category_bg_img.png';
+  static const String homePage = 'assets/icons/home.svg';
+  static const String promotions = 'assets/icons/promotions.svg';
+  static const String notification = 'assets/icons/notification.svg';
 }

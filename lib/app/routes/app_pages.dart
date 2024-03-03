@@ -41,35 +41,5 @@ class AppPages {
       page: () => const NavigationBarView(),
       binding: NavigationBarBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.home,
-    //   transition: Transition.fadeIn,
-    //   page: () => const HomeView(),
-    //   binding: HomeBinding(),
-    // ),
-    // GetPage(
-    //   name: _Paths.work,
-    //   transition: Transition.fadeIn,
-    //   page: () => const WorkView(),
-    //   binding: WorkBinding(),
-    // ),
-    // GetPage(
-    //   name: _Paths.promotion,
-    //   transition: Transition.fadeIn,
-    //   page: () => const PromotionView(),
-    //   binding: PromotionBinding(),
-    // ),
-    // GetPage(
-    //   name: _Paths.notification,
-    //   transition: Transition.fadeIn,
-    //   page: () => const NotificationView(),
-    //   binding: NotificationBinding(),
-    // ),
-    // GetPage(
-    //   name: _Paths.account,
-    //   transition: Transition.fadeIn,
-    //   page: () => const AccountView(),
-    //   binding: AccountBinding(),
-    // ),
   ];
 }

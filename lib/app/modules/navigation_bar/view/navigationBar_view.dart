@@ -28,38 +28,41 @@ class NavigationBarView extends GetView<NavigationBarController> {
           destinations: [
             NavigationDestination(
               icon: SvgPicture.asset(
-                'assets/icons/home.svg',
+                AppImages.homePage,
                 width: 24.w,
                 height: 24.h,
               ),
-              label: "Trang chủ",
+              label: Strings.homePage,
             ),
             NavigationDestination(
-                icon: Icon(
-                  Ionicons.document_text_outline,
-                  size: 24.w,
-                ),
-                label: "Hoạt động"),
+              icon: Icon(
+                Ionicons.document_text_outline,
+                size: 24.w,
+              ),
+              label: Strings.work,
+            ),
             NavigationDestination(
-                icon: SvgPicture.asset(
-                  "assets/icons/promotions.svg",
-                  width: 24.w,
-                  height: 24.h,
-                ),
-                label: "Khuyến mãi"),
+              icon: SvgPicture.asset(
+                AppImages.promotions,
+                width: 24.w,
+                height: 24.h,
+              ),
+              label: Strings.promotion,
+            ),
             NavigationDestination(
-                icon: SvgPicture.asset(
-                  'assets/icons/notification.svg',
-                  width: 24.w,
-                  height: 24.h,
-                ),
-                label: "Thông báo"),
+              icon: SvgPicture.asset(
+                AppImages.notification,
+                width: 24.w,
+                height: 24.h,
+              ),
+              label: Strings.notification,
+            ),
             NavigationDestination(
               icon: Icon(
                 Ionicons.person_outline,
                 size: 24.w,
               ),
-              label: "Tài khoản",
+              label: Strings.account,
             ),
           ],
         ),

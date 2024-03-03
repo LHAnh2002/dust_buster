@@ -32,6 +32,19 @@ class Strings {
   static const String hi = 'Chào';
   static const String surplus = 'Số dư';
   static const String rewardPoints = 'Điểm thưởng';
+  static const String work = 'Hoạt động';
+  static const String homePage = 'Trang chủ';
+  static const String promotion = 'Khuyến mãi';
+  static const String notification = 'Thông báo';
+  static const String account = 'Tài khoản';
+  static const String history = 'Lịch sử';
+  static const String waitToDo = 'Chờ làm';
+  static const String repeat = 'Lặp lại';
+  static const String accordingToThePackage = 'Theo gói';
+  static const String all = 'Tất cả';
+  static const String news = 'Tin Tức';
+  static const String specialOffers = 'Ưu đãi đặc biết';
+  static const String applover = '#DustBusterLover';
 
   const Strings._();
 

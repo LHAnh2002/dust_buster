@@ -136,6 +136,12 @@ class ServiceWidget extends StatelessWidget {
                             ),
                           ],
                         ),
+                        // child: SvgPicture.asset(
+                        //   "assets/icons/all.svg",
+                        //   width: 1.w,
+                        //   height: 1.h,
+                        //   color: AppColors.kPurpleColorLight,
+                        // ),
                         child: Icon(
                           Ionicons.apps_outline,
                           size: 30.sp,

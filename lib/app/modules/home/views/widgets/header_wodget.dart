@@ -12,7 +12,8 @@ class HeaderWodget extends StatelessWidget {
       required this.name,
       required this.money,
       required this.coin,
-      required this.onTap, required this.image})
+      required this.onTap,
+      required this.image})
       : super(key: key);
 
   @override
@@ -20,9 +21,14 @@ class HeaderWodget extends StatelessWidget {
     final Size screenSize = MediaQuery.of(context).size;
     return SizedBox(
       height: 189.h,
+      width: double.infinity,
       child: Stack(
         children: [
-          Image.asset(image),
+          Image.asset(
+            image,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
           Positioned(
             top: 60,
             child: Container(

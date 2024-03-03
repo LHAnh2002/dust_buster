@@ -1,17 +1,17 @@
 import '../../exports.dart';
 
-class DiscoverWidget extends StatelessWidget {
-  const DiscoverWidget({Key? key}) : super(key: key);
+class NewsWidget extends StatelessWidget {
+  const NewsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Wrap(
-        spacing: 15, // Khoảng cách giữa các hình ảnh
-        runSpacing: 10.0, // Khoảng cách giữa các dòng
+        spacing: 15,
+        runSpacing: 15,
         children: List.generate(
-          6, // Số lượng hình ảnh, bao gồm cả hình ảnh cuối cùng
+          6,
           (index) {
             return InkWell(
               splashColor: Colors.transparent,
@@ -20,35 +20,31 @@ class DiscoverWidget extends StatelessWidget {
               child: SizedBox(
                 width: 150.w,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       height: 150.h,
                       width: 150.w,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(9).r,
+                        borderRadius: BorderRadius.circular(10).r,
                       ),
-                      child: Image.asset(
-                        "assets/images/hinh_anh.jpeg",
-                        fit: BoxFit.cover,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          "assets/images/hinh_anh.jpeg",
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     SizedBox(height: 10.h),
                     Text(
-                      textAlign: TextAlign.center,
-                      'Giúp Việc Theo Giờ',
+                      softWrap: true,
+                      textAlign: TextAlign.start,
+                      '3 Triệu thả ga, ưu đãi 100k',
                       style: AppTextStyle.semiBoldStyle.copyWith(
                         color: Colors.black,
-                        fontSize: 10.5.sp,
-                      ),
-                    ),
-                    Text(
-                      '(Ca lẻ)',
-                      style: AppTextStyle.buttonTextStyle.copyWith(
-                        color: AppColors.kOrangeColor,
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 12.sp,
                       ),
                     ),
                   ],
