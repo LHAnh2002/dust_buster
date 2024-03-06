@@ -10,6 +10,13 @@ import 'package:dust_buster/app/common/util/exports.dart';
 class Utils {
   const Utils._();
 
+  static Future<void> getLaunchUrl(String url) async {
+    // final Uri _url = Uri.parse(url);
+    // if (!await launchUrl(_url)) {
+    //   throw 'Could not launch $_url';
+    // }
+  }
+
   static void showIconDialog(
     String title,
     String message, {
@@ -150,8 +157,6 @@ class Utils {
             children: [
               Expanded(
                 child: InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
                   onTap: () {
                     getImage(source: 2).then((v) {
                       if (v != null) {
@@ -182,8 +187,6 @@ class Utils {
               ),
               Expanded(
                 child: InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
                   onTap: () {
                     getImage().then((v) {
                       if (v != null) {

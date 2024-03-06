@@ -1,7 +1,7 @@
 class Constants {
   const Constants._();
 
-  static const String baseUrl = 'https://api.openweathermap.org';
+  static const String baseUrl = 'http://192.168.1.9:8000/api/v1';
   //deelay.me - api to delay response
 
   static const timeout = Duration(milliseconds: 30000);

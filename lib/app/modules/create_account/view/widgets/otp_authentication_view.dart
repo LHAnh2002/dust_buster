@@ -1,4 +1,3 @@
-import 'package:dust_buster/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
@@ -9,9 +8,21 @@ import '../../exports.dart';
 
 class OtpAuthenticationView extends StatelessWidget {
   final String email;
+  final String name;
+  final String phoneNumber;
+  final String password;
+  final String sex;
+  final String dateBirth;
   final CreateAccountController controller;
   const OtpAuthenticationView(
-      {super.key, required this.email, required this.controller});
+      {super.key,
+      required this.email,
+      required this.controller,
+      required this.name,
+      required this.phoneNumber,
+      required this.password,
+      required this.sex,
+      required this.dateBirth});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +32,7 @@ class OtpAuthenticationView extends StatelessWidget {
       children: <Widget>[
         Text(
           textAlign: TextAlign.center,
-          Strings.insertCode + '$email',
+          '${Strings.insertCode} $email',
           style: AppTextStyle.conditionStyle.copyWith(
             color: AppColors.black,
             fontSize: 13.5.sp,
@@ -38,45 +49,21 @@ class OtpAuthenticationView extends StatelessWidget {
           ),
           onCompleted: (pin) {
             debugPrint(pin);
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text(
-                    'Đăng ký thành công',
-                    style: AppTextStyle.semiBoldMediumStyle
-                        .copyWith(color: AppColors.black),
-                  ),
-                  content: SizedBox(
-                    width: 200.w,
-                    height: 40.h,
-                    child: SingleChildScrollView(
-                      child: Text(
-                        "Vui lòng đăng nhập để sử dụng dịch vụ!",
-                        style: AppTextStyle.regularBlandStyle
-                            .copyWith(color: AppColors.black),
-                      ),
-                    ),
-                  ),
-                  actions: <Widget>[
-                    InkWell(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () {
-                        Get.offNamed(Routes.login);
-                      },
-                      child: Text(
-                        Strings.login,
-                        style: AppTextStyle.semiBoldMediumStyle
-                            .copyWith(color: AppColors.kSelectedDay),
-                      ),
-                    )
-                  ],
-                );
-              },
-            );
+            controller.getverifyOtp(email, pin, password, phoneNumber, name,
+                sex, dateBirth, context);
           },
         ),
+        Obx(() {
+          if (controller.isOtpIsWrong.value == true) {
+            return Text(
+              Strings.otpIsWrong,
+              style: AppTextStyle.bodySmallStyle
+                  .copyWith(color: Colors.red, fontSize: 11.sp),
+            );
+          } else {
+            return const SizedBox(width: 0.0, height: 0.0);
+          }
+        }),
         SizedBox(height: 30.0.h),
         const Text('Bạn chưa nhận được mã!'),
         Obx(
@@ -85,6 +72,7 @@ class OtpAuthenticationView extends StatelessWidget {
                 ? TextButtonWidget(
                     onTap: () {
                       controller.resetCountdown();
+                      controller.getrequestOtp(email, name);
                     },
                     text: Strings.resendCode,
                   )

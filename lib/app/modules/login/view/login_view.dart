@@ -16,20 +16,20 @@ class LoginView extends GetView<LoginController> {
         padding: const EdgeInsets.only(bottom: 30, left: 15, right: 15).r,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(width: 0.0, height: 100.h),
+                SizedBox(height: 100.h),
                 const LogoWinget(),
-                SizedBox(width: 0.0, height: 45.h),
+                SizedBox(height: 45.h),
                 Text(
                   Strings.login,
                   style: AppTextStyle.text24BoldStyle
                       .copyWith(color: Colors.black),
                 ),
-                SizedBox(width: 0.0, height: 10.h),
+                SizedBox(height: 10.h),
                 TextFormWidget(
                   controller: controller.textEmailController,
                   hintText: Strings.email,
@@ -39,7 +39,7 @@ class LoginView extends GetView<LoginController> {
                   showButton: false,
                   onChanged: (value) {},
                 ),
-                SizedBox(width: 0.0, height: 10.h),
+                SizedBox(height: 10.h),
                 GetBuilder<LoginController>(
                   builder: (controller) {
                     return TextFormWidget(
@@ -55,42 +55,59 @@ class LoginView extends GetView<LoginController> {
                     );
                   },
                 ),
-                SizedBox(width: 0.0, height: 10.h),
-                Text(
-                  Strings.passwordOrEmailIncorrect,
-                  style: AppTextStyle.bodySmallStyle
-                      .copyWith(color: Colors.red, fontSize: 12.sp),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                SizedBox(width: 0.0, height: 10.h),
-                ButtonWidget(
-                  onTap: () {},
-                  text: Strings.login,
-                ),
-                SizedBox(width: 0.0, height: 16.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Text(Strings.notAccount),
-                    SizedBox(width: 10.h),
-                    TextButtonWidget(
-                      onTap: () {
-                        Get.toNamed(Routes.create_account);
-                      },
-                      text: Strings.createAccount,
-                    )
-                  ],
-                ),
-                TextButtonWidget(
-                  onTap: () {
-                    Get.toNamed(Routes.forgot_password);
-                  },
-                  text: Strings.forgotPassword,
+                SizedBox(height: 10.h),
+                Obx(
+                  () => Column(
+                    children: [
+                      if (controller.ispasswordOrEmailNull.value == true)
+                        Text(
+                          Strings.passwordOrEmailNull,
+                          style: AppTextStyle.bodySmallStyle
+                              .copyWith(color: Colors.red, fontSize: 12.sp),
+                        ),
+                      if (controller.isPasswordOrEmailIncorrect.value == true)
+                        Text(
+                          Strings.passwordOrEmailIncorrect,
+                          style: AppTextStyle.bodySmallStyle
+                              .copyWith(color: Colors.red, fontSize: 12.sp),
+                        ),
+                      if (controller.isyourAccountBan.value == true)
+                        Text(
+                          Strings.yourAccountBan,
+                          style: AppTextStyle.bodySmallStyle
+                              .copyWith(color: Colors.red, fontSize: 12.sp),
+                        )
+                    ],
+                  ),
                 )
               ],
+            ),
+            SizedBox(height: 10.h),
+            ButtonWidget(
+              onTap: () {
+                controller.login();
+              },
+              text: Strings.login,
+            ),
+            SizedBox(height: 16.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(Strings.notAccount),
+                SizedBox(width: 10.h),
+                TextButtonWidget(
+                  onTap: () {
+                    Get.toNamed(Routes.createAccount);
+                  },
+                  text: Strings.createAccount,
+                )
+              ],
+            ),
+            TextButtonWidget(
+              onTap: () {
+                Get.toNamed(Routes.forgotPassword);
+              },
+              text: Strings.forgotPassword,
             ),
           ],
         ),

@@ -135,7 +135,7 @@ class HeaderWodget extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '$coin G-Coins',
+                                  '$coin ${Strings.gCoins}',
                                   style: AppTextStyle.textDescriptionStyle
                                       .copyWith(
                                     color: AppColors.kOrangeColor,
@@ -149,7 +149,7 @@ class HeaderWodget extends StatelessWidget {
                               Ionicons.diamond_outline,
                               size: 25.sp,
                               color: AppColors.kOrangeColor,
-                            )
+                            ),
                           ],
                         ),
                       ),

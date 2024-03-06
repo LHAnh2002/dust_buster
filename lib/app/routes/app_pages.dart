@@ -13,7 +13,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.splash,
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeftWithFade,
       page: () => const SplashView(),
       binding: SplashBinding(),
     ),
@@ -24,13 +24,13 @@ class AppPages {
       binding: LoginBinding(),
     ),
     GetPage(
-      name: _Paths.create_account,
+      name: _Paths.createAccount,
       transition: Transition.rightToLeftWithFade,
       page: () => const CreateAccountView(),
       binding: CreateAccountBinding(),
     ),
     GetPage(
-      name: _Paths.forgot_password,
+      name: _Paths.forgotPassword,
       transition: Transition.rightToLeftWithFade,
       page: () => const ForgotPasswordView(),
       binding: ForgotPasswordBinding(),

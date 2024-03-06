@@ -55,4 +55,11 @@ class AppImages {
   static const String homePage = 'assets/icons/home.svg';
   static const String promotions = 'assets/icons/promotions.svg';
   static const String notification = 'assets/icons/notification.svg';
+  static const String iconMedai = 'assets/icons/medal.png';
+  static const String iconTicket = 'assets/icons/ticket.svg';
+  static const String imageHinhAnh = 'assets/images/hinh_anh.jpg';
+  static const String iconHistory = 'assets/icons/history.svg';
+  static const String iconRight = 'assets/icons/right.svg';
+  static const String iconComplete = 'assets/icons/complete_tb.svg';
+  static const String iconAvartar = 'assets/icons/avartar.png';
 }

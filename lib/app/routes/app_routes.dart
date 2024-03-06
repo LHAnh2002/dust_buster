@@ -4,9 +4,9 @@ part of 'app_pages.dart';
 abstract class Routes {
   static const String splash = _Paths.splash;
   static const String login = _Paths.login;
-  static const String create_account = _Paths.create_account;
-  static const String otp_authentication = _Paths.otp_authentication;
-  static const String forgot_password = _Paths.forgot_password;
+  static const String forgotPassword = _Paths.forgotPassword;
+  static const String otpAuthentication = _Paths.otpAuthentication;
+  static const String createAccount = _Paths.createAccount;
   static const String navigationBar = _Paths.navigationBar;
   static const String home = _Paths.home;
   static const String work = _Paths.work;
@@ -18,9 +18,9 @@ abstract class Routes {
 abstract class _Paths {
   static const String splash = '/splash';
   static const String login = '/login';
-  static const String create_account = '/createAccount';
-  static const String otp_authentication = '/otpAuthentication';
-  static const String forgot_password = '/forgotPassword';
+  static const String createAccount = '/createAccount';
+  static const String otpAuthentication = '/otpAuthentication';
+  static const String forgotPassword = '/forgotPassword';
   static const String navigationBar = '/navigationBar';
   static const String home = '/home';
   static const String work = '/work';

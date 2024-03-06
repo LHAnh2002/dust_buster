@@ -3,6 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:dust_buster/app/data/interface_controller/api_interface_controller.dart';
+
+import '../../data/repository/api_helper.dart';
+import '../../data/repository/api_helper_impl.dart';
 
 class Initializer {
   static const Initializer instance = Initializer._internal();
@@ -50,15 +54,15 @@ class Initializer {
   }
 }
 
-// class InitialBindings extends Bindings {
-//   @override
-//   void dependencies() {
-//     Get.put<ApiHelper>(
-//       ApiHelperImpl(),
-//     );
+class InitialBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.put<ApiHelper>(
+      ApiHelperImpl(),
+    );
 
-//     Get.put<ApiInterfaceController>(
-//       ApiInterfaceController(),
-//     );
-//   }
-// }
+    Get.put<ApiInterfaceController>(
+      ApiInterfaceController(),
+    );
+  }
+}

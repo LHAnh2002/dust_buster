@@ -4,6 +4,8 @@ class Strings {
   static const String password = 'Mật khẩu';
   static const String passwordOrEmailIncorrect =
       '$email hoặc $password của bạn không đúng!';
+  static const String passwordOrEmailNull = 'Vui lòng điền email và mật khẩu';
+  static const String yourAccountBan = 'Tài khoản của bạn đã bị khóa';
   static const String notAccount = 'Bạn không có tài khoản?';
   static const String createAccount = 'Tạo Tài khoản';
   static const String forgotPassword = 'Quên mật khẩu';
@@ -45,6 +47,27 @@ class Strings {
   static const String news = 'Tin Tức';
   static const String specialOffers = 'Ưu đãi đặc biết';
   static const String applover = '#DustBusterLover';
+  static const String member = 'Thành viên';
+  static const String fromPartner = 'Dust Buster';
+  static const String gCoins = 'D-Coins';
+  static const String yourCoupon = 'Phiếu ưu đãi của bạn';
+  static const String endow = 'Ưu đãi';
+  static const String rewards = 'D-Rewards';
+  static const String sing = 'Hót';
+  static const String neww = 'New';
+  static const String introduce = 'Giới thiệu';
+  static const String myAccount = 'Tài khoản của tôi';
+  static const String myLocation = 'Địa điểm của tôi';
+  static const String staffFavorite = 'Nhân viên yêu thích';
+  static const String restrictedList = 'Danh sách hạn chế';
+  static const String generality = 'Tổng quát';
+  static const String evaluate = 'Đánh giá';
+  static const String helpCenter = 'Trung tâm trợ giúp';
+  static const String termsOfUse = 'Điều khoản sử dụng';
+  static const String privacyPolicy = 'Chính sách bảo mật';
+  static const String setting = 'Cài đặt';
+  static const String emailAlreadyExists = 'Email đã tồn tại';
+  static const String otpIsWrong = 'Mã otp không đúng!';
 
   const Strings._();
 

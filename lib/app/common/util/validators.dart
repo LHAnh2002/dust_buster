@@ -39,6 +39,13 @@ class Validators {
     }
   }
 
+  // static String? validateEmailPhone(String? v) {
+  //   if (v!.isEmpty) {
+  //     return Strings.fieldCantBeEmpty;
+  //   } else if (GetUtils.isNumericOnly(v)) {
+  //     return validatePhone(v);
+  //   } else {}
+  // }
 
   static String? validatePassword(String? v) {
     if (v!.isEmpty) {

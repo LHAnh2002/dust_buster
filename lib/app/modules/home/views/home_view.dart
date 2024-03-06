@@ -1,3 +1,5 @@
+import 'package:dust_buster/app/modules/widgets/button_all_widget.dart';
+
 import '../exports.dart';
 export 'package:flutter/material.dart';
 export 'package:get/get.dart';
@@ -22,7 +24,6 @@ class HomeView extends GetView<HomeController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // Your scrollable content goes here...
               HeaderWodget(
                 name: 'LHAnh',
                 coin: '0',
@@ -30,33 +31,33 @@ class HomeView extends GetView<HomeController> {
                 onTap: () {},
                 image: "assets/images/bacnkgroud.jpeg",
               ),
-              Obx(
-                () {
-                  if (controller.isLoading.value) {
-                    return const Center(
-                      child: SlideLoading(),
-                    );
-                  } else {
-                    if (controller.carouselItemList.isNotEmpty) {
-                      return SlideWithIndicator(
-                        data: controller.carouselItemList,
-                        controller: Get.put(HomeController()),
-                      );
-                    } else {
-                      return const Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(Icons.hourglass_empty),
-                            Text("Data not found!")
-                          ],
-                        ),
-                      );
-                    }
-                  }
-                },
-              ),
+              // Obx(
+              //   () {
+              //     if (controller.isLoading.value) {
+              //       return const Center(
+              //         child: SlideLoading(),
+              //       );
+              //     } else {
+              //       if (controller.carouselItemList.isNotEmpty) {
+              //         return SlideWithIndicator(
+              //           data: controller.carouselItemList,
+              //           controller: Get.put(HomeController()),
+              //         );
+              //       } else {
+              //         return const Center(
+              //           child: Column(
+              //             mainAxisAlignment: MainAxisAlignment.center,
+              //             crossAxisAlignment: CrossAxisAlignment.center,
+              //             children: [
+              //               Icon(Icons.hourglass_empty),
+              //               Text("Data not found!")
+              //             ],
+              //           ),
+              //         );
+              //       }
+              //     }
+              //   },
+              // ),
               SizedBox(height: 10.h),
               const Align(
                 child: ServiceWidget(),
@@ -68,99 +69,33 @@ class HomeView extends GetView<HomeController> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 20).r,
-                child: DefaultTabController(
-                  length: 3,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            Strings.specialOffers,
-                            style: AppTextStyle.semiBoldMediumStyle.copyWith(
-                              color: AppColors.kOrangeColor,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16.5.sp,
-                            ),
-                          ),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            child: Text(
-                              Strings.all,
-                              style: AppTextStyle.semiBoldMediumStyle.copyWith(
-                                color: AppColors.black,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 11.sp,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const EndowWidget(),
-                      const Divider(
-                        color: Color.fromARGB(25, 0, 0, 0),
-                        thickness: 1.5,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            Strings.news,
-                            style: AppTextStyle.semiBoldMediumStyle.copyWith(
-                              color: AppColors.kOrangeColor,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16.5.sp,
-                            ),
-                          ),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            child: Text(
-                              Strings.all,
-                              style: AppTextStyle.semiBoldMediumStyle.copyWith(
-                                color: AppColors.black,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 11.sp,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const NewsWidget(),
-                      const Divider(
-                        color: Color.fromARGB(25, 0, 0, 0),
-                        thickness: 1.5,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            Strings.applover,
-                            style: AppTextStyle.semiBoldMediumStyle.copyWith(
-                              color: AppColors.kOrangeColor,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16.5.sp,
-                            ),
-                          ),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            child: Text(
-                              Strings.all,
-                              style: AppTextStyle.semiBoldMediumStyle.copyWith(
-                                color: AppColors.black,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 11.sp,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const NewsWidget(),
-                    ],
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ButtonAllWidget(
+                      onTap: () {},
+                      text: Strings.specialOffers,
+                    ),
+                    const EndowWidget(),
+                    const Divider(
+                      color: Color.fromARGB(25, 0, 0, 0),
+                      thickness: 1.5,
+                    ),
+                    ButtonAllWidget(
+                      onTap: () {},
+                      text: Strings.news,
+                    ),
+                    const NewsWidget(),
+                    const Divider(
+                      color: Color.fromARGB(25, 0, 0, 0),
+                      thickness: 1.5,
+                    ),
+                    ButtonAllWidget(
+                      onTap: () {},
+                      text: Strings.applover,
+                    ),
+                    const NewsWidget(),
+                  ],
                 ),
               ),
             ],
@@ -212,7 +147,7 @@ class HomeView extends GetView<HomeController> {
                     style: AppTextStyle.semiBoldMediumStyle.copyWith(
                       color: AppColors.kOrangeColor,
                       fontWeight: FontWeight.w500,
-                      fontSize: 12.sp,
+                      fontSize: 10.sp,
                     ),
                   ),
                 ],

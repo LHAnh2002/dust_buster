@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../common/util/exports.dart';
-import '../../create_account/exports.dart';
 import '../../login/exports.dart';
-import '../controllers/forgot_password_controller.dart';
 import '../exports.dart';
 
 class ForgotPasswordView extends GetView<ForgotPasswordController> {
@@ -57,11 +55,38 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                   },
                 ),
                 SizedBox(width: 0.0, height: 5.h),
-                Text(
-                  Strings.notEmail,
-                  style: AppTextStyle.bodySmallStyle
-                      .copyWith(color: Colors.red, fontSize: 12.sp),
+                Obx(
+                  () {
+                    if (controller.isEmailNull.value ||
+                        controller.isEmailValid.value) {
+                      // Nếu email rỗng hoặc hợp lệ, không hiển thị văn bản lỗi
+                      return const SizedBox();
+                    } else {
+                      // Nếu email không rỗng và không hợp lệ, hiển thị văn bản lỗi
+                      return Column(
+                        children: [
+                          SizedBox(width: 0.0, height: 10.h),
+                          Text(
+                            Strings.malformedEmail,
+                            style: AppTextStyle.bodySmallStyle
+                                .copyWith(color: Colors.red, fontSize: 12.sp),
+                          ),
+                        ],
+                      );
+                    }
+                  },
                 ),
+                Obx(() {
+                  if (controller.isEmailExists.value == true) {
+                    return Text(
+                      Strings.notEmail,
+                      style: AppTextStyle.bodySmallStyle
+                          .copyWith(color: Colors.red, fontSize: 12.sp),
+                    );
+                  } else {
+                    return const SizedBox(width: 0.0, height: 0.0);
+                  }
+                })
               ],
             ),
             Stack(
@@ -71,25 +96,12 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () {
-                      String email = controller.textEmailController.value.text;
-                      Get.bottomSheet(
-                        Container(
-                          padding: const EdgeInsets.only(
-                                  top: 20, left: 20, right: 20)
-                              .r,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20.0),
-                              topRight: Radius.circular(20.0),
-                            ),
-                          ),
-                          child: OtpForgotPasswordWidget(
-                            email: email,
-                            controller: CreateAccountController(),
-                          ),
-                        ),
-                      );
+                      if (controller.checkTextControllersNotEmpty() == true) {
+                      } else {
+                        String email =
+                            controller.textEmailController.value.text;
+                        controller.getrequestEmail(email);
+                      }
                     },
                     child: Container(
                       alignment: Alignment.center,

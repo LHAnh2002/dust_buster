@@ -57,6 +57,7 @@ class TextFormWidget extends StatelessWidget {
                   hintStyle: const TextStyle(
                     height: 1,
                   ),
+                  filled: false,
                 ),
               ),
             ),

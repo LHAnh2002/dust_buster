@@ -22,7 +22,7 @@ class AppColors {
   static const Color kOrangeColor = Color.fromARGB(255, 252, 109, 0);
   static const Color kBackgroundTextColor = Color(0xff66f1efef);
   static const Color kBlack56 = Color(0xFFB5B4B4);
-  static const Color kBlackLight1 = Color(0xFF50555C);
+  static const Color kBlackLight1 = Color.fromARGB(59, 80, 85, 92);
   static const Color kBlackLight2 = Color(0xFF979797);
   static const Color kOrangeLight3 = Color.fromARGB(255, 255, 185, 22);
   static const Color kBlackDot = Color(0xFFBABABA);
@@ -36,7 +36,7 @@ class AppColors {
   static const Color kBlueLight = Color(0xFF647FFF);
   static const Color kGreenChart = Color(0xFF01AC7F);
   static const Color kGreen = Color(0xFF4CD964);
-  static const Color kGreyChart = Color(0xFFCDD3E1);
+  static const Color kGreyChart = Color.fromARGB(172, 134, 134, 134);
   static const Color kBackgroundPercent = Color(0xFFE9E9E9);
 
   static const Color kGreenText = Color(0xFF4CD964);
