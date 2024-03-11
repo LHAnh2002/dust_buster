@@ -14,7 +14,7 @@ class NotificationView extends GetView<NotificationController> {
             SizedBox(width: 15.w),
             Text(
               Strings.notification,
-              style: AppTextStyle.textButtonSmallStyle.copyWith(
+              style: AppTextStyle.buttonTextStyle.copyWith(
                 color: Colors.black,
               ),
             ),
@@ -64,7 +64,7 @@ class NotificationView extends GetView<NotificationController> {
                               child: SvgPicture.asset(
                                 AppImages.iconComplete,
                                 fit: BoxFit.none,
-                                color: AppColors.kPurpleColor,
+                                color: AppColors.kPurplePurpleColor,
                               ),
                             ),
                           ),
@@ -79,7 +79,7 @@ class NotificationView extends GetView<NotificationController> {
                                 children: <Widget>[
                                   Text(
                                     'Dịch vụ dúm việc theo giờ',
-                                    style: AppTextStyle.textButtonSmallStyle
+                                    style: AppTextStyle.buttonTextStyle
                                         .copyWith(
                                       color: Colors.black,
                                       fontSize: 12.sp,
@@ -89,7 +89,7 @@ class NotificationView extends GetView<NotificationController> {
                                   Text(
                                     'Bạn đã đặt thành công dịch vụ giúp việc theo giờ',
                                     overflow: TextOverflow.clip,
-                                    style: AppTextStyle.textButtonSmallStyle
+                                    style: AppTextStyle.buttonTextStyle
                                         .copyWith(
                                       color: Colors.black,
                                       fontSize: 10.sp,
@@ -97,7 +97,7 @@ class NotificationView extends GetView<NotificationController> {
                                   ),
                                   Text(
                                     '25/11/2023 lúc 14:58',
-                                    style: AppTextStyle.textButtonSmallStyle
+                                    style: AppTextStyle.buttonTextStyle
                                         .copyWith(
                                       color: Colors.black,
                                       fontSize: 10.sp,

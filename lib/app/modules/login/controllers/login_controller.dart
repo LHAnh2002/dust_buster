@@ -1,10 +1,9 @@
 import 'package:dust_buster/app/modules/home/exports.dart';
 import 'package:dust_buster/app/routes/app_pages.dart';
 
-import '../../../data/models/dust_buster_model/login_model.dart';
 import '../../../data/repository/api_helper.dart';
 
-class LoginController extends GetxController with StateMixin<LoginModel> {
+class LoginController extends GetxController {
   final ApiHelper _apiHelper = Get.find();
 
   final TextEditingController textEmailController = TextEditingController();
@@ -27,7 +26,6 @@ class LoginController extends GetxController with StateMixin<LoginModel> {
   }
 
   login() async {
-    change(null, status: RxStatus.loading());
     final String email = textEmailController.text;
     final String passWord = textPasswordController.text;
     if (email.trim().isEmpty || passWord.trim().isEmpty) {
@@ -37,7 +35,6 @@ class LoginController extends GetxController with StateMixin<LoginModel> {
       return; // Trả về ngay khi email hoặc password rỗng
     }
 
-    change(null, status: RxStatus.loading());
     try {
       final response =
           await _apiHelper.portLogin(email: email, password: passWord);
@@ -54,15 +51,12 @@ class LoginController extends GetxController with StateMixin<LoginModel> {
         return;
       } else {
         final token = response['access_token'] as String;
+
         await Storage.saveValue('access_token', token);
-        LoginModel loginModel = LoginModel.fromJson(response);
-        change(loginModel, status: RxStatus.success());
-        // String? accessToken = response['access_token'] as String?;
-        // print(accessToken);
         Get.offAndToNamed(Routes.navigationBar);
       }
     } catch (e) {
-      change(null, status: RxStatus.error(e.toString()));
+      debugPrint(e.toString());
     }
   }
 }

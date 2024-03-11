@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../common/util/exports.dart';
 
@@ -24,14 +25,14 @@ class ButtonAvartarWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: AppColors.kPurpleColor,
+                      color: AppColors.kPurplePurpleColor,
                       width: 2,
                     ),
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(40.0).r,
-                    child: Image.asset(
-                      AppImages.iconAvartar,
+                    child: SvgPicture.asset(
+                      AppImages.iconVector,
                       height: 88.h,
                       width: 88.w,
                       fit: BoxFit.cover,
@@ -44,13 +45,13 @@ class ButtonAvartarWidget extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       'LHAnh',
-                      style: AppTextStyle.blandBodyStyle.copyWith(
+                      style: AppTextStyle.buttonTextStyle.copyWith(
                         color: AppColors.black,
                       ),
                     ),
                     Text(
                       'Chỉnh sửa tài khoản',
-                      style: AppTextStyle.textDescriptionStyle.copyWith(
+                      style: AppTextStyle.buttonTextStyle.copyWith(
                         color: AppColors.black,
                         fontWeight: FontWeight.w400,
                       ),

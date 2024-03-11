@@ -1,4 +1,7 @@
 import 'package:dust_buster/app/common/util/exports.dart';
+import 'package:dust_buster/app/common/values/styles/app_text_style.dart';
+import 'package:dust_buster/app/modules/home/exports.dart';
+import 'package:dust_buster/app/modules/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,87 +16,86 @@ class LoginView extends GetView<LoginController> {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: Container(
-        padding: const EdgeInsets.only(bottom: 30, left: 15, right: 15).r,
+        padding: const EdgeInsets.only(top: 24, left: 16, right: 16).r,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 100.h),
-                const LogoWinget(),
-                SizedBox(height: 45.h),
-                Text(
-                  Strings.login,
-                  style: AppTextStyle.text24BoldStyle
-                      .copyWith(color: Colors.black),
-                ),
-                SizedBox(height: 10.h),
-                TextFormWidget(
-                  controller: controller.textEmailController,
-                  hintText: Strings.email,
-                  textInputType: TextInputType.emailAddress,
-                  obscureText: false.obs,
-                  togglePasswordVisibility: () {},
-                  showButton: false,
-                  onChanged: (value) {},
-                ),
-                SizedBox(height: 10.h),
-                GetBuilder<LoginController>(
-                  builder: (controller) {
-                    return TextFormWidget(
-                      controller: controller.textPasswordController,
-                      hintText: Strings.password,
-                      textInputType: TextInputType.text,
-                      obscureText: controller.isPasswordVisible,
-                      togglePasswordVisibility: () {
-                        controller.togglePasswordVisibility();
-                      },
-                      showButton: true,
-                      onChanged: (value) {},
-                    );
-                  },
-                ),
-                SizedBox(height: 10.h),
-                Obx(
-                  () => Column(
-                    children: [
-                      if (controller.ispasswordOrEmailNull.value == true)
-                        Text(
-                          Strings.passwordOrEmailNull,
-                          style: AppTextStyle.bodySmallStyle
-                              .copyWith(color: Colors.red, fontSize: 12.sp),
-                        ),
-                      if (controller.isPasswordOrEmailIncorrect.value == true)
-                        Text(
-                          Strings.passwordOrEmailIncorrect,
-                          style: AppTextStyle.bodySmallStyle
-                              .copyWith(color: Colors.red, fontSize: 12.sp),
-                        ),
-                      if (controller.isyourAccountBan.value == true)
-                        Text(
-                          Strings.yourAccountBan,
-                          style: AppTextStyle.bodySmallStyle
-                              .copyWith(color: Colors.red, fontSize: 12.sp),
-                        )
-                    ],
-                  ),
-                )
-              ],
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(width: 0.0, height: 24.h),
+            const LogoWinget(),
+            SizedBox(width: 0.0, height: 68.h),
+            Text(
+              textAlign: TextAlign.center,
+              Strings.plsLogin,
+              style: AppTextStyle.lableBodyStyle,
             ),
-            SizedBox(height: 10.h),
-            ButtonWidget(
+            SizedBox(height: 16.h),
+            TextFormWidget(
+              controller: controller.textEmailController,
+              hintText: Strings.email,
+              textInputType: TextInputType.emailAddress,
+              obscureText: false.obs,
+              togglePasswordVisibility: () {},
+              showButton: false,
+              onChanged: (value) {},
+            ),
+            SizedBox(height: 16.h),
+            GetBuilder<LoginController>(
+              builder: (controller) {
+                return TextFormWidget(
+                  controller: controller.textPasswordController,
+                  hintText: Strings.password,
+                  textInputType: TextInputType.text,
+                  obscureText: controller.isPasswordVisible,
+                  togglePasswordVisibility: () {
+                    controller.togglePasswordVisibility();
+                  },
+                  showButton: true,
+                  onChanged: (value) {},
+                );
+              },
+            ),
+            Obx(
+              () => Container(
+                alignment: Alignment.topLeft,
+                child: Column(
+                  children: [
+                    if (controller.ispasswordOrEmailNull.value == true)
+                      Text(
+                        Strings.passwordOrEmailNull,
+                        style: AppTextStyle.textsmallStyle
+                            .copyWith(color: Colors.red, fontSize: 12.sp),
+                      ),
+                    if (controller.isPasswordOrEmailIncorrect.value == true)
+                      Text(
+                        Strings.passwordOrEmailIncorrect,
+                        style: AppTextStyle.textsmallStyle
+                            .copyWith(color: Colors.red, fontSize: 12.sp),
+                      ),
+                    if (controller.isyourAccountBan.value == true)
+                      Text(
+                        Strings.yourAccountBan,
+                        style: AppTextStyle.textsmallStyle
+                            .copyWith(color: Colors.red, fontSize: 12.sp),
+                      )
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 16.h),
+            ButtonWidget( boder: false.obs,
               onTap: () {
                 controller.login();
               },
               text: Strings.login,
             ),
-            SizedBox(height: 16.h),
+            SizedBox(height: 32.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Text(Strings.notAccount),
+                Text(
+                  Strings.notAccount,
+                  style: AppTextStyle.textsmallStyle,
+                ),
                 SizedBox(width: 10.h),
                 TextButtonWidget(
                   onTap: () {

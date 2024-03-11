@@ -8,11 +8,9 @@ abstract class Routes {
   static const String otpAuthentication = _Paths.otpAuthentication;
   static const String createAccount = _Paths.createAccount;
   static const String navigationBar = _Paths.navigationBar;
-  static const String home = _Paths.home;
-  static const String work = _Paths.work;
-  static const String promotion = _Paths.promotion;
-  static const String notification = _Paths.notification;
-  static const String account = _Paths.account;
+  static const String location = _Paths.location;
+  static const String findLocation = _Paths.findLocation;
+
 }
 
 abstract class _Paths {
@@ -22,9 +20,6 @@ abstract class _Paths {
   static const String otpAuthentication = '/otpAuthentication';
   static const String forgotPassword = '/forgotPassword';
   static const String navigationBar = '/navigationBar';
-  static const String home = '/home';
-  static const String work = '/work';
-  static const String promotion = '/promotion';
-  static const String notification = '/notification';
-  static const String account = '/account';
+  static const String location = '/location';
+  static const String findLocation = '/findLocation';
 }

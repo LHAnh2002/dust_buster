@@ -9,7 +9,7 @@ class ForgotPasswordController extends GetxController {
   final ApiHelper _apiHelper = Get.find();
   final CreateAccountController accountController = CreateAccountController();
   final TextEditingController textEmailController = TextEditingController();
-  
+
   @override
   void onClose() {
     textEmailController.dispose();

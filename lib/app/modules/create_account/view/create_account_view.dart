@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -15,19 +16,29 @@ class CreateAccountView extends GetView<CreateAccountController> {
       child: Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: AppColors.white,
-          leading: InkWell(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () {
-              Get.back();
-            },
-            child: const Icon(Icons.arrow_back_ios_rounded),
-          ),
-          title: Text(
-            Strings.createAccount,
-            style: AppTextStyle.text24BoldStyle
-                .copyWith(fontSize: 20.sp, color: AppColors.black),
+          actions: [
+            InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                Get.back();
+              },
+              child: SvgPicture.asset(
+                AppImages.iconBack,
+                height: 24.h,
+                width: 24.w,
+              ),
+            ),
+            SizedBox(width: 10.w)
+          ],
+          title: Center(
+            child: Text(
+              Strings.createAccount,
+              style:
+                  AppTextStyle.textButtonStyle.copyWith(color: AppColors.black),
+            ),
           ),
         ),
         body: SingleChildScrollView(
@@ -42,22 +53,6 @@ class CreateAccountView extends GetView<CreateAccountController> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     controller.showImagePicker(context);
-                    //   },
-                    //   child: Obx(() {
-                    //     return CircleAvatar(
-                    //       radius: 75.r,
-                    //       backgroundImage: controller.imageFile.value != null
-                    //           ? FileImage(controller.imageFile.value!)
-                    //           : null,
-                    //       child: controller.imageFile.value == null
-                    //           ? const Icon(Icons.camera_alt, size: 50)
-                    //           : null,
-                    //     );
-                    //   }),
-                    // ),
                     SizedBox(width: 0.0, height: 20.h),
                     TextFormWidget(
                       controller: controller.textEmailController,
@@ -85,7 +80,7 @@ class CreateAccountView extends GetView<CreateAccountController> {
                           SizedBox(width: 0.0, height: 10.h),
                           Text(
                             Strings.malformedEmail,
-                            style: AppTextStyle.bodySmallStyle
+                            style: AppTextStyle.buttonTextStyle
                                 .copyWith(color: Colors.red, fontSize: 12.sp),
                           ),
                         ],
@@ -116,7 +111,7 @@ class CreateAccountView extends GetView<CreateAccountController> {
                           SizedBox(width: 0.0, height: 10.h),
                           Text(
                             Strings.phoneNumberIncorrect,
-                            style: AppTextStyle.bodySmallStyle
+                            style: AppTextStyle.buttonTextStyle
                                 .copyWith(color: Colors.red, fontSize: 12.sp),
                           ),
                         ],
@@ -140,11 +135,8 @@ class CreateAccountView extends GetView<CreateAccountController> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          Strings.sex,
-                          style: AppTextStyle.conditionStyle
-                              .copyWith(color: AppColors.black),
-                        ),
+                        Text(Strings.sex, style: AppTextStyle.textbodyStyle),
+                        SizedBox(height: 5.h),
                         Stack(
                           children: [
                             Center(
@@ -167,12 +159,9 @@ class CreateAccountView extends GetView<CreateAccountController> {
                                         itemBuilder: (context, index) {
                                           return ListTile(
                                             title: Text(
-                                              controller.options[index],
-                                              style: AppTextStyle.bodyStyle
-                                                  .copyWith(
-                                                      color: AppColors.black,
-                                                      fontSize: 15.sp),
-                                            ),
+                                                controller.options[index],
+                                                style: AppTextStyle
+                                                    .textsmallStyle),
                                             onTap: () {
                                               controller.selectedOption.value =
                                                   controller.options[index];
@@ -204,12 +193,8 @@ class CreateAccountView extends GetView<CreateAccountController> {
                                   child: Obx(
                                     () => Center(
                                       child: Text(
-                                        controller.selectedOption.value,
-                                        style: AppTextStyle.bodyStyle.copyWith(
-                                            color: AppColors.black,
-                                            fontSize: 15.sp,
-                                            fontWeight: FontWeight.w400),
-                                      ),
+                                          controller.selectedOption.value,
+                                          style: AppTextStyle.textsmallStyle),
                                     ),
                                   ),
                                 ),
@@ -227,9 +212,9 @@ class CreateAccountView extends GetView<CreateAccountController> {
                         children: [
                           Text(
                             Strings.dateOfBirth,
-                            style: AppTextStyle.conditionStyle
-                                .copyWith(color: AppColors.black),
+                            style: AppTextStyle.textbodyStyle,
                           ),
+                          SizedBox(height: 5.h),
                           Container(
                             height: 45.h,
                             padding:
@@ -257,7 +242,8 @@ class CreateAccountView extends GetView<CreateAccountController> {
                                   Obx(
                                     () => Text(
                                       '${controller.selectedDate.value.day}/${controller.selectedDate.value.month}/${controller.selectedDate.value.year}',
-                                      style: AppTextStyle.bodyStyle.copyWith(
+                                      style:
+                                          AppTextStyle.buttonTextStyle.copyWith(
                                         color: AppColors.black,
                                         fontSize: 15.sp,
                                         fontWeight: FontWeight.w400,
@@ -332,19 +318,37 @@ class CreateAccountView extends GetView<CreateAccountController> {
                         controller.textPasswordController.value.text, value);
                   },
                 ),
-                SizedBox(width: 0.0, height: 5.h),
+                SizedBox(width: 0.0, height: 10.h),
                 Obx(
                   () {
                     if (controller.isCheckGd.value == false) {
                       return Text(
                         Strings.notTheSame,
-                        style: AppTextStyle.bodySmallStyle
+                        style: AppTextStyle.buttonTextStyle
                             .copyWith(color: Colors.red, fontSize: 12.sp),
                       );
                     } else {
                       return const SizedBox();
                     }
                   },
+                ),
+                SizedBox(width: 0.0, height: 5.h),
+                Obx(
+                  () => TextFormWidget(
+                    controller: controller.textreferralCodeController,
+                    hintText: Strings.referralCode,
+                    textInputType: TextInputType.text,
+                    obscureText: false.obs,
+                    togglePasswordVisibility: () {},
+                    showButton: false,
+                    obscureCode: controller.isReferralCode,
+                    showButtonDone: controller.isReferralCodeNull.value,
+                    onChanged: (value) {
+                      controller.referralCodeNull(value);
+                      controller.getCheckreferralCode(value);
+                      debugPrint(value);
+                    },
+                  ),
                 ),
                 SizedBox(width: 0.0, height: 10.h),
                 Stack(
@@ -363,46 +367,101 @@ class CreateAccountView extends GetView<CreateAccountController> {
                           controller.setTextControllerDefaultIfEmpty(
                               controller.textdateOfBirthPasswordController,
                               formattedDate);
-
-                          controller.getrequestOtp(
-                            controller.textEmailController.value.text,
-                            controller.textNameController.value.text,
-                          );
                           if (controller.checkTextControllersNotEmpty() ==
                               true) {
                           } else {
-                            String email =
-                                controller.textEmailController.value.text;
-                            Get.bottomSheet(
-                              Container(
-                                padding: const EdgeInsets.only(
-                                        top: 20, left: 20, right: 20)
-                                    .r,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20.0),
-                                    topRight: Radius.circular(20.0),
+                            if (controller.isReferralCodeNull.value == true &&
+                                controller.isReferralCode.value == true) {
+                              controller.getrequestOtp(
+                                  controller.textEmailController.value.text,
+                                  controller.textNameController.value.text,
+                                  );
+                              String email =
+                                  controller.textEmailController.value.text;
+                              Get.bottomSheet(
+                                Container(
+                                  padding: const EdgeInsets.only(
+                                          top: 20, left: 20, right: 20)
+                                      .r,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                    ),
+                                  ),
+                                  child: OtpAuthenticationView(
+                                    email: email,
+                                    name: controller
+                                        .textNameController.value.text,
+                                    phoneNumber: controller
+                                        .textphoneNumberController.value.text,
+                                    controller: CreateAccountController(),
+                                    password: controller
+                                        .textPasswordController.value.text,
+                                    sex: controller
+                                        .textSexPasswordController.value.text,
+                                    dateBirth: controller
+                                        .textdateOfBirthPasswordController
+                                        .value
+                                        .text,
+                                    referralCode: controller
+                                        .textreferralCodeController.value.text,
                                   ),
                                 ),
-                                child: OtpAuthenticationView(
-                                  email: email,
-                                  name:
-                                      controller.textNameController.value.text,
-                                  phoneNumber: controller
-                                      .textphoneNumberController.value.text,
-                                  controller: CreateAccountController(),
-                                  password: controller
-                                      .textPasswordController.value.text,
-                                  sex: controller
-                                      .textSexPasswordController.value.text,
-                                  dateBirth: controller
-                                      .textdateOfBirthPasswordController
-                                      .value
-                                      .text,
+                              );
+                            } else if (controller.isReferralCodeNull.value ==
+                                    false &&
+                                controller.isReferralCode.value == false) {
+                              controller.getrequestOtp(
+                                  controller.textEmailController.value.text,
+                                  controller.textNameController.value.text,
+                                  );
+                              String email =
+                                  controller.textEmailController.value.text;
+                              Get.bottomSheet(
+                                Container(
+                                  padding: const EdgeInsets.only(
+                                          top: 20, left: 20, right: 20)
+                                      .r,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                    ),
+                                  ),
+                                  child: OtpAuthenticationView(
+                                    email: email,
+                                    name: controller
+                                        .textNameController.value.text,
+                                    phoneNumber: controller
+                                        .textphoneNumberController.value.text,
+                                    controller: CreateAccountController(),
+                                    password: controller
+                                        .textPasswordController.value.text,
+                                    sex: controller
+                                        .textSexPasswordController.value.text,
+                                    dateBirth: controller
+                                        .textdateOfBirthPasswordController
+                                        .value
+                                        .text,
+                                    referralCode: controller
+                                        .textreferralCodeController.value.text,
+                                  ),
                                 ),
-                              ),
-                            );
+                              );
+                            } else {
+                              Get.snackbar(
+                                'Thông báo',
+                                'Mã xác giới thiệu không tồn tại!',
+                                snackPosition: SnackPosition.TOP,
+                                duration: const Duration(seconds: 3),
+                                backgroundColor:
+                                    AppColors.kSelectedDay.withOpacity(0.7),
+                                colorText: Colors.white,
+                              );
+                            }
                           }
                         },
                         child: Container(
@@ -433,7 +492,7 @@ class CreateAccountView extends GetView<CreateAccountController> {
                 if (controller.isEmailExists.value == true)
                   Text(
                     Strings.emailAlreadyExists,
-                    style: AppTextStyle.bodySmallStyle
+                    style: AppTextStyle.buttonTextStyle
                         .copyWith(color: Colors.red, fontSize: 12.sp),
                   ),
               ],

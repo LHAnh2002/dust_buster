@@ -30,6 +30,11 @@ dependencies:
   firebase_auth: ^4.17.7
   firebase_storage: ^11.6.8
   smart_snackbars: ^1.0.0
+  flutter_gradient_text: ^1.0.1
+  auto_animated: ^3.0.1
+  flutter_animate: ^1.0.0
+  geolocator: ^7.7.0
+  geocoding: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -46,13 +51,18 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/jsons/
 
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: SFProText
+      fonts:
+        - asset: assets/fonts/SFProTextRegular.ttf
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSansRegular.ttf
+    - family: SFProDisplay
+      fonts:
+        - asset: assets/fonts/SF-Pro-Display-Regular.otf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

@@ -1,9 +1,6 @@
-import 'package:dust_buster/app/common/util/exports.dart';
-import 'package:flutter/material.dart';
+import 'package:dust_buster/app/modules/home/exports.dart';
+import 'package:dust_buster/app/modules/navigation_bar/view/widgets/bottomNavigationBarItem_widget.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:ionicons/ionicons.dart';
 
 import '../exports.dart';
 
@@ -20,53 +17,102 @@ class NavigationBarView extends GetView<NavigationBarController> {
         () => controller.srceens[controller.selecteIndex.value],
       ),
       bottomNavigationBar: Obx(
-        () => NavigationBar(
-          elevation: 0,
-          selectedIndex: controller.selecteIndex.value,
-          onDestinationSelected: (index) =>
-              controller.selecteIndex.value = index,
-          destinations: [
-            NavigationDestination(
-              icon: SvgPicture.asset(
-                AppImages.homePage,
-                width: 24.w,
-                height: 24.h,
-              ),
-              label: Strings.homePage,
+        () => Stack(
+          children: [
+            Container(
+              height: 56.0, // Chiều cao của BottomNavigationBar
             ),
-            NavigationDestination(
-              icon: Icon(
-                Ionicons.document_text_outline,
-                size: 24.w,
+            Theme(
+              data: Theme.of(context).copyWith(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
               ),
-              label: Strings.work,
-            ),
-            NavigationDestination(
-              icon: SvgPicture.asset(
-                AppImages.promotions,
-                width: 24.w,
-                height: 24.h,
+              child: BottomNavigationBar(
+                backgroundColor: AppColors.white,
+                showUnselectedLabels: true,
+                showSelectedLabels: true,
+                type: BottomNavigationBarType.fixed,
+                unselectedFontSize: 12.sp,
+                selectedFontSize: 12.sp,
+                // iconSize: 20.sp,
+                items: <BottomNavigationBarItem>[
+                  _buildBottomNavigationBarItem(
+                    AppImages.homePage,
+                    Strings.homePage,
+                    controller.selecteIndex.value == 0
+                        ? [
+                            AppColors.kBrightPurpleColor,
+                            AppColors.kDarkPurpleColor
+                          ]
+                        : [
+                            AppColors.kGrayTextFormColor,
+                            AppColors.kGrayTextFormColor
+                          ],
+                  ),
+                  _buildBottomNavigationBarItem(
+                    AppImages.iconWork,
+                    Strings.work,
+                    controller.selecteIndex.value == 1
+                        ? [
+                            AppColors.kBrightPurpleColor,
+                            AppColors.kDarkPurpleColor
+                          ]
+                        : [
+                            AppColors.kGrayTextFormColor,
+                            AppColors.kGrayTextFormColor
+                          ],
+                  ),
+                  _buildBottomNavigationBarItem(
+                    AppImages.iconNotification,
+                    Strings.notification,
+                    controller.selecteIndex.value == 2
+                        ? [
+                            AppColors.kBrightPurpleColor,
+                            AppColors.kDarkPurpleColor
+                          ]
+                        : [
+                            AppColors.kGrayTextFormColor,
+                            AppColors.kGrayTextFormColor
+                          ],
+                  ),
+                  _buildBottomNavigationBarItem(
+                    AppImages.iconAccount,
+                    Strings.account,
+                    controller.selecteIndex.value == 3
+                        ? [
+                            AppColors.kBrightPurpleColor,
+                            AppColors.kDarkPurpleColor
+                          ]
+                        : [
+                            AppColors.kGrayTextFormColor,
+                            AppColors.kGrayTextFormColor
+                          ],
+                  ),
+                ],
+                selectedItemColor: AppColors.black,
+                unselectedItemColor: AppColors.kGrayTextFormColor,
+                selectedLabelStyle:
+                    const TextStyle(fontWeight: FontWeight.w600),
+                currentIndex: controller.selecteIndex.value,
+                onTap: (int index) {
+                  controller.selecteIndex.value = index;
+                },
               ),
-              label: Strings.promotion,
-            ),
-            NavigationDestination(
-              icon: SvgPicture.asset(
-                AppImages.notification,
-                width: 24.w,
-                height: 24.h,
-              ),
-              label: Strings.notification,
-            ),
-            NavigationDestination(
-              icon: Icon(
-                Ionicons.person_outline,
-                size: 24.w,
-              ),
-              label: Strings.account,
             ),
           ],
         ),
       ),
+    );
+  }
+
+  BottomNavigationBarItem _buildBottomNavigationBarItem(
+    String imagePath,
+    String label,
+    List<Color> colors,
+  ) {
+    return BottomNavigationBarItem(
+      icon: BottomNavigationBarItemWidget(imagePath: imagePath, colors: colors),
+      label: label,
     );
   }
 }

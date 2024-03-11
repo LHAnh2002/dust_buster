@@ -1,15 +1,39 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  static const Color kPurplePurpleColor = Color(0xFF6E43CB);
+  static const Color kPurpleButtonColor = Color(0xFF563981);
+  static const Color kWarningColor = Color(0xFFFED7AA);
+  static const Color kGrayBorderColor = Color(0xFFE2E8F0);
+  static const Color kGrayBackgroudColor = Color(0xFFF8FAFC);
+  static const Color kGrayTextFormColor = Color(0xFF94A3B8);
+  static const Color kGrayBodyColor = Color(0xfff1f5f9);
+  static const Color kGrayTextColor = Color(0xff64748b);
+  static const Color kButtonColor = Color(0xFF235BAA);
+  static const Color caribbeanGreen = Color(0xFF4CD964);
+  static const Color kBrightPurpleColor = Color(0xFF8A3CFF);
+  static const Color kDarkPurpleColor = Color(0xFF563981);
+  static const Color kBrightyellowColor = Color(0xFFFCC60E);
+  static const Color kDarkyellowColor = Color(0xFFEE9D00);
+  static const Color kWarning700Color = Color(0xFFC2410C);
+  static const Color kRrror600Color = Color(0xFFDC2626);
+  static const Color kWarning100Color = Color(0xFFFFEDD5);
+  static const Color kGray1000Color = Color(0xFF0A0D13);
+  static const Color kGray700Color = Color(0xFF334155);
+  static const Color kGray500Color = Color(0xFF64748B);
+  static const Color kGray400Color = Color(0xFF94A3B8);
+  static const Color kGray200Color = Color(0xFFE2E8F0);
+  static const Color kGray100Color = Color(0xFFF1F5F9);
+
   const AppColors._();
 
   static const Color kPrimaryColor = Color(0xFF3E68FF);
-  static const Color kPurpleColor = Color(0xFF8A32A9);
+
   static const Color kPurpleColorLight = Color.fromARGB(188, 136, 0, 255);
 
   static const Color mineShaft = Color(0xFF2B2B2B);
   static const Color doveGray = Color(0xFF646464);
-  static const Color caribbeanGreen = Color(0xFF4CD964);
+
   static const Color amaranth = Color(0xFFea435d);
   static const Color kRangeDay = Color(0xFFFADFDF);
   static const Color kSelectedDay = Color(0xFFD75B5F);
@@ -17,7 +41,6 @@ class AppColors {
   static const Color black = Colors.black;
   static const Color white = Colors.white;
 
-  static const Color kButtonColor = Color(0xFFE8505B);
   static const Color kTabarTextColor = Color(0xFFD75B5F);
   static const Color kOrangeColor = Color.fromARGB(255, 252, 109, 0);
   static const Color kBackgroundTextColor = Color(0xff66f1efef);

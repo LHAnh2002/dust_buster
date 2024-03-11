@@ -22,6 +22,8 @@ class CreateAccountController extends GetxController {
       TextEditingController();
   final TextEditingController textdateOfBirthPasswordController =
       TextEditingController();
+  final TextEditingController textreferralCodeController =
+      TextEditingController();
 
   // Rx<File?> imageFile = Rx<File?>(null);
   // final picker = ImagePicker();
@@ -39,6 +41,8 @@ class CreateAccountController extends GetxController {
 
   var isEmailExists = false.obs;
   var isOtpIsWrong = false.obs;
+  var isReferralCode = false.obs;
+  var isReferralCodeNull = false.obs;
 
   final selectedDate = DateTime.now().obs;
 
@@ -63,6 +67,7 @@ class CreateAccountController extends GetxController {
     textReEnterPasswordController.dispose();
     textSexPasswordController.dispose();
     textdateOfBirthPasswordController.dispose();
+    textreferralCodeController.dispose();
     super.onClose();
   }
 
@@ -186,6 +191,14 @@ class CreateAccountController extends GetxController {
     isPasswordVisible.toggle();
   }
 
+  void referralCodeNull(String code) {
+    if (code.isEmpty) {
+      isReferralCodeNull.value = false;
+      return;
+    }
+    isReferralCodeNull.value = true;
+  }
+
   Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -215,6 +228,9 @@ class CreateAccountController extends GetxController {
   );
 
   void startCountdown() {
+    if (countdownValue.value < 60 && countdownValue.value > 1) {
+      return;
+    }
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (countdownValue.value > 0) {
         countdownValue.value -= 1;
@@ -235,69 +251,6 @@ class CreateAccountController extends GetxController {
     return '$minutes:${remainingSeconds.toString().padLeft(2, '0')}';
   }
 
-  // Future<String?> pickImage(ImageSource source) async {
-  //   final pickedFile = await picker.pickImage(source: source);
-  //   if (pickedFile != null) {
-  //     imageFile.value = File(pickedFile.path);
-  //   } else {
-  //     debugPrint('No image selected.');
-  //   }
-  //   return null;
-  // }
-
-  // Future<String?> uploadImage(BuildContext context) async {
-  //   if (imageFile.value != null) {
-  //     try {
-  //       File file = File(imageFile.value!.path);
-  //       String fileName = file.path.split('/').last;
-  //       firebase_storage.Reference firebaseStorageRef = firebase_storage
-  //           .FirebaseStorage.instance
-  //           .ref()
-  //           .child('avartar/$fileName');
-  //       await firebaseStorageRef.putFile(file);
-  //       String downloadURL = await firebaseStorageRef.getDownloadURL();
-  //       debugPrint("Đường dẫn hình ảnh là $downloadURL");
-  //       return downloadURL;
-  //     } catch (e) {
-  //       debugPrint('Error uploading file: $e');
-  //       return null;
-  //     }
-  //   } else {
-  //     debugPrint('Please select an image before uploading.');
-  //     return null;
-  //   }
-  // }
-
-  // void showImagePicker(BuildContext context) {
-  //   showModalBottomSheet(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return SafeArea(
-  //         child: Column(
-  //           mainAxisSize: MainAxisSize.min,
-  //           children: <Widget>[
-  //             ListTile(
-  //               leading: const Icon(Icons.photo_library),
-  //               title: const Text('Chọn từ thư viện'),
-  //               onTap: () async {
-  //                 await pickImage(ImageSource.gallery);
-  //                 Get.back();
-  //               },
-  //             ),
-  //             ListTile(
-  //               leading: const Icon(Icons.camera_alt),
-  //               title: const Text('Chụp ảnh mới'),
-  //               onTap: () async {
-  //                 await pickImage(ImageSource.camera);
-  //                 Get.back();
-  //               },
-  //             ),
-  //           ],
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
   String formatDate(String dateStr) {
     // Tách chuỗi ngày thành các thành phần: ngày, tháng, năm
     List<String> parts = dateStr.split('/');
@@ -311,6 +264,22 @@ class CreateAccountController extends GetxController {
 
     // Trả về chuỗi ngày được định dạng mới
     return '$formattedDay/$formattedMonth/$year';
+  }
+
+  getCheckreferralCode(String code) async {
+    try {
+      final response = await _apiHelper.referralCode(code: code);
+      final detail = response['detail'];
+      if (detail == -1) {
+        isReferralCode.value = false;
+        return;
+      } else {
+        isReferralCode.value = true;
+        return;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   getrequestOtp(String email, String name) async {
@@ -327,8 +296,16 @@ class CreateAccountController extends GetxController {
     }
   }
 
-  getverifyOtp(String email, String otp, String password, String phoneNumber,
-      String name, String sex, String datebirth, context) async {
+  getverifyOtp(
+      String email,
+      String otp,
+      String password,
+      String phoneNumber,
+      String name,
+      String sex,
+      String datebirth,
+      String referralCode,
+      context) async {
     try {
       final response = await _apiHelper.verifyOtp(email: email, otp: otp);
       final detail = response['detail'];
@@ -352,6 +329,7 @@ class CreateAccountController extends GetxController {
           name: name,
           sex: sexs,
           datebirth: formattedDate,
+          referralCode: referralCode,
         );
         Get.snackbar(
           'Thông báo',
@@ -376,7 +354,13 @@ class CreateAccountController extends GetxController {
     }
   }
 
-  void forgotPaswordView(email, context) {
+  void forgotPaswordView(email, otp, context) async {
+    final response = await _apiHelper.verifyOtp(email: email, otp: otp);
+    final detail = response['detail'];
+    if (detail == -1) {
+      isOtpIsWrong.value = true;
+      return;
+    }
     Get.bottomSheet(
       // isScrollControlled: true,
       Container(
@@ -465,7 +449,7 @@ class CreateAccountController extends GetxController {
                   if (isCheckGd.value == false) {
                     return Text(
                       Strings.notTheSame,
-                      style: AppTextStyle.bodySmallStyle
+                      style: AppTextStyle.buttonTextStyle
                           .copyWith(color: Colors.red, fontSize: 12.sp),
                     );
                   } else {

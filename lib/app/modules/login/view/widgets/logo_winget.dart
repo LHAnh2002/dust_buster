@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../common/util/exports.dart';
 
@@ -9,12 +10,10 @@ class LogoWinget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.center,
-      child: Text(
-        'Logo',
-        style: AppTextStyle.text24BoldStyle.copyWith(
-          fontSize: 30.sp,
-          color: Colors.black,
-        ),
+      child: SvgPicture.asset(
+        AppImages.logo3Clean,
+        height: 70.h,
+        width: 200.w,
       ),
     );
   }

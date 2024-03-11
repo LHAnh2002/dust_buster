@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../common/util/exports.dart';
@@ -8,9 +9,11 @@ class TextFormWidget extends StatelessWidget {
   final String hintText;
   final TextInputType textInputType;
   final RxBool obscureText;
+  final RxBool? obscureCode;
   final Function() togglePasswordVisibility;
   final Function(String) onChanged;
   final bool? showButton;
+  final bool? showButtonDone;
 
   const TextFormWidget({
     Key? key,
@@ -21,22 +24,19 @@ class TextFormWidget extends StatelessWidget {
     required this.togglePasswordVisibility,
     required this.showButton,
     required this.onChanged,
+    this.showButtonDone,
+    this.obscureCode,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45.h,
-      padding: const EdgeInsets.only(top: 3, left: 15).r,
+      height: 48.h,
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12).r,
       decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(6),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.black.withOpacity(0.1),
-            blurRadius: 7.r,
-          ),
-        ],
+        color: AppColors.kGrayBackgroudColor,
+        borderRadius: BorderRadius.circular(8).r,
+        border: Border.all(width: 1.w, color: AppColors.kGrayBorderColor),
       ),
       child: Obx(
         () => Stack(
@@ -52,25 +52,30 @@ class TextFormWidget extends StatelessWidget {
                 onChanged: onChanged,
                 decoration: InputDecoration(
                   hintText: hintText,
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.all(0).r,
-                  hintStyle: const TextStyle(
-                    height: 1,
-                  ),
+                  hintStyle:
+                      const TextStyle(color: AppColors.kGrayTextFormColor),
                   filled: false,
                 ),
               ),
             ),
             if (showButton != null && showButton!)
-              IconButton(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onPressed: togglePasswordVisibility,
-                icon: Icon(
+              InkWell(
+                onTap: togglePasswordVisibility,
+                child: Icon(
                   obscureText.value ? Icons.visibility : Icons.visibility_off,
                   color: Colors.grey,
                 ),
               ),
+            if (showButtonDone != null && showButtonDone!)
+              obscureCode!.value
+                  ? SvgPicture.asset(
+                      AppImages.iconCircleCheck,
+                      color: AppColors.caribbeanGreen,
+                    )
+                  : SvgPicture.asset(
+                      AppImages.iconCloseCircleFill,
+                      color: AppColors.amaranth,
+                    )
           ],
         ),
       ),

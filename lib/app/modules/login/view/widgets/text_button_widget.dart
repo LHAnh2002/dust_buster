@@ -16,8 +16,8 @@ class TextButtonWidget extends StatelessWidget {
       onTap: onTap,
       child: Text(
         text,
-        style: AppTextStyle.buttonTextStyle
-            .copyWith(color: AppColors.kOrangeColor, fontSize: 13.5.sp),
+        style: AppTextStyle.textsmallStyle.copyWith(
+            fontWeight: FontWeight.w600, color: AppColors.kButtonColor),
       ),
     );
   }

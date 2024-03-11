@@ -10,6 +10,7 @@ class SplashController extends GetxController {
   void getTime() {
     Timer(const Duration(seconds: 2), () {
       String? accessToken = Storage.getValue<String>('access_token');
+
       if (accessToken != null) {
         getVerifyToken(accessToken);
       } else {
@@ -20,7 +21,7 @@ class SplashController extends GetxController {
 
   getVerifyToken(String accessToken) async {
     try {
-      await _apiHelper.verifyToken(accessToken: accessToken);
+      await _apiHelper.postVerifyToken(token: accessToken);
       Get.offAllNamed(Routes.navigationBar);
     } catch (e) {
       debugPrint(e.toString());

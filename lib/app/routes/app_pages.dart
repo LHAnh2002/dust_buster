@@ -1,3 +1,4 @@
+import 'package:dust_buster/app/modules/home/views/header/location/find_location/bindings/find_location_binding.dart';
 import 'package:get/get.dart';
 import '../modules/create_account/exports.dart';
 import '../modules/forgot_password/exports.dart';
@@ -40,6 +41,18 @@ class AppPages {
       transition: Transition.rightToLeftWithFade,
       page: () => const NavigationBarView(),
       binding: NavigationBarBinding(),
+    ),
+    GetPage(
+      name: _Paths.location,
+      transition: Transition.rightToLeftWithFade,
+      page: () => const LocationView(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.findLocation,
+      transition: Transition.rightToLeftWithFade,
+      page: () => const FindLocationView(),
+      binding: FindLocationBinding(),
     ),
   ];
 }

@@ -13,6 +13,7 @@ class OtpAuthenticationView extends StatelessWidget {
   final String password;
   final String sex;
   final String dateBirth;
+  final String referralCode;
   final CreateAccountController controller;
   const OtpAuthenticationView(
       {super.key,
@@ -22,7 +23,8 @@ class OtpAuthenticationView extends StatelessWidget {
       required this.phoneNumber,
       required this.password,
       required this.sex,
-      required this.dateBirth});
+      required this.dateBirth,
+      required this.referralCode});
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +35,14 @@ class OtpAuthenticationView extends StatelessWidget {
         Text(
           textAlign: TextAlign.center,
           '${Strings.insertCode} $email',
-          style: AppTextStyle.conditionStyle.copyWith(
+          style: AppTextStyle.buttonTextStyle.copyWith(
             color: AppColors.black,
             fontSize: 13.5.sp,
           ),
         ),
         SizedBox(height: 50.0.h),
         Pinput(
-          length: 6,
+          length: 5,
           defaultPinTheme: controller.defaultPinTheme,
           focusedPinTheme: controller.defaultPinTheme.copyWith(
             decoration: controller.defaultPinTheme.decoration!.copyWith(
@@ -50,14 +52,15 @@ class OtpAuthenticationView extends StatelessWidget {
           onCompleted: (pin) {
             debugPrint(pin);
             controller.getverifyOtp(email, pin, password, phoneNumber, name,
-                sex, dateBirth, context);
+                sex, dateBirth, referralCode, context);
           },
         ),
+        SizedBox(height: 5.0.h),
         Obx(() {
           if (controller.isOtpIsWrong.value == true) {
             return Text(
               Strings.otpIsWrong,
-              style: AppTextStyle.bodySmallStyle
+              style: AppTextStyle.regularStyle
                   .copyWith(color: Colors.red, fontSize: 11.sp),
             );
           } else {

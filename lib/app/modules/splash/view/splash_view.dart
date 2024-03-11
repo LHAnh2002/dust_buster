@@ -1,6 +1,7 @@
 import 'package:dust_buster/app/common/util/exports.dart';
 import 'package:dust_buster/app/modules/splash/controllers/splash_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class SplashView extends GetView<SplashController> {
@@ -10,11 +11,28 @@ class SplashView extends GetView<SplashController> {
   Widget build(BuildContext context) {
     controller.getTime();
     return Scaffold(
-      backgroundColor: AppColors.kGreenChart,
-      body: Center(
-        child: Text(
-          'Logo',
-          style: AppTextStyle.text24BoldStyle.copyWith(color: Colors.black),
+      backgroundColor: AppColors.white,
+      body: Container(
+        padding: const EdgeInsets.only(top: 48, left: 16, right: 16).r,
+        child: Column(
+          children: [
+            SvgPicture.asset(
+              AppImages.logo3Clean,
+              height: 70.h,
+              width: 200.w,
+            ),
+            SizedBox(width: 0.0, height: 64.h),
+            SvgPicture.asset(
+              AppImages.illustration,
+              height: 214.h,
+              width: 343.w,
+            ),
+            SizedBox(width: 0.0, height: 64.h),
+            Text(
+              Strings.slogen,
+              style: AppTextStyle.largeBodyStyle,
+            )
+          ],
         ),
       ),
     );

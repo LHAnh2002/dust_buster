@@ -1,18 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class WorkController extends GetxController with SingleGetTickerProviderMixin {
-  late TabController tabController;
+class WorkController extends GetxController {
+  var selectedIndex = 0.obs;
 
-  @override
-  void dispose() {
-    tabController.dispose();
-    super.dispose();
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    tabController = TabController(length: 3, vsync: this);
+  void selectTab(int index) {
+    selectedIndex.value = index;
   }
 }

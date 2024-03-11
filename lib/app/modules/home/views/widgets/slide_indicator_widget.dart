@@ -29,13 +29,15 @@ class SlideWithIndicator extends StatelessWidget {
                       debugPrint("Click ${item.link}");
                     },
                     child: Container(
+                      // color: AppColors.amaranth,
                       margin: const EdgeInsets.symmetric(vertical: 14).r,
                       child: ClipRRect(
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(10.0)),
+                            BorderRadius.all(const Radius.circular(10.0).r),
                         child: Stack(
                           children: <Widget>[
                             CachedNetworkImage(
+                              fit: BoxFit.cover,
                               imageUrl: item.image,
                               errorWidget: (context, url, error) =>
                                   const Icon(Icons.error),
@@ -45,14 +47,14 @@ class SlideWithIndicator extends StatelessWidget {
                                 highlightColor: Colors.white,
                                 baseColor: Colors.grey.shade300,
                                 child: Container(
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     color: Colors.grey,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10.0)),
+                                    borderRadius: BorderRadius.all(
+                                        const Radius.circular(10.0).r),
                                   ),
                                   child: ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10.0)),
+                                    borderRadius: BorderRadius.all(
+                                        const Radius.circular(10.0).r),
                                     child: AspectRatio(
                                       aspectRatio: 16 / 9,
                                       child: Container(
@@ -62,7 +64,6 @@ class SlideWithIndicator extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              fit: BoxFit.cover,
                               width: double.infinity,
                             ),
                             Positioned(
@@ -92,7 +93,7 @@ class SlideWithIndicator extends StatelessWidget {
             enlargeFactor: 0.23,
             autoPlay: true,
             enlargeCenterPage: true,
-            aspectRatio: 25 / 9,
+            aspectRatio: 20 / 9,
             viewportFraction: 0.83,
             onPageChanged: (index, reason) {
               controller.onPageChanged(index);
@@ -108,15 +109,15 @@ class SlideWithIndicator extends StatelessWidget {
                 return AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
-                  width: controller.currentIndex.value == index ? 17.w : 4.5.w,
-                  height: 4.5.h,
-                  margin: const EdgeInsets.symmetric(horizontal: 8.0).r,
+                  width: 8.w,
+                  height: 8.h,
+                  margin: const EdgeInsets.symmetric(horizontal: 4).r,
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(10.0).r,
                     color: controller.currentIndex.value == index
-                        ? const Color.fromRGBO(0, 0, 0, 0.9)
-                        : const Color.fromRGBO(0, 0, 0, 0.4),
+                        ? AppColors.kPurplePurpleColor
+                        : AppColors.kWarningColor,
                   ),
                 );
               },

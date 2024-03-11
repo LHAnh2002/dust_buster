@@ -13,6 +13,9 @@ class AppTextStyle {
     fontSize: Dimens.fontSize16,
     fontWeight: FontWeight.w600,
   );
+  static final TextStyle bodySmallStyle = _textStyle.copyWith(
+    fontSize: Dimens.fontSize16,
+  );
   static final TextStyle semiBoldMediumStyle = _textStyle.copyWith(
     fontSize: Dimens.fontSize18,
     fontWeight: FontWeight.w600,
@@ -54,46 +57,55 @@ class AppTextStyle {
 
   //Phần text add
 
-  static TextStyle conditionStyle = TextStyle(
-      color: AppColors.kBlueLight,
-      fontWeight: FontWeight.w500,
+  static TextStyle largeBodyStyle = TextStyle(
+      color: AppColors.black,
+      fontWeight: FontWeight.w600,
+      fontSize: Dimens.fontSize20,
+      fontFamily: "SFProText");
+
+  static TextStyle textButtonStyle = TextStyle(
+      color: AppColors.white,
+      fontWeight: FontWeight.w600,
+      fontSize: Dimens.fontSize18,
+      fontFamily: "SFProText");
+
+  static TextStyle lableBodyStyle = TextStyle(
+      color: AppColors.black,
+      fontWeight: FontWeight.w600,
+      fontSize: Dimens.fontSize16,
+      fontFamily: "SFProText");
+
+  static TextStyle textbodyStyle = TextStyle(
+      color: AppColors.black,
+      fontWeight: FontWeight.w600,
+      fontSize: Dimens.fontSize14,
+      fontFamily: "SFProText");
+
+  static TextStyle textsmallStyle12 = TextStyle(
+      color: AppColors.black,
+      fontWeight: FontWeight.w600,
       fontSize: Dimens.fontSize12,
-      fontFamily: "Lato");
-  static TextStyle conditionNomalStyle = TextStyle(
-      color: Colors.white,
+      fontFamily: "SFProText");
+        static TextStyle textsmallStyle10 = TextStyle(
+      color: AppColors.black,
+      fontWeight: FontWeight.w600,
+      fontSize: Dimens.fontSize10,
+      fontFamily: "SFProText");
+
+  static TextStyle textsmallStyle = TextStyle(
+      color: AppColors.black,
+      fontWeight: FontWeight.w400,
+      fontSize: Dimens.fontSize14,
+      fontFamily: "SFProText");
+
+  static TextStyle textxsmallStyle = TextStyle(
+      color: AppColors.black,
       fontWeight: FontWeight.w400,
       fontSize: Dimens.fontSize12,
-      fontFamily: "Lato");
-
-  static final TextStyle textButtonSmallStyle = _textStyle.copyWith(
-      color: Colors.white,
-      fontSize: Dimens.fontSize16,
-      fontWeight: FontWeight.w500);
-
-  static final TextStyle bodyStyle = _textStyle.copyWith(
-    fontSize: Dimens.fontSize18,
-  );
-  static final TextStyle bodySmallStyle = _textStyle.copyWith(
-    fontSize: Dimens.fontSize16,
-  );
-  static final TextStyle bodySmall14Style = _textStyle.copyWith(
-    fontSize: Dimens.fontSize14,
-  );
-  static final TextStyle bodySmallDescriptionStyle = _textStyle.copyWith(
-      fontSize: Dimens.fontSize12, color: AppColors.kBlackLight);
-
-  static TextStyle bottomStyle = _textStyle.copyWith(
-    fontSize: Dimens.fontSize16,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle blandBodyStyle = TextStyle(
-      color: AppColors.kBlackLight,
-      fontWeight: FontWeight.w500,
-      fontSize: Dimens.fontSize16,
-      fontFamily: "Quicksand");
-
-  static final TextStyle textDescriptionStyle = _textStyle.copyWith(
-      color: Colors.black,
-      fontSize: Dimens.fontSize12,
-      fontWeight: FontWeight.w500);
+      fontFamily: "SFProText");
+  static TextStyle textxsmallStyle40010 = TextStyle(
+      color: AppColors.black,
+      fontWeight: FontWeight.w400,
+      fontSize: Dimens.fontSize10,
+      fontFamily: "SFProText");
 }

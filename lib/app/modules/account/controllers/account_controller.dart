@@ -11,7 +11,7 @@ class AccountController extends GetxController {
       String? accessToken = Storage.getValue<String>('access_token');
       if (accessToken != null) {
         await _apiHelper.logout(accessToken: accessToken);
-        await Storage.removeValue('access_token');
+        await Storage.clearStorage();
         Get.offAllNamed(Routes.login);
       } else {
         // Xử lý trường hợp access token không tồn tại

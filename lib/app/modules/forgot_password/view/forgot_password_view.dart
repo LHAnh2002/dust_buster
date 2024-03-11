@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../common/util/exports.dart';
@@ -13,19 +14,29 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.white,
-        leading: InkWell(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onTap: () {
-            Get.back();
-          },
-          child: const Icon(Icons.arrow_back_ios_rounded),
-        ),
-        title: Text(
-          Strings.forgotPassword,
-          style: AppTextStyle.text24BoldStyle
-              .copyWith(fontSize: 20.sp, color: AppColors.black),
+        actions: [
+          InkWell(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () {
+              Get.back();
+            },
+            child: SvgPicture.asset(
+              AppImages.iconBack,
+              height: 24.h,
+              width: 24.w,
+            ),
+          ),
+          SizedBox(width: 10.w)
+        ],
+        title: Center(
+          child: Text(
+            Strings.createAccount,
+            style:
+                AppTextStyle.textButtonStyle.copyWith(color: AppColors.black),
+          ),
         ),
       ),
       body: Container(
@@ -63,15 +74,10 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                       return const SizedBox();
                     } else {
                       // Nếu email không rỗng và không hợp lệ, hiển thị văn bản lỗi
-                      return Column(
-                        children: [
-                          SizedBox(width: 0.0, height: 10.h),
-                          Text(
-                            Strings.malformedEmail,
-                            style: AppTextStyle.bodySmallStyle
-                                .copyWith(color: Colors.red, fontSize: 12.sp),
-                          ),
-                        ],
+                      return Text(
+                        Strings.malformedEmail,
+                        style: AppTextStyle.textsmallStyle
+                            .copyWith(color: Colors.red, fontSize: 12.sp),
                       );
                     }
                   },
@@ -80,7 +86,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                   if (controller.isEmailExists.value == true) {
                     return Text(
                       Strings.notEmail,
-                      style: AppTextStyle.bodySmallStyle
+                      style: AppTextStyle.textsmallStyle
                           .copyWith(color: Colors.red, fontSize: 12.sp),
                     );
                   } else {

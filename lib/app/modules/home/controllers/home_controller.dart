@@ -1,4 +1,5 @@
 import 'package:flutter/rendering.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../exports.dart';
@@ -13,13 +14,17 @@ class HomeController extends GetxController {
   var isScrollingToTop = false.obs;
 
   RxBool isLoading = false.obs;
+  var showMoreButton = true.obs;
   var currentIndex = 0.obs;
+  Position? position;
+
+  var isSevicePermission = false.obs;
+
+  late LocationPermission permission;
 
   void onPageChanged(int index) {
     currentIndex.value = index;
   }
-
-  
 
   @override
   void onInit() {
@@ -76,6 +81,26 @@ class HomeController extends GetxController {
       await launch(url);
     } else {
       throw 'Could not launch $url';
+    }
+  }
+
+  Future<Position> getCurrentLocation() async {
+    isSevicePermission.value = await Geolocator.isLocationServiceEnabled();
+    if (!isSevicePermission.value) {
+      debugPrint("service disabled");
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+    return await Geolocator.getCurrentPosition();
+  }
+
+  void fetchCurrentLocation() async {
+    try {
+      position = await getCurrentLocation();
+    } catch (e) {
+      print("Error fetching current location: $e");
     }
   }
 }

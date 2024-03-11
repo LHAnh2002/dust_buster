@@ -1,5 +1,4 @@
 import 'package:dust_buster/app/modules/notification/exports.dart';
-import 'package:dust_buster/app/modules/promotion/views/promotion_view.dart';
 import 'package:dust_buster/app/modules/work/exports.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +11,6 @@ class NavigationBarController extends GetxController {
   final srceens = [
     const HomeView(),
     const WorkView(),
-    const PromotionView(),
     const NotificationView(),
     const AccountView(),
   ];
