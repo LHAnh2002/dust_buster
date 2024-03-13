@@ -57,12 +57,12 @@ class AppTextStyle {
 
   //Phần text add
   static TextStyle titleBodyStyle = TextStyle(
-      color: AppColors.black,
+      color: AppColors.kGray1000Color,
       fontWeight: FontWeight.w600,
       fontSize: Dimens.fontSize24,
       fontFamily: "SFProText");
   static TextStyle largeBodyStyle = TextStyle(
-      color: AppColors.black,
+      color: AppColors.kGray1000Color,
       fontWeight: FontWeight.w600,
       fontSize: Dimens.fontSize20,
       fontFamily: "SFProText");
@@ -74,41 +74,45 @@ class AppTextStyle {
       fontFamily: "SFProText");
 
   static TextStyle lableBodyStyle = TextStyle(
-      color: AppColors.black,
+      color: AppColors.kGray1000Color,
       fontWeight: FontWeight.w600,
       fontSize: Dimens.fontSize16,
       fontFamily: "SFProText");
 
   static TextStyle textbodyStyle = TextStyle(
-      color: AppColors.black,
+      color: AppColors.kGray1000Color,
       fontWeight: FontWeight.w600,
       fontSize: Dimens.fontSize14,
       fontFamily: "SFProText");
 
   static TextStyle textsmallStyle12 = TextStyle(
-      color: AppColors.black,
+      color: AppColors.kGray1000Color,
       fontWeight: FontWeight.w600,
       fontSize: Dimens.fontSize12,
       fontFamily: "SFProText");
   static TextStyle textsmallStyle10 = TextStyle(
-      color: AppColors.black,
+      color: AppColors.kGray1000Color,
       fontWeight: FontWeight.w600,
       fontSize: Dimens.fontSize10,
       fontFamily: "SFProText");
-
+  static TextStyle textsmallStyle60016 = TextStyle(
+      color: AppColors.kGray1000Color,
+      fontWeight: FontWeight.w400,
+      fontSize: Dimens.fontSize16,
+      fontFamily: "SFProText");
   static TextStyle textsmallStyle = TextStyle(
-      color: AppColors.black,
+      color: AppColors.kGray1000Color,
       fontWeight: FontWeight.w400,
       fontSize: Dimens.fontSize14,
       fontFamily: "SFProText");
 
   static TextStyle textxsmallStyle = TextStyle(
-      color: AppColors.black,
+      color: AppColors.kGray1000Color,
       fontWeight: FontWeight.w400,
       fontSize: Dimens.fontSize12,
       fontFamily: "SFProText");
   static TextStyle textxsmallStyle40010 = TextStyle(
-      color: AppColors.black,
+      color: AppColors.kGray1000Color,
       fontWeight: FontWeight.w400,
       fontSize: Dimens.fontSize10,
       fontFamily: "SFProText");

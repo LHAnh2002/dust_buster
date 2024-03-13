@@ -1,9 +1,5 @@
-import 'package:dust_buster/app/common/util/exports.dart';
 import 'package:dust_buster/app/modules/account/view/widgets/button_endow_widget.dart';
 import 'package:dust_buster/app/modules/home/exports.dart';
-import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
-
 import '../exports.dart';
 
 class AccountView extends GetView<AccountController> {
@@ -11,173 +7,183 @@ class AccountView extends GetView<AccountController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          ButtonAvartarWidget(
-            onTap: () {
-              controller.getLogout();
-            },
-          ),
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10, top: 10, right: 10).r,
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      appBar: AppBar(
+        backgroundColor: AppColors.white,
+        title: Row(
+          children: [
+            SizedBox(width: 16.w),
+            Text(Strings.account, style: AppTextStyle.titleBodyStyle),
+          ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ButtonAvartarWidget(
+              onTap: () {},
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 24).r,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
+                  Text(Strings.endow, style: AppTextStyle.lableBodyStyle),
+                  Column(
+                    children: [
+                      ButtonEndowWidget(
+                        onTap: () {},
+                        text: Strings.rewards,
+                        image: AppImages.iconWallet,
+                      ),
+                      SizedBox(width: 0.0, height: 4.h),
+                      Container(
+                        height: 1.h,
+                        color: AppColors.kGray100Color,
+                      ),
+                      SizedBox(width: 0.0, height: 4.h),
+                      ButtonEndowWidget(
+                        onTap: () {},
+                        text: Strings.introduce,
+                        widget: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              '15,000',
+                              style: AppTextStyle.lableBodyStyle,
+                            ),
+                            SizedBox(width: 2.w, height: 0.0),
+                            Text(
+                              'điểm',
+                              style: AppTextStyle.textsmallStyle12,
+                            ),
+                          ],
+                        ),
+                        image: AppImages.iconBookmark,
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 0.0, height: 4.h),
+                  Container(
+                    height: 1.h,
+                    color: AppColors.kGray100Color,
+                  ),
+                  SizedBox(width: 0.0, height: 4.h),
+                  ButtonEndowWidget(
+                    onTap: () {},
+                    text: Strings.iendow,
+                    image: AppImages.iconCopperDiamond,
+                  ),
+                  SizedBox(width: 0.0, height: 24.h),
                   Text(
-                    Strings.endow,
-                    style: AppTextStyle.semiBoldStyle.copyWith(
-                      color: AppColors.black,
-                    ),
+                    Strings.usesr,
+                    style: AppTextStyle.lableBodyStyle,
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 7)
-                            .r,
-                    child: Column(
-                      children: [
-                        ButtonEndowWidget(
-                          onTap: () {},
-                          text: Strings.rewards,
-                          widget: Container(
-                            alignment: Alignment.center,
-                            width: 47.w,
-                            height: 22.h,
-                            decoration: BoxDecoration(
-                              color: AppColors.kOrangeColor,
-                              borderRadius: BorderRadius.circular(5).r,
-                            ),
-                            child: Text(
-                              Strings.sing,
-                              style: AppTextStyle.semiBoldStyle.copyWith(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14.sp,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Divider(
-                          color: AppColors.kBlackLight2,
-                          thickness: 0.5,
-                        ),
-                        ButtonEndowWidget(
-                          onTap: () {},
-                          text: Strings.introduce,
-                          widget: Container(
-                            alignment: Alignment.center,
-                            width: 47.w,
-                            height: 22.h,
-                            decoration: BoxDecoration(
-                              color: AppColors.kOrangeColor,
-                              borderRadius: BorderRadius.circular(5).r,
-                            ),
-                            child: Text(
-                              Strings.neww,
-                              style: AppTextStyle.semiBoldStyle.copyWith(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14.sp,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  SizedBox(width: 0.0, height: 8.h),
+                  ButtonEndowWidget(
+                    onTap: () {},
+                    text: Strings.lover,
+                    image: AppImages.iconUserHeart,
                   ),
+                  SizedBox(width: 0.0, height: 4.h),
+                  Container(
+                    height: 1.h,
+                    color: AppColors.kGray100Color,
+                  ),
+                  SizedBox(width: 0.0, height: 4.h),
+                  ButtonEndowWidget(
+                    onTap: () {},
+                    text: Strings.morePeople,
+                    image: AppImages.iconUserAdd,
+                  ),
+                  SizedBox(width: 0.0, height: 24.h),
                   Text(
-                    Strings.myAccount,
-                    style: AppTextStyle.semiBoldStyle.copyWith(
-                      color: AppColors.black,
-                    ),
+                    Strings.generalInformation,
+                    style: AppTextStyle.lableBodyStyle,
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 7)
-                            .r,
-                    child: Column(
-                      children: [
-                        ButtonEndowWidget(
-                          onTap: () {},
-                          text: Strings.myLocation,
-                        ),
-                        const Divider(
-                          color: AppColors.kBlackLight2,
-                          thickness: 0.5,
-                        ),
-                        ButtonEndowWidget(
-                          onTap: () {},
-                          text: Strings.staffFavorite,
-                        ),
-                        const Divider(
-                          color: AppColors.kBlackLight2,
-                          thickness: 0.5,
-                        ),
-                        ButtonEndowWidget(
-                          onTap: () {},
-                          text: Strings.restrictedList,
-                        ),
-                      ],
-                    ),
+                  SizedBox(width: 0.0, height: 4.h),
+                  Container(
+                    height: 1.h,
+                    color: AppColors.kGray100Color,
                   ),
+                  SizedBox(width: 0.0, height: 4.h),
+                  ButtonEndowWidget(
+                    onTap: () {},
+                    text: Strings.help,
+                    image: AppImages.iconQuestion,
+                  ),
+                  SizedBox(width: 0.0, height: 4.h),
+                  Container(
+                    height: 1.h,
+                    color: AppColors.kGray100Color,
+                  ),
+                  SizedBox(width: 0.0, height: 4.h),
+                  ButtonEndowWidget(
+                    onTap: () {},
+                    text: Strings.feedbank,
+                    image: AppImages.iconMessage,
+                  ),
+                  SizedBox(width: 0.0, height: 4.h),
+                  Container(
+                    height: 1.h,
+                    color: AppColors.kGray100Color,
+                  ),
+                  SizedBox(width: 0.0, height: 4.h),
+                  ButtonEndowWidget(
+                    onTap: () {},
+                    text: Strings.setting,
+                    image: AppImages.iconSetting,
+                  ),
+                  SizedBox(width: 0.0, height: 24.h),
                   Text(
-                    Strings.generality,
-                    style: AppTextStyle.semiBoldStyle.copyWith(
-                      color: AppColors.black,
-                    ),
+                    Strings.termsAndPolicies,
+                    style: AppTextStyle.lableBodyStyle,
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 7)
-                            .r,
-                    child: Column(
-                      children: [
-                        ButtonEndowWidget(
-                          onTap: () {},
-                          text: Strings.evaluate,
-                        ),
-                        const Divider(
-                          color: AppColors.kBlackLight2,
-                          thickness: 0.5,
-                        ),
-                        ButtonEndowWidget(
-                          onTap: () {},
-                          text: Strings.helpCenter,
-                        ),
-                        const Divider(
-                          color: AppColors.kBlackLight2,
-                          thickness: 0.5,
-                        ),
-                        ButtonEndowWidget(
-                          onTap: () {},
-                          text: Strings.termsOfUse,
-                        ),
-                        const Divider(
-                          color: AppColors.kBlackLight2,
-                          thickness: 0.5,
-                        ),
-                        ButtonEndowWidget(
-                          onTap: () {},
-                          text: Strings.privacyPolicy,
-                        ),
-                        const Divider(
-                          color: AppColors.kBlackLight2,
-                          thickness: 0.5,
-                        ),
-                        ButtonEndowWidget(
-                          onTap: () {},
-                          text: Strings.setting,
-                        ),
-                      ],
-                    ),
+                  SizedBox(width: 0.0, height: 8.h),
+                  ButtonEndowWidget(
+                    onTap: () {},
+                    text: Strings.termsAndPolicies,
+                    image: AppImages.iconJob,
                   ),
+                  SizedBox(width: 0.0, height: 4.h),
+                  Container(
+                    height: 1.h,
+                    color: AppColors.kGray100Color,
+                  ),
+                  SizedBox(width: 0.0, height: 4.h),
+                  ButtonEndowWidget(
+                    onTap: () {},
+                    text: Strings.privacyPolicy,
+                    image: AppImages.iconPrivacyPolicy,
+                  ),
+                  SizedBox(width: 0.0, height: 24.h),
+                  ButtonWidget(
+                    onTap: () {
+                      controller.getLogout();
+                    },
+                    widget: Container(
+                      width: 343.w,
+                      height: 48.h,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8).r,
+                          border: Border.all(color: AppColors.kGray1000Color)),
+                      child: Text(
+                        Strings.logOut,
+                        style: AppTextStyle.textButtonStyle
+                            .copyWith(color: AppColors.black),
+                      ),
+                    ),
+                  )
                 ],
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

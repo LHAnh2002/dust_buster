@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:dust_buster/app/common/util/navigator.dart';
+import 'package:dust_buster/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dust_buster/app/common/constants.dart';
@@ -5,6 +9,7 @@ import 'package:dust_buster/app/common/util/exports.dart';
 import 'package:dust_buster/app/data/errors/api_error.dart';
 import 'package:dust_buster/app/data/interface_controller/api_interface_controller.dart';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
 
 class Extensions {}
 
@@ -181,5 +186,73 @@ extension DebugLog on String {
       '\n******************************* DebugLog *******************************\n',
       wrapWidth: 1024,
     );
+  }
+}
+
+class ApiErrorHandler {
+  static Future<T> handleError<T>(Future<T> Function() apiCall) async {
+    try {
+      return await apiCall();
+    } on TimeoutException catch (_) {
+      Get.offAllNamed(Routes.login);
+      goDialog(
+        child: Container(
+          width: 334,
+          height: 166,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              // Your dialog content here
+              AppImages.svg(AppImages.iconSpam2, width: 50, height: 50),
+              const SizedBox(width: 0, height: 22),
+              Text(
+                textAlign: TextAlign.center,
+                'Không thể kết nối tới server',
+                style: AppTextStyle.text24BoldStyle.copyWith(
+                  fontSize: Dimens.fontSize20,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+      throw Exception('Yêu cầu mất quá nhiều thời gian');
+    } on http.ClientException catch (_) {
+      Get.offAllNamed(Routes.login);
+      goDialog(
+        child: Container(
+          width: 334,
+          height: 166,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              // Your dialog content here
+              AppImages.svg(AppImages.iconSpam2, width: 50, height: 50),
+              const SizedBox(width: 0, height: 22),
+              Text(
+                textAlign: TextAlign.center,
+                'Không thể kết nối tới server',
+                style: AppTextStyle.text24BoldStyle.copyWith(
+                  fontSize: Dimens.fontSize20,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+      throw Exception('Không thể kết nối tới máy chủ');
+    } catch (e) {
+      throw Exception('Đã xảy ra lỗi: $e');
+    }
   }
 }

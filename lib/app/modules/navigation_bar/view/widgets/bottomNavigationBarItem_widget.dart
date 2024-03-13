@@ -5,7 +5,9 @@ class BottomNavigationBarItemWidget extends StatelessWidget {
   final String imagePath;
   final List<Color> colors;
   const BottomNavigationBarItemWidget(
-      {Key? key, required this.imagePath, required this.colors})
+      {Key? key,
+      required this.imagePath,
+      required this.colors})
       : super(key: key);
 
   @override

@@ -1,3 +1,5 @@
+import 'package:dust_buster/app/modules/home/exports.dart';
+import 'package:dust_buster/app/modules/home/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,57 +15,50 @@ class ButtonAvartarWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding:
-            const EdgeInsets.only(top: 5, left: 20, right: 20, bottom: 25).r,
+            const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 24).r,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: <Widget>[
-                Container(
-                  width: 88.w,
-                  height: 88.h,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppColors.kPurplePurpleColor,
-                      width: 2,
-                    ),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(40.0).r,
-                    child: SvgPicture.asset(
-                      AppImages.iconVector,
-                      height: 88.h,
-                      width: 88.w,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                SizedBox(width: 15.w, height: 0.0),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'LHAnh',
-                      style: AppTextStyle.buttonTextStyle.copyWith(
-                        color: AppColors.black,
-                      ),
-                    ),
-                    Text(
-                      'Chỉnh sửa tài khoản',
-                      style: AppTextStyle.buttonTextStyle.copyWith(
-                        color: AppColors.black,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
+            Container(
+              width: 64.w,
+              height: 64.h,
+              padding: const EdgeInsets.only(top: 9, right: 8, left: 8),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [
+                    AppColors.kBrightPurpleColor,
+                    AppColors.kDarkPurpleColor,
                   ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
                 ),
-              ],
+                color: AppColors.kPurplePurpleColor,
+                borderRadius: BorderRadius.circular(48).r,
+              ),
+              child: SvgPicture.asset(
+                AppImages.iconVector,
+                height: 55.h,
+                width: 48.w,
+                fit: BoxFit.fitHeight,
+              ),
             ),
-            Icon(
-              Icons.edit_note_outlined,
-              color: AppColors.kOrangeColor,
-              size: 25.sp,
+            SizedBox(
+              width: 223.w,
+              height: 52.h,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('LHAnh', style: AppTextStyle.lableBodyStyle),
+                  Text('Chỉnh sửa tài khoản',
+                      style: AppTextStyle.textxsmallStyle),
+                ],
+              ),
+            ),
+            SvgPicture.asset(
+              AppImages.iconArrowright,
+              height: 24.h,
+              width: 24.w,
+              fit: BoxFit.fitHeight,
             ),
           ],
         ),

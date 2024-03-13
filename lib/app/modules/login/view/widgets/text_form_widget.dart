@@ -53,6 +53,11 @@ class TextFormWidget extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: hintText,
                   border: InputBorder.none,
+                  // errorBorder: InputBorder.none,
+                  // enabledBorder: InputBorder.none,
+                  // focusedBorder: InputBorder.none,
+                  // disabledBorder: InputBorder.none,
+                  // focusedErrorBorder: InputBorder.none,
                   hintStyle:
                       const TextStyle(color: AppColors.kGrayTextFormColor),
                   filled: false,

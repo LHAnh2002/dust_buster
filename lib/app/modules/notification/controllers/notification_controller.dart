@@ -4,10 +4,9 @@ import 'package:get/get.dart';
 class NotificationController extends GetxController
     with SingleGetTickerProviderMixin {
   late TabController tabController;
-
   @override
   void onInit() {
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 4, vsync: this);
     super.onInit();
   }
 
@@ -15,5 +14,11 @@ class NotificationController extends GetxController
   void onClose() {
     tabController.dispose();
     super.onClose();
+  }
+
+  var selectedIndex = 0.obs;
+
+  void selectTab(int index) {
+    selectedIndex.value = index;
   }
 }

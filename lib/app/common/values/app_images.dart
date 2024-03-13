@@ -57,13 +57,14 @@ class AppImages {
   static const String imageHinhAnh = 'assets/images/hinh_anh.jpg';
   static const String iconHistory = 'assets/icons/history.svg';
   static const String iconComplete = 'assets/icons/complete_tb.svg';
-
+  static const String iconAvtTest = 'assets/icons/IconTest/avatar.png';
 
   //chính
   static const String logo3Clean = 'assets/images/3clean-master-logo.svg';
   static const String illustration = 'assets/images/Illustration.svg';
   static const String iconBack = 'assets/icons/iconBack.svg';
   static const String iconCircleCheck = 'assets/icons/circle_check_24px.svg';
+  static const String iconSpam2 = 'assets/icons/spam-2.svg';
   static const String iconCloseCircleFill =
       'assets/icons/close-circle-fill.svg';
   static const String homePage = 'assets/icons/home-smile-2-fill.svg';
@@ -97,4 +98,15 @@ class AppImages {
   static const String iconRight = 'assets/icons/right_icon.svg';
   static const String iconEdit = 'assets/icons/action_Icon.svg';
   static const String iconClean = 'assets/icons/clean.svg';
+  static const String iconJob = 'assets/icons/job.svg';
+  static const String iconCompany = 'assets/icons/company.svg';
+  static const String iconPromotion = 'assets/icons/promotion.svg';
+  static const String iconArrowright = 'assets/icons/arrow-right-s-line.svg';
+  static const String iconBookmark = 'assets/icons/bookmark.svg';
+  static const String iconUserHeart = 'assets/icons/user-heart.svg';
+  static const String iconUserAdd = 'assets/icons/user-add.svg';
+  static const String iconQuestion = 'assets/icons/question.svg';
+  static const String iconMessage = 'assets/icons/message.svg';
+  static const String iconSetting = 'assets/icons/settings.svg';
+  static const String iconPrivacyPolicy = 'assets/icons/lock-password.svg';
 }

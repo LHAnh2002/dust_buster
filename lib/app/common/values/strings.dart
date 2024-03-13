@@ -78,6 +78,8 @@ class Strings {
 
   static const String emailYourAre = '$email của bạn:';
   static const String continues = 'Tiếp tục';
+  static const String generalInformation = 'Thông tin chung';
+  static const String termsAndPolicies = 'Điều khoản sử dụng';
   static const String notEmail = '$email này chưa được tạo!';
   static const String malformedEmail = '$email không đúng định dạng';
   static const String otpValidation = 'Xác Thực OTP';
@@ -96,6 +98,9 @@ class Strings {
   static const String delete = 'Xoá';
   static const String chageLocation = 'Thay đổi địa chỉ mặc định thành công';
   static const String returnn = 'Trở lại';
+  static const String texting = 'Nhắn tin';
+  static const String calendar = 'Lịch làm việc';
+  static const String company = 'Công ty';
   static const String locationDeletionWarning =
       'Bạn có chắc chắn muốn xóa địa chỉ này khỏi danh sách địa chỉ đã lưu?';
 
@@ -117,6 +122,7 @@ class Strings {
   static const String promotion = 'Khuyến mãi';
   static const String notification = 'Thông báo';
   static const String account = 'Tài khoản';
+  static const String closed = 'Đã đóng';
 
   static const String waitToDo = 'Chờ làm';
   static const String repeat = 'Lặp lại';
@@ -129,21 +135,27 @@ class Strings {
   static const String fromPartner = 'Dust Buster';
   static const String gCoins = 'D-Coins';
   static const String yourCoupon = 'Phiếu ưu đãi của bạn';
-  static const String endow = 'Ưu đãi';
-  static const String rewards = 'D-Rewards';
+  static const String iendow = 'Ưu đãi';
+  static const String endow = 'Ví và ưu đãi';
+  static const String rewards = 'Ví ảo và thẻ';
   static const String sing = 'Hót';
+  static const String usesr = 'Người dùng';
+  static const String morePeople = 'Thêm bạn bè';
   static const String neww = 'New';
   static const String introduce = 'Giới thiệu';
   static const String myAccount = 'Tài khoản của tôi';
   static const String myLocation = 'Địa điểm của tôi';
+  static const String lover = 'Người làm yêu thích';
   static const String staffFavorite = 'Nhân viên yêu thích';
   static const String restrictedList = 'Danh sách hạn chế';
   static const String generality = 'Tổng quát';
   static const String evaluate = 'Đánh giá';
+  static const String help = 'Trợ giúp';
   static const String helpCenter = 'Trung tâm trợ giúp';
   static const String termsOfUse = 'Điều khoản sử dụng';
   static const String privacyPolicy = 'Chính sách bảo mật';
-  static const String setting = 'Cài đặt';
   static const String emailAlreadyExists = 'Email đã tồn tại';
   static const String otpIsWrong = 'Mã otp không đúng!';
+  static const String feedbank = 'Phản hồi';
+  static const String setting = 'Cài đặt chung';
 }

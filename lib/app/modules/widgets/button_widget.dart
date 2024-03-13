@@ -15,7 +15,7 @@ class ButtonWidget extends StatelessWidget {
     this.text,
     this.widget,
     this.colorBackGroud,
-    required this.boder,
+    this.boder,
     this.textStyle,
   }) : super(key: key);
 

@@ -82,7 +82,8 @@ class LoginView extends GetView<LoginController> {
               ),
             ),
             SizedBox(height: 16.h),
-            ButtonWidget( boder: false.obs,
+            ButtonWidget(
+              boder: false.obs,
               onTap: () {
                 controller.login();
               },
