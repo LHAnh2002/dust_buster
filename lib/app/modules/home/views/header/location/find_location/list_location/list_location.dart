@@ -12,17 +12,18 @@ class ListLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonWidget( boder: false.obs,
+    return ButtonWidget(
+      boder: false.obs,
       onTap: () {
         goPresent(
           children: [
-            ButtonAddLocation(controller: controller, model: model),  SizedBox(width: 0.0, height: 16.h),
+            ButtonAddLocation(controller: controller, model: model),
+            SizedBox(width: 0.0, height: 16.h),
           ],
         );
       },
-      widget: Container(
-        height: 47.h,
-        padding: const EdgeInsets.only(top: 16, left: 16, right: 16).r,
+      widget: SizedBox(
+        height: 40.h,
         child: Row(
           children: [
             SvgPicture.asset(
@@ -32,11 +33,13 @@ class ListLocation extends StatelessWidget {
               color: AppColors.kGrayTextFormColor,
             ),
             SizedBox(width: 8.w, height: 0.0),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    width: 300.w,
                     child: Text(
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -46,17 +49,21 @@ class ListLocation extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: 5.w, height: 0.0),
-                  Text(
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    model!.name,
-                    style: AppTextStyle.textxsmallStyle40010.copyWith(
-                      color: AppColors.kGray500Color,
+                ),
+                Expanded(
+                  child: SizedBox(
+                    width: 300.w,
+                    child: Text(
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      model!.name,
+                      style: AppTextStyle.textxsmallStyle40010.copyWith(
+                        color: AppColors.kGray500Color,
+                      ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),

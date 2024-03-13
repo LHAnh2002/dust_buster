@@ -18,7 +18,7 @@ class BottomLocationPage extends StatelessWidget {
             if (controller.isLoadingAutoLocation.value == false)
               Container(
                 color: AppColors.white,
-                height: 44.h,
+                height: 60.h,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,

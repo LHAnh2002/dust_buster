@@ -35,27 +35,33 @@ class FindLocationView extends GetView<FindLocationController> {
           ListView(
             children: [
               SearchPage(controller: controller),
-              controller.obx(
-                (state) {
-                  return ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: state?.length ?? 0,
-                    itemBuilder: (BuildContext context, int index) {
-                      final AutoCompleteModel? model = state?[index];
-                      return ListLocation(model: model, controller: controller);
-                    },
-                    separatorBuilder: (context, index) =>
-                        SizedBox(width: 0.0, height: 8.h),
-                  );
-                },
-                onLoading: Padding(
-                    padding:
-                        EdgeInsets.only(top: 15.h, left: 16.w, right: 20.w),
-                    child: const FindLocationLoading()),
-                onEmpty: Center(child: CustomEmptyWidget(top: 0.12.sh)),
-                onError: (error) => Center(
-                    child: CustomNotFoundWidget(error: error, top: 0.12.sh)),
+              Padding(
+                padding: const EdgeInsets.only(
+                        top: 16, left: 16, right: 16, bottom: 16)
+                    .r,
+                child: controller.obx(
+                  (state) {
+                    return ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: state?.length ?? 0,
+                      itemBuilder: (BuildContext context, int index) {
+                        final AutoCompleteModel? model = state?[index];
+                        return ListLocation(
+                            model: model, controller: controller);
+                      },
+                      separatorBuilder: (context, index) =>
+                          SizedBox(width: 0.0, height: 8.h),
+                    );
+                  },
+                  onLoading: Padding(
+                      padding:
+                          EdgeInsets.only(top: 15.h, left: 16.w, right: 20.w),
+                      child: const FindLocationLoading()),
+                  onEmpty: Center(child: CustomEmptyWidget(top: 0.12.sh)),
+                  onError: (error) => Center(
+                      child: CustomNotFoundWidget(error: error, top: 0.12.sh)),
+                ),
               ),
             ],
           ),
@@ -66,7 +72,6 @@ class FindLocationView extends GetView<FindLocationController> {
             child: Column(
               children: [
                 BottomLocationPage(controller: controller),
-                SizedBox(width: 0.0, height: 16.h),
               ],
             ),
           ),

@@ -1,9 +1,5 @@
 import 'package:dust_buster/app/modules/home/exports.dart';
-import 'package:dust_buster/app/modules/home/views/home_view.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../../common/util/exports.dart';
 
 class ButtonAvartarWidget extends StatelessWidget {
   final VoidCallback onTap;
@@ -11,58 +7,57 @@ class ButtonAvartarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
+    return Padding(
         padding:
             const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 24).r,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              width: 64.w,
-              height: 64.h,
-              padding: const EdgeInsets.only(top: 9, right: 8, left: 8),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [
-                    AppColors.kBrightPurpleColor,
-                    AppColors.kDarkPurpleColor,
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
+        child: ButtonWidget(
+          onTap: () {},
+          widget: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                width: 64.w,
+                height: 64.h,
+                padding: const EdgeInsets.only(top: 9, right: 8, left: 8),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [
+                      AppColors.kBrightPurpleColor,
+                      AppColors.kDarkPurpleColor,
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  color: AppColors.kPurplePurpleColor,
+                  borderRadius: BorderRadius.circular(48).r,
                 ),
-                color: AppColors.kPurplePurpleColor,
-                borderRadius: BorderRadius.circular(48).r,
+                child: SvgPicture.asset(
+                  AppImages.iconVector,
+                  height: 55.h,
+                  width: 48.w,
+                  fit: BoxFit.fitHeight,
+                ),
               ),
-              child: SvgPicture.asset(
-                AppImages.iconVector,
-                height: 55.h,
-                width: 48.w,
+              SizedBox(
+                width: 223.w,
+                height: 52.h,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text('LHAnh', style: AppTextStyle.lableBodyStyle),
+                    Text('Chỉnh sửa tài khoản',
+                        style: AppTextStyle.textxsmallStyle),
+                  ],
+                ),
+              ),
+              SvgPicture.asset(
+                AppImages.iconArrowright,
+                height: 24.h,
+                width: 24.w,
                 fit: BoxFit.fitHeight,
               ),
-            ),
-            SizedBox(
-              width: 223.w,
-              height: 52.h,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text('LHAnh', style: AppTextStyle.lableBodyStyle),
-                  Text('Chỉnh sửa tài khoản',
-                      style: AppTextStyle.textxsmallStyle),
-                ],
-              ),
-            ),
-            SvgPicture.asset(
-              AppImages.iconArrowright,
-              height: 24.h,
-              width: 24.w,
-              fit: BoxFit.fitHeight,
-            ),
-          ],
-        ),
-      ),
-    );
+            ],
+          ),
+        ));
   }
 }
