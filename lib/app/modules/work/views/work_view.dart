@@ -75,11 +75,7 @@ class WorkView extends GetView<WorkController> {
                 unselectedLabelColor: AppColors.kGrayTextColor,
                 overlayColor: MaterialStateProperty.all(Colors.transparent),
                 indicatorSize: TabBarIndicatorSize.label,
-                indicatorPadding: const EdgeInsets.symmetric(vertical: 3).r,
-                indicator: BoxDecoration(
-                  borderRadius: BorderRadius.circular(48).r,
-                  color: AppColors.kGray1000Color,
-                ),
+                indicator: const BoxDecoration(),
                 labelColor: AppColors.white,
                 tabs: [
                   _buildTab("Chờ làm", 0),
@@ -105,32 +101,59 @@ class WorkView extends GetView<WorkController> {
 
   Widget _buildTab(String text, int index) {
     return Tab(
-      child: Container(
-        width: 109.w,
-        height: 32.h,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(48).r,
-          border: Border.all(
-            // ignore: unrelated_type_equality_checks
-            color: controller.selectedIndex != index
-                ? AppColors.kGrayTextColor
-                : Colors.transparent,
-            width:
-                // ignore: unrelated_type_equality_checks
-                controller.selectedIndex != index ? 1.w : 0,
-          ),
-        ),
-        child: Align(
-          alignment: Alignment.center,
-          child: Text(
-            text,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: Dimens.fontSize14,
-              fontFamily: "SFProText",
+      child: Column(
+        children: [
+          // ignore: unrelated_type_equality_checks
+          if (controller.selectedIndex == index)
+            Container(
+              width: 109.w,
+              height: 32.h,
+              decoration: BoxDecoration(
+                color: AppColors.black,
+                borderRadius: BorderRadius.circular(48).r,
+              ),
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: Dimens.fontSize14,
+                    fontFamily: "SFProText",
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
+          // ignore: unrelated_type_equality_checks
+          if (controller.selectedIndex != index)
+            Container(
+              width: 109.w,
+              height: 32.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(48).r,
+                border: Border.all(
+                  // ignore: unrelated_type_equality_checks
+                  color: controller.selectedIndex != index
+                      ? AppColors.kGrayTextColor
+                      : Colors.transparent,
+                  width:
+                      // ignore: unrelated_type_equality_checks
+                      controller.selectedIndex != index ? 1.w : 0,
+                ),
+              ),
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: Dimens.fontSize14,
+                    fontFamily: "SFProText",
+                  ),
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }

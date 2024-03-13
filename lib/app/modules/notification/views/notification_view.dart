@@ -54,11 +54,8 @@ class NotificationView extends GetView<NotificationController> {
                   padding: const EdgeInsets.only(top: 16, bottom: 16).r,
                   unselectedLabelColor: AppColors.kGrayTextColor,
                   indicatorSize: TabBarIndicatorSize.values.last,
-                  indicatorPadding: const EdgeInsets.symmetric(vertical: 3).r,
-                  indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(48).r,
-                    color: AppColors.kGray1000Color,
-                  ),
+                  indicatorPadding: const EdgeInsets.symmetric(vertical: 6.5).r,
+                  indicator: const BoxDecoration(),
                   labelColor: AppColors.white,
                   tabs: [
                     _buildTab(Strings.texting, 0),
@@ -110,31 +107,62 @@ class NotificationView extends GetView<NotificationController> {
 
   Widget _buildTab(String text, int index) {
     return Tab(
-      child: Container(
-        height: 32.h,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(48).r,
-          border: Border.all(
-            color: controller.selectedIndex != index
-                ? AppColors.kGrayTextColor
-                : Colors.transparent,
-            width: controller.selectedIndex != index ? 1.w : 0,
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16).r,
-          child: Align(
-            alignment: Alignment.center,
-            child: Text(
-              text,
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: Dimens.fontSize14,
-                fontFamily: "SFProText",
+      child: Column(
+        children: [
+          // ignore: unrelated_type_equality_checks
+          if (controller.selectedIndex == index)
+            Container(
+              height: 32.h,
+              decoration: BoxDecoration(
+                color: AppColors.black,
+                borderRadius: BorderRadius.circular(48).r,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16).r,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: Dimens.fontSize14,
+                      fontFamily: "SFProText",
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
+          // ignore: unrelated_type_equality_checks
+          if (controller.selectedIndex != index)
+            Container(
+              height: 32.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(48).r,
+                border: Border.all(
+                  // ignore: unrelated_type_equality_checks
+                  color: controller.selectedIndex != index
+                      ? AppColors.kGrayTextColor
+                      : Colors.transparent,
+                  // ignore: unrelated_type_equality_checks
+                  width: controller.selectedIndex != index ? 1.w : 0,
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16).r,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: Dimens.fontSize14,
+                      fontFamily: "SFProText",
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }
