@@ -1,4 +1,3 @@
-
 import 'package:dust_buster/app/data/models/viet_map_models/auto_complete/auto_complete_model.dart';
 import 'package:dust_buster/app/modules/home/exports.dart';
 
@@ -64,7 +63,12 @@ class FindLocationView extends GetView<FindLocationController> {
             left: 0,
             right: 0,
             bottom: 0,
-            child: BottomLocationPage(controller: controller),
+            child: Column(
+              children: [
+                BottomLocationPage(controller: controller),
+                SizedBox(width: 0.0, height: 16.h),
+              ],
+            ),
           ),
         ],
       ),

@@ -15,6 +15,7 @@ class Strings {
   static const String yourDefaultAddress = 'Bạn chưa có địa chỉ mặc định';
   static const String addLocation = 'Thêm địa chỉ';
   static const String findLocation = 'Tìm địa chỉ';
+  static const String allServices = 'Tất cả dịch vụ của $nameApp';
   static const String errorNoData =
       "Xin lỗi, chúng tôi không thể tìm thấy dữ liệu bạn đang tìm kiếm.";
   static const String error404 =
@@ -86,7 +87,6 @@ class Strings {
   static const String reEnterPassword = 'Nhập lại mật khẩu';
   static const String username = 'Nhập Tên';
   static const String nameStreet = 'Tên đường, Tòa nhà, Số nhà.';
-  static const String addaddress = 'Thêm địa chỉ';
   static const String saveaddres = 'Địa chỉ đã lưu';
   static const String sex = 'Giới tính';
   static const String setDefault = 'Đặt làm mặc định';

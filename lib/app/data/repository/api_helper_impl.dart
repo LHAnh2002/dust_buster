@@ -278,23 +278,22 @@ class ApiHelperImpl implements ApiHelper {
   //tạo tạo dữ liệu
   @override
   Future<Map<String, dynamic>> postCreateLocation(
-      {required String idUsers,
-      required String location,
+      {required String location,
       required String location2,
       required String lat,
       required String lng}) async {
+    String? accessToken = Storage.getValue<String>('access_token');
     final url = '$apiUrl/create-location/';
-    final response = await http.post(Uri.parse(url),
-        body: jsonEncode({
-          "id_users": idUsers,
-          "location": location,
-          "location2": location2,
-          "lat": lat,
-          "lng": lng,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        });
+    final response = await http.post(
+      Uri.parse(url),
+      body: jsonEncode({
+        "location": location,
+        "location2": location2,
+        "lat": lat,
+        "lng": lng,
+      }),
+      headers: getHeaders(accessToken!),
+    );
 
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);

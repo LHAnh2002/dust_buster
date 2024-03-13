@@ -51,7 +51,7 @@ class CustomLocationWidget extends StatelessWidget {
           boder: false.obs,
           onTap: () {
             goPresent(children: [
-              DeleteLocationWidget(controller: controller, model: model),
+              DeleteLocationWidget(controller: controller, model: model),  SizedBox(width: 0.0, height: 16.h),
             ]);
           },
           widget: const ButtonPresent(

@@ -31,11 +31,12 @@ class ButtonAddLocation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              Strings.addaddress,
+              Strings.addLocation,
               style:
                   AppTextStyle.textButtonStyle.copyWith(color: AppColors.black),
             ),
-            ButtonWidget( boder: false.obs,
+            ButtonWidget(
+              boder: false.obs,
               onTap: () {
                 Get.back();
               },
@@ -102,7 +103,8 @@ class ButtonAddLocation extends StatelessWidget {
           },
         ),
         SizedBox(width: 0.0, height: 16.h),
-        ButtonWidget( boder: false.obs,
+        ButtonWidget(
+          boder: false.obs,
           onTap: () {
             String lats = "1";
             String lngs = "1";

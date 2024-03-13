@@ -96,10 +96,9 @@ class FindLocationController extends GetxController
         lngs = response[0]['lng'].toString();
       }
 
-      String? id = Storage.getValue<String>('id');
+
 
       await _apiHelper.postCreateLocation(
-        idUsers: id as String,
         location: location,
         location2: location2,
         lat: lats,
@@ -169,7 +168,7 @@ class FindLocationController extends GetxController
                 lat: response[0]['lat'].toString(),
                 lng: response[0]['lng'].toString(),
                 ma: 1,
-              ),
+              ),  SizedBox(width: 0.0, height: 16.h),
             ],
           );
           break;

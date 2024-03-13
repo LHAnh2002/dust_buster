@@ -84,7 +84,7 @@ class WorkView extends GetView<WorkController> {
                       borderRadius: BorderRadius.circular(48).r,
                       color: AppColors.kGray1000Color,
                     ),
-                    
+
                     labelColor: AppColors.white,
                     tabs: [
                       Tab(

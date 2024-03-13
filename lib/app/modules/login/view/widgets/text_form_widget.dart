@@ -52,6 +52,7 @@ class TextFormWidget extends StatelessWidget {
                 onChanged: onChanged,
                 decoration: InputDecoration(
                   hintText: hintText,
+                  border: InputBorder.none,
                   hintStyle:
                       const TextStyle(color: AppColors.kGrayTextFormColor),
                   filled: false,

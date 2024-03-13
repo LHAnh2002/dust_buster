@@ -12,27 +12,29 @@ class SplashView extends GetView<SplashController> {
     controller.getTime();
     return Scaffold(
       backgroundColor: AppColors.white,
-      body: Container(
-        padding: const EdgeInsets.only(top: 48, left: 16, right: 16).r,
-        child: Column(
-          children: [
-            SvgPicture.asset(
-              AppImages.logo3Clean,
-              height: 70.h,
-              width: 200.w,
-            ),
-            SizedBox(width: 0.0, height: 64.h),
-            SvgPicture.asset(
-              AppImages.illustration,
-              height: 214.h,
-              width: 343.w,
-            ),
-            SizedBox(width: 0.0, height: 64.h),
-            Text(
-              Strings.slogen,
-              style: AppTextStyle.largeBodyStyle,
-            )
-          ],
+      body: Center(
+        child: Container(
+          padding: const EdgeInsets.only(top: 48, left: 16, right: 16).r,
+          child: Column(
+            children: [
+              SvgPicture.asset(
+                AppImages.logo3Clean,
+                height: 70.h,
+                width: 200.w,
+              ),
+              SizedBox(width: 0.0, height: 64.h),
+              SvgPicture.asset(
+                AppImages.illustration,
+                height: 214.h,
+                width: 343.w,
+              ),
+              SizedBox(width: 0.0, height: 64.h),
+              Text(
+                Strings.slogen,
+                style: AppTextStyle.largeBodyStyle,
+              )
+            ],
+          ),
         ),
       ),
     );

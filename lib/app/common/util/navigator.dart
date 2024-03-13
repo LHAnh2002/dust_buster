@@ -11,7 +11,7 @@ import 'package:dust_buster/app/common/util/calendar/material/calendar_date_pick
 goPresent({required List<Widget> children, double? height}) {
   return Get.bottomSheet(
     Container(
-      // height: height ?? 172.h,
+      height: height,
       padding:
           EdgeInsets.only(top: 16.h, left: 16.w, right: 16.w, bottom: 16.h),
       decoration: const BoxDecoration(

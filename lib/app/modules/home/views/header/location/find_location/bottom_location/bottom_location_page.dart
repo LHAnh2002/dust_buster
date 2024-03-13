@@ -7,7 +7,8 @@ class BottomLocationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonWidget( boder: false.obs,
+    return ButtonWidget(
+      boder: false.obs,
       onTap: () async {
         controller.fetchCurrentLocation();
       },
@@ -55,8 +56,8 @@ class BottomLocationPage extends StatelessWidget {
                 children: [
                   Container(
                     color: AppColors.white,
-                    height: 25.h,
-                    width: 25.w,
+                    height: 35.h,
+                    width: 35.w,
                     child: const CircularProgressIndicator(
                       backgroundColor: AppColors.kButtonColor,
                       color: AppColors.kBrightPurpleColor,

@@ -109,6 +109,7 @@ class ItemLocationWidget extends StatelessWidget {
                     controller: controller,
                     model: model,
                   ),
+                  SizedBox(width: 0.0, height: 16.h),
                 ],
               );
             },

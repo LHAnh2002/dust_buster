@@ -16,7 +16,7 @@ class ListLocation extends StatelessWidget {
       onTap: () {
         goPresent(
           children: [
-            ButtonAddLocation(controller: controller, model: model),
+            ButtonAddLocation(controller: controller, model: model),  SizedBox(width: 0.0, height: 16.h),
           ],
         );
       },

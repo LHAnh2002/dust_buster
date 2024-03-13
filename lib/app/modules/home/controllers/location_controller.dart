@@ -51,6 +51,7 @@ class LocationController extends GetxController
       if (response['detail'] == "OK") {
         isLoading.value = false;
         showDialogSuccess(content: Strings.deleteSuccess);
+        getLocationn();
       } else {
         isLoading.value = false;
       }
@@ -66,6 +67,7 @@ class LocationController extends GetxController
 
       if (response['detail'] == "OK") {
         showDialogSuccess(content: Strings.chageLocation);
+        getLocationn();
       } else {}
     } catch (e) {
       print(e.toString());

@@ -45,7 +45,7 @@ abstract class ApiHelper {
   Future<Map<String, dynamic>> postVerifyToken({required String token});
 
   Future<Map<String, dynamic>> postCreateLocation(
-      {required String idUsers,
+      {
       required String location,
       required String location2,
       required String lat,

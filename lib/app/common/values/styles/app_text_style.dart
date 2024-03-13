@@ -56,7 +56,11 @@ class AppTextStyle {
   );
 
   //Phần text add
-
+  static TextStyle titleBodyStyle = TextStyle(
+      color: AppColors.black,
+      fontWeight: FontWeight.w600,
+      fontSize: Dimens.fontSize24,
+      fontFamily: "SFProText");
   static TextStyle largeBodyStyle = TextStyle(
       color: AppColors.black,
       fontWeight: FontWeight.w600,
@@ -86,7 +90,7 @@ class AppTextStyle {
       fontWeight: FontWeight.w600,
       fontSize: Dimens.fontSize12,
       fontFamily: "SFProText");
-        static TextStyle textsmallStyle10 = TextStyle(
+  static TextStyle textsmallStyle10 = TextStyle(
       color: AppColors.black,
       fontWeight: FontWeight.w600,
       fontSize: Dimens.fontSize10,

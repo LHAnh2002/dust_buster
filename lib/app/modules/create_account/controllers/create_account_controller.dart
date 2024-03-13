@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:dust_buster/app/common/util/exports.dart';
+import 'package:dust_buster/app/common/util/navigator.dart';
 import 'package:dust_buster/app/data/repository/api_helper.dart';
 import 'package:dust_buster/app/modules/create_account/view/widgets/check_dk_pw_widget.dart';
 import 'package:dust_buster/app/routes/app_pages.dart';
@@ -19,8 +20,6 @@ class CreateAccountController extends GetxController {
   final TextEditingController textReEnterPasswordController =
       TextEditingController();
   final TextEditingController textSexPasswordController =
-      TextEditingController();
-  final TextEditingController textdateOfBirthPasswordController =
       TextEditingController();
   final TextEditingController textreferralCodeController =
       TextEditingController();
@@ -44,13 +43,33 @@ class CreateAccountController extends GetxController {
   var isReferralCode = false.obs;
   var isReferralCodeNull = false.obs;
 
-  final selectedDate = DateTime.now().obs;
-
   final List<String> options = ['Khác', 'Nam', 'Nữ'];
   final RxString selectedOption = RxString('Khác');
-
+  var dateTime = DateTime.now().obs;
   var countdownValue = 60.obs;
   late Timer _timer;
+  final RxString dateBirth = "".obs;
+  @override
+  void onInit() {
+    String formattedDate = dateTime.value.formatDMY;
+
+    dateBirth.value = formattedDate;
+    super.onInit();
+  }
+
+  selectDate() {
+    goDatePicker(
+      onDateChanged: (DateTime? selectedDate) {
+        // Xử lý ngày được chọn ở đây
+        if (selectedDate != null) {
+          String formattedDate = selectedDate.formatDMY;
+          dateBirth.value = formattedDate;
+        } else {
+          debugPrint('No date selected');
+        }
+      },
+    );
+  }
 
   @override
   void dispose() {
@@ -66,7 +85,6 @@ class CreateAccountController extends GetxController {
     textPasswordController.dispose();
     textReEnterPasswordController.dispose();
     textSexPasswordController.dispose();
-    textdateOfBirthPasswordController.dispose();
     textreferralCodeController.dispose();
     super.onClose();
   }
@@ -86,9 +104,6 @@ class CreateAccountController extends GetxController {
             textReEnterPasswordController, 'Re-enter Password');
     isAnyEmpty =
         isAnyEmpty || checkControllerNotEmpty(textSexPasswordController, 'Sex');
-    isAnyEmpty = isAnyEmpty ||
-        checkControllerNotEmpty(
-            textdateOfBirthPasswordController, 'Date of Birth');
 
     // Thêm điều kiện kiểm tra các biến khác
     isAnyEmpty = isAnyEmpty || !isEmailValid.value;
@@ -197,20 +212,6 @@ class CreateAccountController extends GetxController {
       return;
     }
     isReferralCodeNull.value = true;
-  }
-
-  Future<void> selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate.value,
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-    );
-    if (picked != null && picked != selectedDate.value) {
-      selectedDate.value = picked;
-      textdateOfBirthPasswordController.text =
-          '${picked.day}/${picked.month}/${picked.year}';
-    }
   }
 
   final defaultPinTheme = PinTheme(
