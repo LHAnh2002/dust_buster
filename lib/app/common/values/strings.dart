@@ -159,3 +159,13 @@ class Strings {
   static const String feedbank = 'Phản hồi';
   static const String setting = 'Cài đặt chung';
 }
+//  Positioned(
+//             left: 0,
+//             right: 0,
+//             bottom: 0,
+//             child: Column(
+//               children: [
+//                 BottomLocationPage(controller: controller),
+//               ],
+//             ),
+//           ),

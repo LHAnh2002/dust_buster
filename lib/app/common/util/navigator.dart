@@ -137,6 +137,5 @@ Future showDialogSuccess({String? content}) async {
       ),
     ),
   );
-  await Future.delayed(const Duration(seconds: 2));
-  Get.back();
+
 }

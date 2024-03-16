@@ -96,8 +96,6 @@ class FindLocationController extends GetxController
         lngs = response[0]['lng'].toString();
       }
 
-
-
       await _apiHelper.postCreateLocation(
         location: location,
         location2: location2,
@@ -168,7 +166,8 @@ class FindLocationController extends GetxController
                 lat: response[0]['lat'].toString(),
                 lng: response[0]['lng'].toString(),
                 ma: 1,
-              ),  SizedBox(width: 0.0, height: 16.h),
+              ),
+              SizedBox(width: 0.0, height: 16.h),
             ],
           );
           break;

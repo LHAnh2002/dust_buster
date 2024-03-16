@@ -47,10 +47,11 @@ class BottomLocationPage extends StatelessWidget {
                       'Tự động lấy địa chỉ',
                       style: AppTextStyle.textsmallStyle
                           .copyWith(color: AppColors.black),
-                    )
+                    ),
                   ],
                 ),
               ),
+            // SizedBox(width: 0.0, height: 16.h),
             if (controller.isLoadingAutoLocation.value == true)
               Column(
                 children: [
@@ -63,7 +64,7 @@ class BottomLocationPage extends StatelessWidget {
                       color: AppColors.kBrightPurpleColor,
                     ),
                   ),
-                  SizedBox(width: 0.0, height: 8.h),
+                  SizedBox(width: 0.0, height: 16.h),
                 ],
               ),
           ],

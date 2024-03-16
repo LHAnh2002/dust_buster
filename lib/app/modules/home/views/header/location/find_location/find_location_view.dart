@@ -54,10 +54,7 @@ class FindLocationView extends GetView<FindLocationController> {
                           SizedBox(width: 0.0, height: 8.h),
                     );
                   },
-                  onLoading: Padding(
-                      padding:
-                          EdgeInsets.only(top: 15.h, left: 16.w, right: 20.w),
-                      child: const FindLocationLoading()),
+                  onLoading: const FindLocationLoading(),
                   onEmpty: Center(child: CustomEmptyWidget(top: 0.12.sh)),
                   onError: (error) => Center(
                       child: CustomNotFoundWidget(error: error, top: 0.12.sh)),
