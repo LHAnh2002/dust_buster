@@ -1,5 +1,5 @@
 import 'package:dust_buster/app/modules/home/exports.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:dust_buster/app/modules/widgets/custom_svg.dart';
 
 class ButtonAvartarWidget extends StatelessWidget {
   final VoidCallback onTap;
@@ -31,8 +31,8 @@ class ButtonAvartarWidget extends StatelessWidget {
                   color: AppColors.kPurplePurpleColor,
                   borderRadius: BorderRadius.circular(48).r,
                 ),
-                child: SvgPicture.asset(
-                  AppImages.iconVector,
+                child: CustomSvg(
+                  image: AppImages.iconVector,
                   height: 55.h,
                   width: 48.w,
                   fit: BoxFit.fitHeight,
@@ -50,12 +50,10 @@ class ButtonAvartarWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              SvgPicture.asset(
-                AppImages.iconArrowright,
-                height: 24.h,
-                width: 24.w,
+              const CustomSvg(
+                image: AppImages.iconArrowright,
                 fit: BoxFit.fitHeight,
-              ),
+              )
             ],
           ),
         ));

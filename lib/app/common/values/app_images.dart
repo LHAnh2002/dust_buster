@@ -80,6 +80,7 @@ class AppImages {
   static const String iconHouseCleaning = 'assets/icons/house_cleaning.svg';
   static const String iconmore = 'assets/icons/more.svg';
   static const String iconCleaning_1 = 'assets/images/cleaning_1.png';
+  static const String iconCleaning = 'assets/images/cleaning.png';
   static const String iconAccessTime = 'assets/icons/access_time.svg';
   static const String iconDate = 'assets/icons/date.svg';
   static const String iconNote = 'assets/icons/note.svg';
@@ -109,4 +110,20 @@ class AppImages {
   static const String iconMessage = 'assets/icons/message.svg';
   static const String iconSetting = 'assets/icons/settings.svg';
   static const String iconPrivacyPolicy = 'assets/icons/lock-password.svg';
+  static const String iconErrorWarning = 'assets/icons/error-warning.svg';
+  static const String iconErrorWarningLine =
+      'assets/icons/error-warning-line.svg';
+  static const String iconCalendarLine = 'assets/icons/calendar-line.svg';
+  static const String iconTimeLine = 'assets/icons/time-line.svg';
+  static const String iconInformationFill = 'assets/icons/information-fill.svg';
+  static const String iconRadioButtonChecked = 'assets/icons/radio_button_checked.svg';
+  static const String iconRadioButtonUnchecked = 'assets/icons/radio_button_unchecked.svg';
+  static const String iconVipCrown2 = 'assets/icons/vip-crown-2-fill.svg';
+  static const String iconDog = 'assets/icons/dog.svg';
+  static const String iconMaymet = 'assets/icons/maymet.svg';
+  static const String iconMoneyDollarBox = 'assets/icons/money-dollar-box-fill.svg';
+  static const String iconPriceTag3 = 'assets/icons/price-tag-3.svg';
+  static const String imageIllustration2 = 'assets/images/Illustration2.svg';
+  static const String iconsPercent = 'assets/icons/percent-fill.svg';
+  static const String iconsCopperDiamondLine = 'assets/icons/copper-diamond-line.svg';
 }

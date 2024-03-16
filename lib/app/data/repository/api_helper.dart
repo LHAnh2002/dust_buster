@@ -44,9 +44,14 @@ abstract class ApiHelper {
 
   Future<Map<String, dynamic>> postVerifyToken({required String token});
 
+  Future<Map<String, dynamic>> getHomePage();
+
+  Future<Map<String, dynamic>> getCustomerPromotions({required String id});
+
+  Future<Map<String, dynamic>> postCheckPromotions({required String id});
+
   Future<Map<String, dynamic>> postCreateLocation(
-      {
-      required String location,
+      {required String location,
       required String location2,
       required String lat,
       required String lng});

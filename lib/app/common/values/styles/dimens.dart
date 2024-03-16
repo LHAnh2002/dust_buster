@@ -17,6 +17,7 @@ class Dimens {
   static final double fontSize28 = 28.sp;
   static final double fontSize30 = 30.sp;
   static final double fontSize32 = 32.sp;
+  static final double fontSize44 = 44.sp;
 }
 
 const double kPaddingPage = 16;

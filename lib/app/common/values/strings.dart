@@ -22,6 +22,8 @@ class Strings {
       "Xin lỗi, chúng tôi không tìm thấy trang bạn đang tìm.";
   static const String deleteAnyway = "Dù sao cũng xóa";
   static const String complete = 'Hoàn thành';
+  static const String close = 'Đóng';
+  static const String change = 'Thay đổi';
 
   const Strings._();
 

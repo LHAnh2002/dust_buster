@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 class ButtonWidget extends StatelessWidget {
   final VoidCallback onTap;
   final String? text;
+  final double? height;
+  final double? width;
   final Widget? widget;
   final Color? colorBackGroud;
   final TextStyle? textStyle;
@@ -17,6 +19,7 @@ class ButtonWidget extends StatelessWidget {
     this.colorBackGroud,
     this.boder,
     this.textStyle,
+    this.width, this.height,
   }) : super(key: key);
 
   @override
@@ -28,7 +31,8 @@ class ButtonWidget extends StatelessWidget {
       child: widget ??
           Container(
             alignment: Alignment.center,
-            height: 45.h,
+            width: width,
+            height:height?? 45.h,
             decoration: BoxDecoration(
               color: colorBackGroud ?? AppColors.kButtonColor.withOpacity(0.8),
               borderRadius: BorderRadius.circular(8).r,

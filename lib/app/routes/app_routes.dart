@@ -10,6 +10,8 @@ abstract class Routes {
   static const String navigationBar = _Paths.navigationBar;
   static const String location = _Paths.location;
   static const String findLocation = _Paths.findLocation;
+  static const String cleaningHouer = _Paths.cleaningHouer;
+  static const String promotionDetails = _Paths.promotionDetails;
 
 }
 
@@ -22,4 +24,6 @@ abstract class _Paths {
   static const String navigationBar = '/navigationBar';
   static const String location = '/location';
   static const String findLocation = '/findLocation';
+  static const String cleaningHouer = '/cleaningHouer';
+  static const String promotionDetails = '/promotionDetails';
 }

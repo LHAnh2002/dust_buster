@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dust_buster/app/data/models/home_models/home_model.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
@@ -9,11 +10,11 @@ import '../../exports.dart';
 class SlideWithIndicator extends StatelessWidget {
   final HomeController controller;
 
-  final List<SlideModel> data;
+  final HomeModel? model;
 
   const SlideWithIndicator({
     Key? key,
-    required this.data,
+    this.model,
     required this.controller,
   }) : super(key: key);
 
@@ -22,11 +23,10 @@ class SlideWithIndicator extends StatelessWidget {
     return Column(
       children: [
         CarouselSlider(
-          items: data
+          items: model!.slides!
               .map((item) => InkWell(
                     onTap: () async {
-                      await controller.launchURL(item.link);
-                      debugPrint("Click ${item.link}");
+                      Utils.getLaunchUrl(item.newsUrl.toString());
                     },
                     child: Container(
                       // color: AppColors.amaranth,
@@ -38,7 +38,7 @@ class SlideWithIndicator extends StatelessWidget {
                           children: <Widget>[
                             CachedNetworkImage(
                               fit: BoxFit.cover,
-                              imageUrl: item.image,
+                              imageUrl: item.imageUrl!,
                               errorWidget: (context, url, error) =>
                                   const Icon(Icons.error),
                               progressIndicatorBuilder:
@@ -103,7 +103,7 @@ class SlideWithIndicator extends StatelessWidget {
         Obx(
           () => Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: data.asMap().entries.map(
+            children: model!.slides!.asMap().entries.map(
               (entry) {
                 int index = entry.key;
                 return AnimatedContainer(
