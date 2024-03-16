@@ -5,7 +5,7 @@ import 'package:dust_buster/app/data/models/viet_map_models/auto_complete/auto_c
 import 'package:dust_buster/app/data/models/viet_map_models/reverse/reverse_model.dart';
 import 'package:dust_buster/app/data/repository/api_helper.dart';
 import 'package:dust_buster/app/modules/home/exports.dart';
-import 'package:dust_buster/app/modules/home/views/header/location/find_location/widgets/button_add_location.dart';
+import 'package:dust_buster/app/modules/home/views/homes/header/location/find_location/widgets/button_add_location.dart';
 import 'package:dust_buster/app/routes/app_pages.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';

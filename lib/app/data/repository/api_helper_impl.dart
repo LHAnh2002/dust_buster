@@ -400,4 +400,76 @@ class ApiHelperImpl implements ApiHelper {
       }
     });
   }
+
+  @override
+  Future<Map<String, dynamic>> getHomePage() async {
+    return await ApiErrorHandler.handleError(() async {
+      final url = '$apiUrl/select-data-home/';
+
+      String? accessToken = Storage.getValue<String>('access_token');
+      final response = await http
+          .get(
+            Uri.parse(url),
+            headers: getHeaders(accessToken!),
+          )
+          .timeout(myTimeout);
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+
+        return jsonResponse;
+      } else {
+        throw Exception('Sửa địa chỉ mặc định thất bại');
+      }
+    });
+  }
+
+  @override
+  Future<Map<String, dynamic>> getCustomerPromotions(
+      {required String id}) async {
+    return await ApiErrorHandler.handleError(() async {
+      final url = '$apiUrl/create-customer-promotions/';
+
+      String? accessToken = Storage.getValue<String>('access_token');
+      final response = await http
+          .post(
+            Uri.parse(url),
+            body: jsonEncode({"id": id}),
+            headers: getHeaders(accessToken!),
+          )
+          .timeout(myTimeout);
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+
+        return jsonResponse;
+      } else {
+        throw Exception('Thêm khuyến mãi thất bại');
+      }
+    });
+  }
+
+  @override
+  Future<Map<String, dynamic>> postCheckPromotions({required String id}) async {
+    return await ApiErrorHandler.handleError(() async {
+      final url = '$apiUrl/check-promotions/';
+
+      String? accessToken = Storage.getValue<String>('access_token');
+      final response = await http
+          .post(
+            Uri.parse(url),
+            body: jsonEncode({"id": id}),
+            headers: getHeaders(accessToken!),
+          )
+          .timeout(myTimeout);
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+
+        return jsonResponse;
+      } else {
+        throw Exception('Kiểm tra khuyến mãi thất bại');
+      }
+    });
+  }
 }

@@ -5,8 +5,9 @@ class JobDetailsWidget extends StatelessWidget {
   final String image;
   final String text;
   final TextStyle? textStyle;
+  final Color? color;
   const JobDetailsWidget(
-      {super.key, required this.image, required this.text, this.textStyle});
+      {super.key, required this.image, required this.text, this.textStyle, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class JobDetailsWidget extends StatelessWidget {
           child: SvgPicture.asset(
             image,
             fit: BoxFit.cover,
+            color: color,
           ),
         ),
         SizedBox(width: 12.w, height: 0.0),

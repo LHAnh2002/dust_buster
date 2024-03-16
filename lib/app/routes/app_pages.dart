@@ -1,5 +1,3 @@
-import 'package:dust_buster/app/modules/home/views/header/location/find_location/bindings/find_location_binding.dart';
-import 'package:get/get.dart';
 import '../modules/create_account/exports.dart';
 import '../modules/forgot_password/exports.dart';
 import '../modules/home/exports.dart';
@@ -53,6 +51,18 @@ class AppPages {
       transition: Transition.rightToLeftWithFade,
       page: () => const FindLocationView(),
       binding: FindLocationBinding(),
+    ),
+    GetPage(
+      name: _Paths.cleaningHouer,
+      transition: Transition.rightToLeftWithFade,
+      page: () => const CleaningHoursPage(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.promotionDetails,
+      transition: Transition.rightToLeftWithFade,
+      page: () => const PromotionDetailsPage(),
+      binding: HomeBinding(),
     ),
   ];
 }

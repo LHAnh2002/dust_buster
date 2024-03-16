@@ -7,6 +7,7 @@ import '../../../../common/util/exports.dart';
 class TextFormWidget extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
+  final double? height;
   final TextInputType textInputType;
   final RxBool obscureText;
   final RxBool? obscureCode;
@@ -14,6 +15,7 @@ class TextFormWidget extends StatelessWidget {
   final Function(String) onChanged;
   final bool? showButton;
   final bool? showButtonDone;
+  final int? maxLines;
 
   const TextFormWidget({
     Key? key,
@@ -26,12 +28,14 @@ class TextFormWidget extends StatelessWidget {
     required this.onChanged,
     this.showButtonDone,
     this.obscureCode,
+    this.height, this.maxLines,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 48.h,
+      alignment: Alignment.topLeft,
+      height: height ?? 48.h,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12).r,
       decoration: BoxDecoration(
         color: AppColors.kGrayBackgroudColor,
@@ -46,6 +50,7 @@ class TextFormWidget extends StatelessWidget {
               padding: EdgeInsets.only(
                   right: showButton != null && showButton! ? 40 : 0),
               child: TextFormField(
+                maxLines: maxLines ?? 1,
                 controller: controller,
                 keyboardType: textInputType,
                 obscureText: obscureText.value,

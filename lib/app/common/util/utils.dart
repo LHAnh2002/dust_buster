@@ -6,15 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:dust_buster/app/common/util/exports.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
   const Utils._();
 
   static Future<void> getLaunchUrl(String url) async {
-    // final Uri _url = Uri.parse(url);
-    // if (!await launchUrl(_url)) {
-    //   throw 'Could not launch $_url';
-    // }
+    final Uri _url = Uri.parse(url);
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
   }
 
   static void showIconDialog(
@@ -300,5 +301,36 @@ class Utils {
       return name.toUpperCase();
     }
     return "_";
+  }
+
+  static String formatNumber(int number) {
+    String formattedNumber = number.toString();
+    if (formattedNumber.length > 3) {
+      for (int i = formattedNumber.length - 3; i > 0; i -= 3) {
+        formattedNumber = '${formattedNumber.substring(0, i)},${formattedNumber.substring(i)}';
+      }
+    }
+    return formattedNumber;
+  }
+
+ static String formatNumberK(dynamic number) {
+    if (number is int) {
+      if (number >= 1000 && number < 1000000) {
+        return '${(number / 1000).toStringAsFixed(0)}k';
+      } else if (number >= 1000000) {
+        return '${(number / 1000000).toStringAsFixed(0)}M';
+      } else {
+        return number.toString();
+      }
+    } else if (number is double) {
+      if (number >= 1000 && number < 1000000) {
+        return '${(number / 1000).toStringAsFixed(1)}k';
+      } else if (number >= 1000000) {
+        return '${(number / 1000000).toStringAsFixed(1)}M';
+      } else {
+        return number.toString();
+      }
+    }
+    return number.toString();
   }
 }

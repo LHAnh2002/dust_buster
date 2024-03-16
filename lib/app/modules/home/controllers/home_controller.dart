@@ -1,18 +1,17 @@
+import 'package:dust_buster/app/data/models/home_models/home_model.dart';
+import 'package:dust_buster/app/data/repository/api_helper.dart';
+import 'package:dust_buster/app/routes/app_pages.dart';
 import 'package:flutter/rendering.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import '../exports.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController with StateMixin<HomeModel> {
+  final ApiHelper _apiHelper = Get.find();
   static HomeController instance = Get.find();
   final ScrollController scrollController = ScrollController();
-  RxList<SlideModel> carouselItemList =
-      List<SlideModel>.empty(growable: true).obs;
   final double scrollThreshold = 200.0;
   var isVisible = false.obs;
   var isScrollingToTop = false.obs;
-
   RxBool isLoading = false.obs;
   var showMoreButton = true.obs;
   var currentIndex = 0.obs;
@@ -28,16 +27,32 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
+    getHomePage();
     super.onInit();
-    scrollController.addListener(_scrollListener);
-    getData();
   }
 
   @override
   void onClose() {
-    scrollController.removeListener(_scrollListener);
     scrollController.dispose();
     super.onClose();
+  }
+
+  getHomePage() async {
+    try {
+      change(null, status: RxStatus.loading());
+
+      final response = await _apiHelper.getHomePage();
+
+      if (response.isNotEmpty) {
+        HomeModel data = HomeModel.fromJson(response);
+        change(data, status: RxStatus.success());
+      } else {
+        change(null, status: RxStatus.empty());
+      }
+    } catch (e) {
+      print('Error in getAutoComplete: $e');
+      change(null, status: RxStatus.error());
+    }
   }
 
   void handleScroll(double offset) {
@@ -45,42 +60,6 @@ class HomeController extends GetxController {
       isVisible.value = true;
     } else {
       isVisible.value = false;
-    }
-  }
-
-  void _scrollListener() {
-    if (!isScrollingToTop.value) {
-      if (scrollController.offset >= scrollThreshold &&
-          scrollController.position.userScrollDirection ==
-              ScrollDirection.reverse) {
-        // Ẩn nút khi người dùng cuộn lên đầu trang
-        isVisible.value = false;
-      } else {
-        // Hiển thị nút khi người dùng cuộn xuống
-        if (!isVisible.value) {
-          isVisible.value = true;
-        }
-      }
-    }
-  }
-
-  void getData() async {
-    try {
-      isLoading(true);
-      var result = await SlideService().getBannersFromJson();
-      carouselItemList.assignAll(result);
-    } catch (e) {
-      debugPrint(e.toString());
-    } finally {
-      isLoading(false);
-    }
-  }
-
-  Future<void> launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
     }
   }
 
@@ -102,5 +81,27 @@ class HomeController extends GetxController {
     } catch (e) {
       print("Error fetching current location: $e");
     }
+  }
+
+  // Kiểm tra xem một khuyến mãi đã được lưu hay chưa
+  // bool isPromotionSaved(String promotionId) {
+  //   return customerPromotions
+  //       .any((promotion) => promotion.idPCP == promotionId);
+  // }
+
+  void navigateToNextScreen(label, id, idL, location2, nameSV) {
+    if (label == 1) {
+      Get.toNamed(Routes.cleaningHouer, arguments: {
+        "id": id,
+        "idL": idL,
+        "location2": location2,
+        "nameSV": nameSV
+      });
+    } else if (label == 2) {
+    } else if (label == 3) {
+    } else if (label == 4) {
+    } else if (label == 5) {
+    } else if (label == 6) {
+    } else {}
   }
 }

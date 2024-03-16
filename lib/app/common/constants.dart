@@ -2,7 +2,7 @@ class Constants {
   const Constants._();
 
   //static const String baseUrl = ' http://127.0.0.1:8000/api/v1';
-  static const String baseUrl = 'http://192.168.1.8:8000/api/v1';
+  static const String baseUrl = 'http://192.168.1.4:8000/api/v1';
   // static const String baseUrl = 'http://10.38.29.246:8000/api/v1';
   static const String baseVietMapUrl = 'https://maps.vietmap.vn/api';
   //deelay.me - api to delay response

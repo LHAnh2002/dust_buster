@@ -10,6 +10,7 @@ class AppColors {
   static const Color kGrayBodyColor = Color(0xfff1f5f9);
   static const Color kGrayTextColor = Color(0xff64748b);
   static const Color kButtonColor = Color(0xFF235BAA);
+  static const Color kButtonsColor = Color(0xFF2E61A9);
   static const Color kBlue500Color = Color(0xFF3B82F6);
   static const Color caribbeanGreen = Color(0xFF4CD964);
   static const Color kBrightPurpleColor = Color(0xFF8A3CFF);
@@ -22,11 +23,15 @@ class AppColors {
   static const Color kRrror400Color = Color(0xFFEF4444);
   static const Color kWarning100Color = Color(0xFFFFEDD5);
   static const Color kGray1000Color = Color(0xFF0A0D13);
+  static const Color kGray900Color = Color(0xFF0F172A);
   static const Color kGray700Color = Color(0xFF334155);
+  static const Color kGray600Color = Color(0xFF475569);
   static const Color kGray500Color = Color(0xFF64748B);
   static const Color kGray400Color = Color(0xFF94A3B8);
+  static const Color kGray300Color = Color(0xFFCBD5E1);
   static const Color kGray200Color = Color(0xFFE2E8F0);
   static const Color kGray100Color = Color(0xFFF1F5F9);
+  static const Color kGray050Color = Color(0xFFF8FAFC);
 
   const AppColors._();
 
