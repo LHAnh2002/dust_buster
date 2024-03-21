@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:dust_buster/app/common/util/exports.dart';
@@ -125,10 +126,15 @@ class Utils {
     }
   }
 
-  static void showSnackbar(String? message) {
+  static void showSnackbar(String? message, String? icon) {
     closeSnackbar();
 
-    Get.rawSnackbar(message: message);
+    Get.rawSnackbar(
+        icon: icon != null ? SvgPicture.asset(icon) : null,
+        message: message,
+        snackPosition: SnackPosition.TOP,
+        margin: const EdgeInsets.only(left: 16, right: 16).r,
+        borderRadius: 9.r);
   }
 
   static void closeKeyboard() {
@@ -307,13 +313,14 @@ class Utils {
     String formattedNumber = number.toString();
     if (formattedNumber.length > 3) {
       for (int i = formattedNumber.length - 3; i > 0; i -= 3) {
-        formattedNumber = '${formattedNumber.substring(0, i)},${formattedNumber.substring(i)}';
+        formattedNumber =
+            '${formattedNumber.substring(0, i)},${formattedNumber.substring(i)}';
       }
     }
     return formattedNumber;
   }
 
- static String formatNumberK(dynamic number) {
+  static String formatNumberK(dynamic number) {
     if (number is int) {
       if (number >= 1000 && number < 1000000) {
         return '${(number / 1000).toStringAsFixed(0)}k';

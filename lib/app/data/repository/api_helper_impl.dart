@@ -425,7 +425,7 @@ class ApiHelperImpl implements ApiHelper {
   }
 
   @override
-  Future<Map<String, dynamic>> getCustomerPromotions(
+  Future<Map<String, dynamic>> postCustomerPromotions(
       {required String id}) async {
     return await ApiErrorHandler.handleError(() async {
       final url = '$apiUrl/create-customer-promotions/';
@@ -452,7 +452,7 @@ class ApiHelperImpl implements ApiHelper {
   @override
   Future<Map<String, dynamic>> postCheckPromotions({required String id}) async {
     return await ApiErrorHandler.handleError(() async {
-      final url = '$apiUrl/check-promotions/';
+      final url = '$apiUrl/check-customer-promotions/';
 
       String? accessToken = Storage.getValue<String>('access_token');
       final response = await http
@@ -469,6 +469,131 @@ class ApiHelperImpl implements ApiHelper {
         return jsonResponse;
       } else {
         throw Exception('Kiểm tra khuyến mãi thất bại');
+      }
+    });
+  }
+
+  @override
+  Future<Map<String, dynamic>> getServiceDuration() async {
+    return await ApiErrorHandler.handleError(() async {
+      final url = '$apiUrl/admin/select-service-duration/';
+
+      final response = await http
+          .get(
+            Uri.parse(url),
+          )
+          .timeout(myTimeout);
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+
+        return jsonResponse;
+      } else {
+        throw Exception('Sửa địa chỉ mặc định thất bại');
+      }
+    });
+  }
+
+  @override
+  Future<Map<String, dynamic>> getUsers() async {
+    return await ApiErrorHandler.handleError(() async {
+      final url = '$apiUrl/get-user/';
+      String? accessToken = Storage.getValue<String>('access_token');
+      final response = await http
+          .get(
+            Uri.parse(url),
+            headers: getHeaders(accessToken!),
+          )
+          .timeout(myTimeout);
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+
+        return jsonResponse;
+      } else {
+        throw Exception('Sửa địa chỉ mặc định thất bại');
+      }
+    });
+  }
+
+  @override
+  Future<Map<String, dynamic>> getCustomerPromotions() async {
+    return await ApiErrorHandler.handleError(() async {
+      final url = '$apiUrl/get-customer-promotions/';
+      String? accessToken = Storage.getValue<String>('access_token');
+      final response = await http
+          .get(
+            Uri.parse(url),
+            headers: getHeaders(accessToken!),
+          )
+          .timeout(myTimeout);
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+
+        return jsonResponse;
+      } else {
+        throw Exception('Sửa địa chỉ mặc định thất bại');
+      }
+    });
+  }
+
+  @override
+  Future<Map<String, dynamic>> postCreateInvoice(
+      {required String idP,
+      required int label,
+      required String nameUser,
+      required String phoneNumber,
+      required String location,
+      required String location2,
+      required String lat,
+      required String lng,
+      required String repeat,
+      required String petNote,
+      required String employeeNote,
+      required String workingDay,
+      required String workTime,
+      required String roomArea,
+      required int price,
+      required int gPoints,
+      required int paymentMethods,
+      required int petStatus}) async {
+    return await ApiErrorHandler.handleError(() async {
+      final url = '$apiUrl/create-invoice/';
+      String? accessToken = Storage.getValue<String>('access_token');
+      final response = await http
+          .post(
+            Uri.parse(url),
+            body: jsonEncode({
+              "idP": idP,
+              "label": label,
+              "nameUser": nameUser,
+              "phoneNumber": phoneNumber,
+              "location": location,
+              "location2": location2,
+              "lat": lat,
+              "lng": lng,
+              "repeat": repeat,
+              "petNote": petNote,
+              "employeeNote": employeeNote,
+              "workingDay": workingDay,
+              "workTime": workTime,
+              "roomArea": roomArea,
+              "price": price,
+              "gPoints": gPoints,
+              "paymentMethods": paymentMethods,
+              "petStatus": petStatus
+            }),
+            headers: getHeaders(accessToken!),
+          )
+          .timeout(myTimeout);
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+
+        return jsonResponse;
+      } else {
+        throw Exception('Sửa địa chỉ mặc định thất bại');
       }
     });
   }

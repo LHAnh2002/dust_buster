@@ -1,5 +1,6 @@
 import 'package:dust_buster/app/modules/home/exports.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class PromotionDetailsPage extends GetView<PromotionDetailsController> {
   const PromotionDetailsPage({Key? key}) : super(key: key);
@@ -21,7 +22,6 @@ class PromotionDetailsPage extends GetView<PromotionDetailsController> {
     final int? point = data['point'];
     List<String> parts = startDay!.split('/');
     String formattedDate = '${parts[0]}/${parts[1]}';
-    print(id!);
     controller.posttCheckPromotions(id!);
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -167,7 +167,7 @@ class PromotionDetailsPage extends GetView<PromotionDetailsController> {
                     ),
                     SizedBox(width: 0, height: 8.h),
                     Container(
-                      height: 360.h,
+                      height: 340.h,
                       width: 343.w,
                       padding: const EdgeInsets.only(top: 16, bottom: 16).r,
                       child: Column(
@@ -220,36 +220,35 @@ class PromotionDetailsPage extends GetView<PromotionDetailsController> {
                           ? AppColors.kButtonColor.withOpacity(0.8)
                           : AppColors.kGray500Color,
                       onTap: () {
+                        // ignore: unrelated_type_equality_checks
                         if (controller.isCheckKM != true) {
                           controller.gettCustomerPromotions(id);
                           homeController.getHomePage();
-
                           Future.delayed(const Duration(seconds: 2), () {
                             controller.posttCheckPromotions(id);
                           });
                         }
                       },
+                      // ignore: unrelated_type_equality_checks
                       text: controller.isCheckKM != true ? 'Lưu mã' : 'Đã lưu',
                     ),
+                  // ignore: unrelated_type_equality_checks
                   if (controller.isLoadingPermission == true)
                     Container(
-                      alignment: Alignment.center,
-                      height: 45.h,
-                      decoration: BoxDecoration(
-                        color: AppColors.kButtonColor.withOpacity(0.8),
-                        borderRadius: BorderRadius.circular(8).r,
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.kButtonColor.withOpacity(0.2),
-                            blurRadius: 10,
-                          )
-                        ],
-                      ),
-                      child: const CircularProgressIndicator(
-                        backgroundColor: AppColors.kGray200Color,
-                        color: AppColors.kBrightPurpleColor,
-                      ),
-                    ),
+                        alignment: Alignment.center,
+                        height: 45.h,
+                        decoration: BoxDecoration(
+                          color: AppColors.kButtonColor.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(8).r,
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.kButtonColor.withOpacity(0.2),
+                              blurRadius: 10,
+                            )
+                          ],
+                        ),
+                        child: LoadingAnimationWidget.fourRotatingDots(
+                            color: AppColors.white, size: 30.r)),
                 ],
               ),
             ),

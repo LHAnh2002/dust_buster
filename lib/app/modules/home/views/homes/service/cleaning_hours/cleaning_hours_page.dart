@@ -1,5 +1,6 @@
 import 'package:dust_buster/app/common/util/navigator.dart';
 import 'package:dust_buster/app/modules/home/exports.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:dust_buster/app/modules/login/view/widgets/text_form_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -8,14 +9,14 @@ class CleaningHoursPage extends GetView<CleaningController> {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> data = Get.arguments;
-    
-    if (data != null) {
-      final String? id = data["id"];
-      final String? idL = data["idL"];
-      final String? location2 = data["location2"];
-      final String? nameSV = data["nameSV"];
-    }
+    // final Map<String, dynamic> data = Get.arguments;
+
+    // if (data != null) {
+    //   final String? id = data["id"];
+    //   final String? idL = data["idL"];
+    //   final String? location2 = data["location2"];
+    //   final String? nameSV = data["nameSV"];
+    // }
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
@@ -41,11 +42,6 @@ class CleaningHoursPage extends GetView<CleaningController> {
                   style: AppTextStyle.textButtonStyle
                       .copyWith(color: AppColors.kGray1000Color),
                 ),
-              if (controller.selectedIndex.value != 2)
-                Text(
-                  'Xóm 4',
-                  style: AppTextStyle.textxsmallStyle,
-                ),
               if (controller.selectedIndex.value == 2)
                 Text(
                   'Xác thực và thanh toán',
@@ -60,18 +56,21 @@ class CleaningHoursPage extends GetView<CleaningController> {
             if (controller.selectedIndex.value != 2) {
               return Column(
                 children: [
-                  ButtonWidget(
-                    onTap: () {
-                      goPresent(
-                        children: [
-                          const DescriptionService(),
-                        ],
-                      );
-                    },
-                    widget: SvgPicture.asset(
-                      AppImages.iconErrorWarning,
-                      width: 24.w,
-                      height: 24.h,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 14).r,
+                    child: ButtonWidget(
+                      onTap: () {
+                        goPresent(
+                          children: [
+                            const DescriptionService(),
+                          ],
+                        );
+                      },
+                      widget: SvgPicture.asset(
+                        AppImages.iconErrorWarning,
+                        width: 24.w,
+                        height: 24.h,
+                      ),
                     ),
                   ),
                   SizedBox(width: 50.w, height: 0.0),
@@ -96,7 +95,7 @@ class CleaningHoursPage extends GetView<CleaningController> {
                     padding: const EdgeInsets.all(16).r,
                     child: Column(
                       children: <Widget>[
-                        const LocationServiceWidget(),
+                        LocationServiceWidget(controller: controller),
                         TimePage(controller: controller),
                         OtherOptionsPage(controller: controller),
                         SizedBox(width: 0.0, height: 8.h),
@@ -177,13 +176,15 @@ class CleaningHoursPage extends GetView<CleaningController> {
                                     style: AppTextStyle.textsmallStyle60016,
                                   ),
                                   Text(
-                                    '${Utils.formatNumber(250000)}đ',
+                                    '${Utils.formatNumber(int.parse(controller.finalMoney.toString()))}đ',
                                     style: AppTextStyle.largeBodyStyle,
                                   ),
                                 ],
                               ),
                               ButtonWidget(
-                                onTap: () {},
+                                onTap: () {
+                                  controller.getverifyOtp();
+                                },
                                 text: 'Đăng việc',
                                 height: 48.h,
                                 colorBackGroud: AppColors.kButtonColor,
@@ -204,23 +205,44 @@ class CleaningHoursPage extends GetView<CleaningController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '${Utils.formatNumber(250000)}đ',
+                                    '${Utils.formatNumber(int.parse(controller.originalAmount.toString()))}đ',
                                     style: AppTextStyle.largeBodyStyle,
                                   ),
                                   Text(
-                                    '85 m2 / 3 phòng',
+                                    '${controller.textAcreage} m2 / ${controller.textRoomNumber} phòng',
                                     style: AppTextStyle.textsmallStyle.copyWith(
                                         color: AppColors.kGray500Color,
                                         fontFamily: 'PlusJakartaSans'),
-                                  )
+                                  ),
                                 ],
                               ),
                               ButtonWidget(
                                 onTap: () {
-                                  final int nextTabIndex =
-                                      (controller.selectedIndex.value + 1) % 3;
-                                  controller.selectTab(nextTabIndex);
-                                  controller.onTabIndexChanged(nextTabIndex);
+                                  showDialogConfirm(
+                                    child: Center(
+                                      child:
+                                          LoadingAnimationWidget.discreteCircle(
+                                        color: AppColors.white,
+                                        size: 50.r,
+                                      ),
+                                    ),
+                                  );
+                                  Future.delayed(const Duration(seconds: 2),
+                                      () {
+                                    Get.back();
+                                    final int nextTabIndex =
+                                        (controller.selectedIndex.value + 1) %
+                                            3;
+                                    controller.selectTab(nextTabIndex);
+                                    controller.onTabIndexChanged(nextTabIndex);
+                                    int selectedHour =
+                                        controller.dateTime.value.hour;
+                                    if (controller.selectedIndex.value == 1 &&
+                                        selectedHour >= 17 &&
+                                        selectedHour <= 20) {
+                                      controller.nightMoney(selectedHour);
+                                    }
+                                  });
                                 },
                                 text: 'Tiếp tục',
                                 width: 120.w,

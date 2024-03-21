@@ -46,13 +46,41 @@ abstract class ApiHelper {
 
   Future<Map<String, dynamic>> getHomePage();
 
-  Future<Map<String, dynamic>> getCustomerPromotions({required String id});
+  Future<Map<String, dynamic>> getServiceDuration();
+
+  Future<Map<String, dynamic>> getUsers();
+
+  Future<Map<String, dynamic>> getCustomerPromotions();
+
+  Future<Map<String, dynamic>> postCustomerPromotions({required String id});
 
   Future<Map<String, dynamic>> postCheckPromotions({required String id});
 
-  Future<Map<String, dynamic>> postCreateLocation(
-      {required String location,
-      required String location2,
-      required String lat,
-      required String lng});
+  Future<Map<String, dynamic>> postCreateLocation({
+    required String location,
+    required String location2,
+    required String lat,
+    required String lng,
+  });
+
+  Future<Map<String, dynamic>> postCreateInvoice({
+    required String idP,
+    required int label,
+    required String nameUser,
+    required String phoneNumber,
+    required String location,
+    required String location2,
+    required String lat,
+    required String lng,
+    required String repeat,
+    required String petNote,
+    required String employeeNote,
+    required String workingDay,
+    required String workTime,
+    required String roomArea,
+    required int price,
+    required int gPoints,
+    required int paymentMethods,
+    required int petStatus
+  });
 }

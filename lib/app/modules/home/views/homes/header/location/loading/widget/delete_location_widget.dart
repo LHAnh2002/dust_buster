@@ -62,7 +62,12 @@ class DeleteLocationWidget extends StatelessWidget {
                   if (controller.isLoading.value == false)
                     ButtonWidget(
                       onTap: () {
-                        controller.dellLocation(model!.id, model!.defaultt);
+                        if (model!.defaultt != 1) {
+                          controller.dellLocation(model!.id, model!.defaultt);
+                        } else {
+                          return Utils.showSnackbar(
+                              "Không thể xoá địa chỉ mặc định", "");
+                        }
                       },
                       text: Strings.delete,
                       boder: false.obs,

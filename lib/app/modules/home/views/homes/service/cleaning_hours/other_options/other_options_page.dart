@@ -32,7 +32,7 @@ class OtherOptionsPage extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Ưu tiên người làm yếu thích",
+                    "Ưu tiên người làm yêu thích",
                     style: AppTextStyle.textbodyStyle,
                   ),
                   SizedBox(width: 4.w, height: 0.0),

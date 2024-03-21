@@ -19,7 +19,8 @@ class ButtonWidget extends StatelessWidget {
     this.colorBackGroud,
     this.boder,
     this.textStyle,
-    this.width, this.height,
+    this.width,
+    this.height,
   }) : super(key: key);
 
   @override
@@ -32,7 +33,7 @@ class ButtonWidget extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             width: width,
-            height:height?? 45.h,
+            height: height ?? 45.h,
             decoration: BoxDecoration(
               color: colorBackGroud ?? AppColors.kButtonColor.withOpacity(0.8),
               borderRadius: BorderRadius.circular(8).r,
@@ -50,7 +51,7 @@ class ButtonWidget extends StatelessWidget {
             ),
             child: Text(
               text ?? "",
-              style: textStyle ?? AppTextStyle.textButtonStyle.copyWith(),
+              style: textStyle ?? AppTextStyle.textButtonStyle,
             ),
           ),
     );

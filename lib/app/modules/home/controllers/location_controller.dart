@@ -43,6 +43,11 @@ class LocationController extends GetxController
     }
   }
 
+  Future<List<Location>> getLocations() async {
+    await getLocationn();
+    return listLocation;
+  }
+
   dellLocation(String id, int defaultt) async {
     try {
       isLoading.value = true;

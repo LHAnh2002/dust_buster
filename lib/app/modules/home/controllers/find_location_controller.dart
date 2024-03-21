@@ -55,6 +55,7 @@ class FindLocationController extends GetxController
   }
 
   Future<void> getAutoComplete(String location) async {
+    // ignore: unnecessary_null_comparison
     if (location == null || location.isEmpty) {
       change(null, status: RxStatus.empty());
       return;

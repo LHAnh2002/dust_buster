@@ -1,5 +1,6 @@
 import 'package:dust_buster/app/modules/home/exports.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class BottomLocationPage extends StatelessWidget {
   final FindLocationController controller;
@@ -56,14 +57,11 @@ class BottomLocationPage extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    color: AppColors.white,
-                    height: 35.h,
-                    width: 35.w,
-                    child: const CircularProgressIndicator(
-                      backgroundColor: AppColors.kButtonColor,
-                      color: AppColors.kBrightPurpleColor,
-                    ),
-                  ),
+                      color: AppColors.white,
+                      height: 35.h,
+                      width: 35.w,
+                      child: LoadingAnimationWidget.staggeredDotsWave(
+                          color: AppColors.kBrightPurpleColor, size: 40.r)),
                   SizedBox(width: 0.0, height: 16.h),
                 ],
               ),

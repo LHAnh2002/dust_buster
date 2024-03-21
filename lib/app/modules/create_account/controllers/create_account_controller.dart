@@ -332,15 +332,11 @@ class CreateAccountController extends GetxController {
           datebirth: formattedDate,
           referralCode: referralCode,
         );
-        Get.snackbar(
-          'Thông báo',
-          'Bạn đã đăng ký thành công vui lòng đăng nhập',
-          snackPosition: SnackPosition.TOP,
-          duration: const Duration(seconds: 3),
-          backgroundColor: AppColors.kSelectedDay.withOpacity(0.7),
-          colorText: Colors.white,
-        );
+
         Get.offNamed(Routes.login);
+        return Utils.showSnackbar(
+            "Bạn đã đăng ký thành công vui lòng đăng nhập để sử dụng dịch vụ",
+            "");
       }
     } catch (e) {
       debugPrint(e.toString());

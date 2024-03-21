@@ -76,7 +76,8 @@ class Strings {
   static const String passwordOrEmailIncorrect =
       '$email hoặc $password của bạn không đúng!';
   static const String passwordOrEmailNull = 'Vui lòng điền email và mật khẩu';
-  static const String yourAccountBan = 'Tài khoản của bạn đã bị khóa';
+  static const String yourAccountBan =
+      'Tài khoản của bạn đã bị khóa vui lòng liên hệ chăm sóc khách hàng';
 
   static const String emailYourAre = '$email của bạn:';
   static const String continues = 'Tiếp tục';

@@ -1,4 +1,5 @@
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../../../../../../data/models/viet_map_models/auto_complete/auto_complete_model.dart';
 import '../../../../../../../login/exports.dart';
@@ -124,23 +125,20 @@ class ButtonAddLocation extends StatelessWidget {
                 children: [
                   if (controller.isLoadingAddLocation.value == true)
                     Container(
-                      alignment: Alignment.center,
-                      height: 45.h,
-                      decoration: BoxDecoration(
-                        color: AppColors.kButtonColor.withOpacity(0.8),
-                        borderRadius: BorderRadius.circular(8).r,
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.kButtonColor.withOpacity(0.2),
-                            blurRadius: 10,
-                          )
-                        ],
-                      ),
-                      child: const CircularProgressIndicator(
-                        backgroundColor: AppColors.kGray200Color,
-                        color: AppColors.kBrightPurpleColor,
-                      ),
-                    ),
+                        alignment: Alignment.center,
+                        height: 45.h,
+                        decoration: BoxDecoration(
+                          color: AppColors.kButtonColor.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(8).r,
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.kButtonColor.withOpacity(0.2),
+                              blurRadius: 10,
+                            )
+                          ],
+                        ),
+                        child: LoadingAnimationWidget.fourRotatingDots(
+                            color: AppColors.white, size: 30.r)),
                   if (controller.isLoadingAddLocation.value == false)
                     Container(
                       alignment: Alignment.center,

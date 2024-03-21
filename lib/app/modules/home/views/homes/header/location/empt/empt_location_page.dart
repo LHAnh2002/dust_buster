@@ -1,5 +1,4 @@
 import 'package:dust_buster/app/modules/home/exports.dart';
-import 'package:dust_buster/app/routes/app_pages.dart';
 import 'package:flutter_svg/svg.dart';
 
 class EmptLocationPage extends StatelessWidget {

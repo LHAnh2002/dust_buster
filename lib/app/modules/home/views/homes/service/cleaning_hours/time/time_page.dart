@@ -24,28 +24,35 @@ class TimePage extends StatelessWidget {
               .copyWith(color: AppColors.kGray500Color),
         ),
         SizedBox(width: 0.0, height: 16.h),
-        Wrap(
-          spacing: 8.w, // Khoảng cách giữa các hình ảnh
-          runSpacing: 8.h, // Khoảng cách giữa các dòng
-          children: List.generate(
-            4,
-            (index) {
-              final optionTitles = ['2 giờ', '3 giờ', '3,5 giờ', '4 giờ'];
-              final optionDescriptions = [
-                '55 m2/ 2 phòng',
-                '85 m2/ 3 phòng',
-                '85 m2/ 3 phòng',
-                '110 m2/ 4 phòng'
-              ];
-              return Obx(
-                () => ButtonWidget(
-                  onTap: () => controller.selectTimeOption(index),
+        Obx(
+          () => Wrap(
+            spacing: 8.w, // Khoảng cách giữa các hình ảnh
+            runSpacing: 8.h, // Khoảng cách giữa các dòng
+            children: List.generate(
+              controller.listServiceDuration.length,
+              (index) {
+                final serviceDuration = controller.listServiceDuration[index];
+                final isSelect = controller.selectedTimeOption.value == index;
+                return ButtonWidget(
+                  onTap: () {
+                    controller.selectTimeOption(index);
+                    controller.textRoomNumber.value =
+                        serviceDuration.room.toString();
+                    controller.textAcreage.value =
+                        serviceDuration.acreage.toString();
+                    controller.textRoomCharge.value = serviceDuration.money!;
+                    controller.totalAmount.value = serviceDuration.money!;
+                    controller.finalMoney.value = controller.totalAmount.value;
+                    controller.originalAmount.value =
+                        controller.totalAmount.value;
+                    controller.textTimeRequest.value = serviceDuration.time!;
+                  },
                   widget: Container(
                     width: 167.w,
                     height: 48.h,
                     padding: const EdgeInsets.all(6).r,
                     decoration: BoxDecoration(
-                      color: controller.selectedTimeOption.value == index
+                      color: isSelect
                           ? AppColors.kGray1000Color
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(12).r,
@@ -54,29 +61,26 @@ class TimePage extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          optionTitles[index],
+                          '${serviceDuration.time.toString()} Giờ',
                           style: AppTextStyle.textbodyStyle.copyWith(
                               color:
-                                  controller.selectedTimeOption.value == index
-                                      ? AppColors.white
-                                      : AppColors.black),
+                                  isSelect ? AppColors.white : AppColors.black),
                         ),
                         Expanded(
                           child: Text(
-                            optionDescriptions[index],
+                            '${serviceDuration.acreage.toString()} m2 / ${serviceDuration.room.toString()} phòng',
                             style: AppTextStyle.textsmallStyle10.copyWith(
-                                color:
-                                    controller.selectedTimeOption.value == index
-                                        ? AppColors.white
-                                        : AppColors.kGray500Color),
+                                color: isSelect
+                                    ? AppColors.white
+                                    : AppColors.kGray500Color),
                           ),
                         ),
                       ],
                     ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ],

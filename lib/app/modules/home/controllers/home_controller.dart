@@ -1,7 +1,8 @@
+import 'package:dust_buster/app/data/models/customer_promotions_models/customer_promotions.dart';
 import 'package:dust_buster/app/data/models/home_models/home_model.dart';
+import 'package:dust_buster/app/data/models/user_models/user.dart';
 import 'package:dust_buster/app/data/repository/api_helper.dart';
 import 'package:dust_buster/app/routes/app_pages.dart';
-import 'package:flutter/rendering.dart';
 import 'package:geolocator/geolocator.dart';
 import '../exports.dart';
 
@@ -16,7 +17,8 @@ class HomeController extends GetxController with StateMixin<HomeModel> {
   var showMoreButton = true.obs;
   var currentIndex = 0.obs;
   Position? position;
-
+  List<User> userList = [];
+  List<CustomerPromotions> customerPromotionsList = [];
   var isSevicePermission = false.obs;
 
   late LocationPermission permission;
@@ -28,6 +30,7 @@ class HomeController extends GetxController with StateMixin<HomeModel> {
   @override
   void onInit() {
     getHomePage();
+    gettUser();
     super.onInit();
   }
 
@@ -50,9 +53,52 @@ class HomeController extends GetxController with StateMixin<HomeModel> {
         change(null, status: RxStatus.empty());
       }
     } catch (e) {
-      print('Error in getAutoComplete: $e');
+      debugPrint('Error in getAutoComplete: $e');
       change(null, status: RxStatus.error());
     }
+  }
+
+  Future<void> gettUser() async {
+    try {
+      final response = await _apiHelper.getUsers();
+      if (response['status'] == "OK") {
+        List<User> users = [];
+        for (var userData in response['user']) {
+          User user = User.fromJson(userData);
+          users.add(user);
+        }
+        userList = users;
+      }
+    } catch (e) {
+      debugPrint('Error in getAutoComplete: $e');
+    }
+  }
+
+  Future<List<User>> getUser() async {
+    await gettUser();
+    return userList;
+  }
+
+  Future<void> gettCustomerPromotion() async {
+    try {
+      final response = await _apiHelper.getCustomerPromotions();
+      if (response['status'] == "OK") {
+        List<CustomerPromotions> customerPromotions = [];
+        for (var userData in response['customer_promotions']) {
+          CustomerPromotions customerPromotion =
+              CustomerPromotions.fromJson(userData);
+          customerPromotions.add(customerPromotion);
+        }
+        customerPromotionsList = customerPromotions;
+      }
+    } catch (e) {
+      debugPrint('Error in getAutoComplete: $e');
+    }
+  }
+
+  Future<List<CustomerPromotions>> getCustomerPromotion() async {
+    await gettCustomerPromotion();
+    return customerPromotionsList;
   }
 
   void handleScroll(double offset) {
@@ -79,7 +125,7 @@ class HomeController extends GetxController with StateMixin<HomeModel> {
     try {
       position = await getCurrentLocation();
     } catch (e) {
-      print("Error fetching current location: $e");
+      debugPrint("Error fetching current location: $e");
     }
   }
 

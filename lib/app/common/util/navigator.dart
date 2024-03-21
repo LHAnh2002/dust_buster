@@ -8,8 +8,10 @@ import 'package:get/get.dart';
 import 'package:dust_buster/app/common/util/calendar/material/calendar_date_picker.dart'
     as common;
 
-goPresent({required List<Widget> children, double? height}) {
+goPresent(
+    {required List<Widget> children, double? height, bool? isDismissibles}) {
   return Get.bottomSheet(
+    isDismissible: isDismissibles ?? true,
     Container(
       height: height,
       padding:
@@ -19,6 +21,7 @@ goPresent({required List<Widget> children, double? height}) {
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20), topRight: Radius.circular(20))),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: children,
       ),
@@ -137,5 +140,4 @@ Future showDialogSuccess({String? content}) async {
       ),
     ),
   );
-
 }

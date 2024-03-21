@@ -15,6 +15,11 @@ class PromotionDetailsController extends GetxController {
 
   var currentColor = 0.obs;
 
+  void selectRandomColor() {
+    final random = Random();
+    currentColor.value = colors[random.nextInt(colors.length)];
+  }
+
   var isCheckKM = false.obs;
   var isLoadingPermission = false.obs;
   @override
@@ -23,15 +28,10 @@ class PromotionDetailsController extends GetxController {
     selectRandomColor();
   }
 
-  void selectRandomColor() {
-    final random = Random();
-    currentColor.value = colors[random.nextInt(colors.length)];
-  }
-
   void gettCustomerPromotions(String id) async {
     try {
       isLoadingPermission.value = true;
-      final response = await _apiHelper.getCustomerPromotions(id: id);
+      final response = await _apiHelper.postCustomerPromotions(id: id);
 
       if (response['detail'] == "OK") {
       } else {}

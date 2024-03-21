@@ -1,9 +1,11 @@
 import 'package:dust_buster/app/common/util/exports.dart';
+import 'package:dust_buster/app/common/util/navigator.dart';
 import 'package:dust_buster/app/common/values/styles/app_text_style.dart';
 import 'package:dust_buster/app/modules/home/exports.dart';
 import 'package:dust_buster/app/modules/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../routes/app_pages.dart';
 import '../exports.dart';
@@ -85,7 +87,18 @@ class LoginView extends GetView<LoginController> {
             ButtonWidget(
               boder: false.obs,
               onTap: () {
-                controller.login();
+                showDialogConfirm(
+                  child: Center(
+                    child: LoadingAnimationWidget.threeArchedCircle(
+                      color: AppColors.white,
+                      size: 50.r,
+                    ),
+                  ),
+                );
+                Future.delayed(const Duration(seconds: 2), () {
+                  Get.back();
+                  controller.login();
+                });
               },
               text: Strings.login,
             ),

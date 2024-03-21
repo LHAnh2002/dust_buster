@@ -126,4 +126,6 @@ class AppImages {
   static const String imageIllustration2 = 'assets/images/Illustration2.svg';
   static const String iconsPercent = 'assets/icons/percent-fill.svg';
   static const String iconsCopperDiamondLine = 'assets/icons/copper-diamond-line.svg';
+  static const String iconsUserLocation = 'assets/icons/user-location-fill.svg';
+  static const String iconsBroom = 'assets/icons/broom.svg';
 }
