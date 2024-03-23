@@ -4,7 +4,12 @@ class CustomStatusWidget extends StatelessWidget {
   final double width;
   final double height;
   final Widget widget;
-  const CustomStatusWidget({Key? key, required this.width, required this.height, required this.widget}) : super(key: key);
+  const CustomStatusWidget(
+      {Key? key,
+      required this.width,
+      required this.height,
+      required this.widget})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

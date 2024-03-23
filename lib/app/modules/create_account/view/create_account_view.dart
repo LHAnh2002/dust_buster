@@ -1,6 +1,8 @@
+import 'package:dust_buster/app/common/util/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../common/util/exports.dart';
 import '../../login/exports.dart';
@@ -351,98 +353,110 @@ class CreateAccountView extends GetView<CreateAccountController> {
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () {
-                        controller.setTextControllerDefaultIfEmpty(
-                            controller.textSexPasswordController, 'Khác');
+                        showDialogConfirm(
+                          child: Center(
+                            child: LoadingAnimationWidget.discreteCircle(
+                              color: AppColors.white,
+                              size: 50.r,
+                            ),
+                          ),
+                        );
+                        Future.delayed(const Duration(seconds: 2), () {
+                          Get.back();
+                          controller.setTextControllerDefaultIfEmpty(
+                              controller.textSexPasswordController, 'Khác');
 
-                        if (controller.checkTextControllersNotEmpty() == true) {
-                        } else {
-                          if (controller.isReferralCodeNull.value == true &&
-                              controller.isReferralCode.value == true) {
-                            controller.getrequestOtp(
-                              controller.textEmailController.value.text,
-                              controller.textNameController.value.text,
-                            );
-                            String email =
-                                controller.textEmailController.value.text;
-                            Get.bottomSheet(
-                              Container(
-                                padding: const EdgeInsets.only(
-                                        top: 20, left: 20, right: 20)
-                                    .r,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20.0),
-                                    topRight: Radius.circular(20.0),
-                                  ),
-                                ),
-                                child: OtpAuthenticationView(
-                                  email: email,
-                                  name:
-                                      controller.textNameController.value.text,
-                                  phoneNumber: controller
-                                      .textphoneNumberController.value.text,
-                                  controller: CreateAccountController(),
-                                  password: controller
-                                      .textPasswordController.value.text,
-                                  sex: controller
-                                      .textSexPasswordController.value.text,
-                                  dateBirth: controller.dateBirth.value,
-                                  referralCode: controller
-                                      .textreferralCodeController.value.text,
-                                ),
-                              ),
-                            );
-                          } else if (controller.isReferralCodeNull.value ==
-                                  false &&
-                              controller.isReferralCode.value == false) {
-                            controller.getrequestOtp(
-                              controller.textEmailController.value.text,
-                              controller.textNameController.value.text,
-                            );
-                            String email =
-                                controller.textEmailController.value.text;
-                            Get.bottomSheet(
-                              Container(
-                                padding: const EdgeInsets.only(
-                                        top: 20, left: 20, right: 20)
-                                    .r,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20.0),
-                                    topRight: Radius.circular(20.0),
-                                  ),
-                                ),
-                                child: OtpAuthenticationView(
-                                  email: email,
-                                  name:
-                                      controller.textNameController.value.text,
-                                  phoneNumber: controller
-                                      .textphoneNumberController.value.text,
-                                  controller: CreateAccountController(),
-                                  password: controller
-                                      .textPasswordController.value.text,
-                                  sex: controller
-                                      .textSexPasswordController.value.text,
-                                  dateBirth: controller.dateBirth.value,
-                                  referralCode: controller
-                                      .textreferralCodeController.value.text,
-                                ),
-                              ),
-                            );
+                          if (controller.checkTextControllersNotEmpty() ==
+                              true) {
                           } else {
-                            Get.snackbar(
-                              'Thông báo',
-                              'Mã xác giới thiệu không tồn tại!',
-                              snackPosition: SnackPosition.TOP,
-                              duration: const Duration(seconds: 3),
-                              backgroundColor:
-                                  AppColors.kSelectedDay.withOpacity(0.7),
-                              colorText: Colors.white,
-                            );
+                            if (controller.isReferralCodeNull.value == true &&
+                                controller.isReferralCode.value == true) {
+                              controller.getrequestOtp(
+                                controller.textEmailController.value.text,
+                                controller.textNameController.value.text,
+                              );
+                              String email =
+                                  controller.textEmailController.value.text;
+                              Get.bottomSheet(
+                                Container(
+                                  padding: const EdgeInsets.only(
+                                          top: 20, left: 20, right: 20)
+                                      .r,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                    ),
+                                  ),
+                                  child: OtpAuthenticationView(
+                                    email: email,
+                                    name: controller
+                                        .textNameController.value.text,
+                                    phoneNumber: controller
+                                        .textphoneNumberController.value.text,
+                                    controller: CreateAccountController(),
+                                    password: controller
+                                        .textPasswordController.value.text,
+                                    sex: controller
+                                        .textSexPasswordController.value.text,
+                                    dateBirth: controller.dateBirth.value,
+                                    referralCode: controller
+                                        .textreferralCodeController.value.text,
+                                  ),
+                                ),
+                              );
+                            } else if (controller.isReferralCodeNull.value ==
+                                    false &&
+                                controller.isReferralCode.value == false) {
+                              controller.getrequestOtp(
+                                controller.textEmailController.value.text,
+                                controller.textNameController.value.text,
+                              );
+                              String email =
+                                  controller.textEmailController.value.text;
+                              Get.bottomSheet(
+                                Container(
+                                  padding: const EdgeInsets.only(
+                                          top: 20, left: 20, right: 20)
+                                      .r,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                    ),
+                                  ),
+                                  child: OtpAuthenticationView(
+                                    email: email,
+                                    name: controller
+                                        .textNameController.value.text,
+                                    phoneNumber: controller
+                                        .textphoneNumberController.value.text,
+                                    controller: CreateAccountController(),
+                                    password: controller
+                                        .textPasswordController.value.text,
+                                    sex: controller
+                                        .textSexPasswordController.value.text,
+                                    dateBirth: controller.dateBirth.value,
+                                    referralCode: controller
+                                        .textreferralCodeController.value.text,
+                                  ),
+                                ),
+                              );
+                            } else {
+                              Get.snackbar(
+                                'Thông báo',
+                                'Mã xác giới thiệu không tồn tại!',
+                                snackPosition: SnackPosition.TOP,
+                                duration: const Duration(seconds: 3),
+                                backgroundColor:
+                                    AppColors.kSelectedDay.withOpacity(0.7),
+                                colorText: Colors.white,
+                              );
+                            }
                           }
-                        }
+                        });
                       },
                       child: Container(
                         alignment: Alignment.center,

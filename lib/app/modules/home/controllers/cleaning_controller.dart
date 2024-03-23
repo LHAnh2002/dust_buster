@@ -72,15 +72,20 @@ class CleaningController extends GetxController
   var textlabelKM = 0.obs;
   var textlabelSV = 0.obs;
 
-  getverifyOtp() async {
+  posttCreateInvoice() async {
     try {
       int paymentMethod = 1;
       int pet = 1;
+      int repeat = 1;
       if (selectedPaymentMethod != "Tiền mặt") {
         paymentMethod = 2;
       }
       if (isPet.value == false) {
         pet = 0;
+      }
+
+      if (textRepeat == "") {
+        repeat = 0;
       }
       String roomArea = '${textAcreage} m2 / ${textRoomNumber} phòng';
       final response = await _apiHelper.postCreateInvoice(
@@ -101,7 +106,8 @@ class CleaningController extends GetxController
           price: finalMoney.toInt(),
           gPoints: textPoint.toInt(),
           paymentMethods: paymentMethod,
-          petStatus: pet);
+          petStatus: pet,
+          repeatState: repeat);
       if (response['detail'] == 0) {
         goPresent(
           // isDismissibles: false,
@@ -126,9 +132,8 @@ class CleaningController extends GetxController
             SizedBox(width: 0.0, height: 32.h),
             ButtonWidget(
               onTap: () {
-                Get.offAllNamed(Routes.navigationBar)!.then((value) {
-                  navigationBarController.selecteIndex.value = 2;
-                });
+                navigationBarController.selecteIndex.value = 1;
+                Get.toNamed(Routes.navigationBar);
               },
               text: "Theo dõi công việc",
             ),
@@ -136,7 +141,10 @@ class CleaningController extends GetxController
             ButtonWidget(
               boder: true.obs,
               colorBackGroud: AppColors.white,
-              onTap: () {},
+              onTap: () {
+                navigationBarController.selecteIndex.value = 0;
+                Get.toNamed(Routes.navigationBar);
+              },
               textStyle: AppTextStyle.textButtonStyle.copyWith(
                 color: AppColors.black,
               ),

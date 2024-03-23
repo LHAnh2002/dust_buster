@@ -36,7 +36,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.navigationBar,
-      transition: Transition.rightToLeftWithFade,
+      transition: Transition.fadeIn,
       page: () => const NavigationBarView(),
       binding: NavigationBarBinding(),
     ),

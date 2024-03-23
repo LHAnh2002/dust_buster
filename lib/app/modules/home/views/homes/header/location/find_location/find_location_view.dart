@@ -57,7 +57,7 @@ class FindLocationView extends GetView<FindLocationController> {
                   onLoading: const FindLocationLoading(),
                   onEmpty: Center(child: CustomEmptyWidget(top: 0.12.sh)),
                   onError: (error) => Center(
-                      child: CustomNotFoundWidget(error: error, top: 0.12.sh)),
+                      child: CustomNotFoundWidget(error: error, top: 0.18.sh)),
                 ),
               ),
             ],

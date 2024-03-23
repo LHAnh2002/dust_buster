@@ -29,7 +29,7 @@ class HomeView extends GetView<HomeController> {
               ),
               onEmpty: const Center(child: EmptLocationPage()),
               onError: (error) => Center(
-                child: CustomNotFoundWidget(error: error, top: 0.12.sh),
+                child: CustomNotFoundWidget(error: error, top: 0.18.sh),
               ),
             ),
           ),

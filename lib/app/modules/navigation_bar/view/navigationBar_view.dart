@@ -12,6 +12,7 @@ class NavigationBarView extends GetView<NavigationBarController> {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark,
     );
+
     return Scaffold(
       body: Obx(
         () => controller.srceens[controller.selecteIndex.value],
@@ -20,7 +21,7 @@ class NavigationBarView extends GetView<NavigationBarController> {
         () => Stack(
           children: [
             Container(
-              height: 56.0, // Chiều cao của BottomNavigationBar
+              height: 56.0.h,
             ),
             Theme(
               data: Theme.of(context).copyWith(

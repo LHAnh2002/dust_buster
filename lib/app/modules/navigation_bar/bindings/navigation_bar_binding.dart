@@ -15,5 +15,6 @@ class NavigationBarBinding implements Bindings {
     Get.lazyPut<PromotionController>(() => PromotionController());
     Get.lazyPut<NotificationController>(() => NotificationController());
     Get.lazyPut<AccountController>(() => AccountController());
+    Get.lazyPut<WaitingController>(() => WaitingController());
   }
 }

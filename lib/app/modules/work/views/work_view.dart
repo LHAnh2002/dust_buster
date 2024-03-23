@@ -1,3 +1,4 @@
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dust_buster/app/modules/home/exports.dart';
 import '../exports.dart';
@@ -11,7 +12,6 @@ class WorkView extends GetView<WorkController> {
       appBar: AppBar(
         title: Row(
           children: [
-            SizedBox(width: 15.w),
             Text(
               Strings.work,
               style: AppTextStyle.largeBodyStyle.copyWith(
@@ -55,7 +55,7 @@ class WorkView extends GetView<WorkController> {
               ),
             ),
           ),
-          SizedBox(width: 30.w),
+          SizedBox(width: 16.w),
         ],
         backgroundColor: AppColors.white,
       ),
@@ -88,9 +88,9 @@ class WorkView extends GetView<WorkController> {
               controller: controller.tabController,
               physics: const NeverScrollableScrollPhysics(),
               children: const [
-                WaitingWidget(),
-                WaitingWidget(),
-                WaitingWidget(),
+                WaitingPage(),
+                RepeatPage(),
+                ByPackagePage(),
               ],
             ),
           )

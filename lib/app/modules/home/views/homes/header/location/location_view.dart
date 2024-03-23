@@ -56,10 +56,12 @@ class LocationView extends GetView<LocationController> {
                       );
                     },
                     onLoading: const LocationLoading(),
-                    onEmpty: const Center(child: EmptLocationPage()),
+                    onEmpty: Padding(
+                        padding: const EdgeInsets.only(top: 250).r,
+                        child: const EmptLocationPage()),
                     onError: (error) => Center(
                         child:
-                            CustomNotFoundWidget(error: error, top: 0.12.sh)),
+                            CustomNotFoundWidget(error: error, top: 0.18.sh)),
                   ),
                 ],
               ),

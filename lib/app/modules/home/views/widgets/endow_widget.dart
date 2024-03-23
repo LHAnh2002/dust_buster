@@ -65,7 +65,6 @@ class EndowWidget extends StatelessWidget {
                     model!.promotion![index].startDP.toString();
                 String endDateString =
                     model!.promotion![index].endDP.toString();
-
                 // Chuyển đổi từ String sang DateTime
                 DateTime startDate =
                     DateFormat('dd/MM/yyyy').parse(startDateString);
@@ -117,7 +116,7 @@ class EndowWidget extends StatelessWidget {
                                                   AppColors.kDarkyellowColor,
                                                   AppColors.kBrightyellowColor,
                                                 ],
-                                      stops: [0.0, 1.0],
+                                      stops: const [0.0, 1.0],
                                     ),
                                     borderRadius: BorderRadius.circular(8).r,
                                   ),
@@ -252,7 +251,7 @@ class EndowWidget extends StatelessWidget {
                   );
                 } else {
                   // Nếu không nằm trong khoảng thời gian mong muốn, trả về một widget trống
-                  return SizedBox.shrink();
+                  return const SizedBox.shrink();
                 }
               },
             ),

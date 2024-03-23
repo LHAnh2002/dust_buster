@@ -183,7 +183,20 @@ class CleaningHoursPage extends GetView<CleaningController> {
                               ),
                               ButtonWidget(
                                 onTap: () {
-                                  controller.getverifyOtp();
+                                  showDialogConfirm(
+                                    child: Center(
+                                      child:
+                                          LoadingAnimationWidget.discreteCircle(
+                                        color: AppColors.white,
+                                        size: 50.r,
+                                      ),
+                                    ),
+                                  );
+                                  Future.delayed(const Duration(seconds: 2),
+                                      () {
+                                    Get.back();
+                                    controller.posttCreateInvoice();
+                                  });
                                 },
                                 text: 'Đăng việc',
                                 height: 48.h,

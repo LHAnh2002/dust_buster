@@ -539,6 +539,28 @@ class ApiHelperImpl implements ApiHelper {
   }
 
   @override
+  Future<Map<String, dynamic>> getPendingInvoice() async {
+    return await ApiErrorHandler.handleError(() async {
+      final url = '$apiUrl/get-pending-invoice/';
+      String? accessToken = Storage.getValue<String>('access_token');
+      final response = await http
+          .get(
+            Uri.parse(url),
+            headers: getHeaders(accessToken!),
+          )
+          .timeout(myTimeout);
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+
+        return jsonResponse;
+      } else {
+        throw Exception('Sửa địa chỉ mặc định thất bại');
+      }
+    });
+  }
+
+  @override
   Future<Map<String, dynamic>> postCreateInvoice(
       {required String idP,
       required int label,
@@ -557,7 +579,8 @@ class ApiHelperImpl implements ApiHelper {
       required int price,
       required int gPoints,
       required int paymentMethods,
-      required int petStatus}) async {
+      required int petStatus,
+      required int repeatState}) async {
     return await ApiErrorHandler.handleError(() async {
       final url = '$apiUrl/create-invoice/';
       String? accessToken = Storage.getValue<String>('access_token');
@@ -582,7 +605,8 @@ class ApiHelperImpl implements ApiHelper {
               "price": price,
               "gPoints": gPoints,
               "paymentMethods": paymentMethods,
-              "petStatus": petStatus
+              "petStatus": petStatus,
+              "repeat_state": repeatState
             }),
             headers: getHeaders(accessToken!),
           )

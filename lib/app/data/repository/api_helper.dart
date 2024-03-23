@@ -50,6 +50,8 @@ abstract class ApiHelper {
 
   Future<Map<String, dynamic>> getUsers();
 
+  Future<Map<String, dynamic>> getPendingInvoice();
+
   Future<Map<String, dynamic>> getCustomerPromotions();
 
   Future<Map<String, dynamic>> postCustomerPromotions({required String id});
@@ -81,6 +83,7 @@ abstract class ApiHelper {
     required int price,
     required int gPoints,
     required int paymentMethods,
-    required int petStatus
+    required int petStatus,
+    required int repeatState
   });
 }
