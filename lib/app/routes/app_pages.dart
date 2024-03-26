@@ -1,8 +1,12 @@
+import 'package:dust_buster/app/modules/work/views/job_details/job_details_page.dart';
+
 import '../modules/create_account/exports.dart';
 import '../modules/forgot_password/exports.dart';
+import '../modules/home/bindings/cleaning_controller.dart';
 import '../modules/home/exports.dart';
 import '../modules/login/exports.dart';
 import '../modules/navigation_bar/exports.dart';
+import '../modules/notification/views/job_details/job_details_page.dart';
 import '../modules/splash/exports.dart';
 part 'app_routes.dart';
 
@@ -56,13 +60,25 @@ class AppPages {
       name: _Paths.cleaningHouer,
       transition: Transition.rightToLeftWithFade,
       page: () => const CleaningHoursPage(),
-      binding: HomeBinding(),
+      binding: CleaningBinding(),
     ),
     GetPage(
       name: _Paths.promotionDetails,
       transition: Transition.rightToLeftWithFade,
       page: () => const PromotionDetailsPage(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.jobDetails,
+      transition: Transition.rightToLeftWithFade,
+      page: () => const JobDetailsPage(),
+      binding: NavigationBarBinding(),
+    ),
+    GetPage(
+      name: _Paths.jobDetailss,
+      transition: Transition.rightToLeftWithFade,
+      page: () => const JobDetailsPagee(),
+      binding: NavigationBarBinding(),
     ),
   ];
 }

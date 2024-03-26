@@ -169,10 +169,6 @@ class Time2Page extends StatelessWidget {
                       height: 212.h,
                       child: CupertinoDatePicker(
                         minimumDate: controller.minimumDate,
-                        // DateTime.now().hour > 7
-                        //     ? DateTime.now().add(const Duration(hours: 1))
-                        //     : DateTime(DateTime.now().year,
-                        //         DateTime.now().month, DateTime.now().day, 7),
                         maximumDate: DateTime(DateTime.now().year,
                             DateTime.now().month, DateTime.now().day, 20),
                         backgroundColor: AppColors.white,

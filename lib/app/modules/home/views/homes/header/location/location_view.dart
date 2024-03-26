@@ -36,6 +36,7 @@ class LocationView extends GetView<LocationController> {
           child: Stack(
             children: [
               ListView(
+                physics: const ClampingScrollPhysics(),
                 children: [
                   controller.obx(
                     (state) {

@@ -1,4 +1,7 @@
 PODS:
+  - awesome_notifications (0.9.3):
+    - Flutter
+    - IosAwnCore (~> 0.9.3)
   - Firebase/Auth (10.22.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 10.22.0)
@@ -71,6 +74,7 @@ PODS:
   - GTMSessionFetcher/Core (3.3.1)
   - image_picker_ios (0.0.1):
     - Flutter
+  - IosAwnCore (0.9.3)
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -85,6 +89,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - awesome_notifications (from `.symlinks/plugins/awesome_notifications/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
@@ -109,10 +114,13 @@ SPEC REPOS:
     - FirebaseStorage
     - GoogleUtilities
     - GTMSessionFetcher
+    - IosAwnCore
     - PromisesObjC
     - RecaptchaInterop
 
 EXTERNAL SOURCES:
+  awesome_notifications:
+    :path: ".symlinks/plugins/awesome_notifications/ios"
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
@@ -137,6 +145,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  awesome_notifications: 66d28ab7174ca2823b04d275cb043e0a4a3eb9cf
   Firebase: 797fd7297b7e1be954432743a0b3f90038e45a71
   firebase_auth: cd5d79ba9a9a81151066d75f7cc8f6e698e33ed9
   firebase_core: 8e100adc478919c6f3224f854ce8fa0bd98e36fd
@@ -154,6 +163,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: d053d902a8edaa9904e1bd00c37535385b8ed152
   GTMSessionFetcher: 8a1b34ad97ebe6f909fb8b9b77fba99943007556
   image_picker_ios: 99dfe1854b4fa34d0364e74a78448a0151025425
+  IosAwnCore: b8601fbb37f7b3560f31b84ebf55a72f65812e05
   path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21

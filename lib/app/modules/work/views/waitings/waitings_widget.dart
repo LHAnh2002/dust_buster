@@ -1,38 +1,30 @@
 import 'package:dust_buster/app/common/util/exports.dart';
 import 'package:dust_buster/app/modules/work/views/widgets/job_details_widget.dart';
 import 'package:dust_buster/app/modules/work/views/widgets/order_status.dart';
+import 'package:dust_buster/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
+import '../../../../data/models/pending_invoices_models/pending_invoices.dart';
+import '../../exports.dart';
 
 class WaitingsWidget extends StatelessWidget {
-  final String lable;
-  final String time;
-  final String workingDay;
-  final String workTime;
-  final String repeat;
-  final String location;
-  final String price;
-  final String employeeNotes;
-  final String petNotes;
-  final String status;
+  final PendingInvoices? model;
+  final String title;
+  final WaitingController controller;
   const WaitingsWidget(
       {Key? key,
-      required this.lable,
-      required this.time,
-      required this.workingDay,
-      required this.repeat,
-      required this.location,
-      required this.price,
-      required this.employeeNotes,
-      required this.petNotes,
-      required this.workTime,
-      required this.status})
+      required this.model,
+      required this.title,
+      required this.controller})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Get.toNamed(Routes.jobDetails, arguments: model);
+      },
       child: Container(
         alignment: Alignment.topLeft,
         decoration: BoxDecoration(
@@ -70,12 +62,13 @@ class WaitingsWidget extends StatelessWidget {
                     child: Text(
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      lable,
+                      title,
                       style: AppTextStyle.lableBodyStyle,
                     ),
                   ),
                   OrderStatus(
-                    status: status,
+                    status: controller
+                        .getStatus(int.parse(model!.orderStatus.toString())),
                   ),
                 ],
               ),
@@ -95,7 +88,7 @@ class WaitingsWidget extends StatelessWidget {
                   ),
                   SizedBox(width: 4.w, height: 0.0),
                   Text(
-                    time,
+                    Utils.formatTimeAgo(model!.postingTime.toString()),
                     style: AppTextStyle.textxsmallStyle.copyWith(
                       color: AppColors.kGray500Color,
                     ),
@@ -113,34 +106,34 @@ class WaitingsWidget extends StatelessWidget {
                 children: [
                   JobDetailsWidget(
                     image: AppImages.iconDate,
-                    text: workingDay,
+                    text: model!.workingDay.toString(),
                   ),
                   SizedBox(width: 0.0, height: 12.h),
                   JobDetailsWidget(
                     image: AppImages.iconTime,
-                    text: workTime,
+                    text: model!.workTime.toString(),
                   ),
-                  if (repeat != "")
+                  if (model!.repeat.toString() != "")
                     Column(
                       children: [
                         SizedBox(width: 0.0, height: 12.h),
                         JobDetailsWidget(
                           image: AppImages.iconRepeat,
-                          text: repeat,
+                          text: model!.repeat.toString(),
                         ),
                       ],
                     ),
                   SizedBox(width: 0.0, height: 12.h),
                   JobDetailsWidget(
                     image: AppImages.iconLocation2,
-                    text: location,
+                    text: model!.location.toString(),
                   ),
                   SizedBox(width: 0.0, height: 12.h),
                   JobDetailsWidget(
                     image: AppImages.iconPrice,
-                    text: price,
+                    text: model!.price.toString(),
                   ),
-                  if (employeeNotes != "")
+                  if (model!.employeeNotes.toString() != "")
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -150,11 +143,11 @@ class WaitingsWidget extends StatelessWidget {
                         SizedBox(width: 0.0, height: 4.h),
                         JobDetailsWidget(
                           image: AppImages.iconNote,
-                          text: employeeNotes,
+                          text: model!.employeeNotes.toString(),
                         ),
                       ],
                     ),
-                  if (petNotes != "")
+                  if (model!.petNotes.toString() != "")
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -164,7 +157,7 @@ class WaitingsWidget extends StatelessWidget {
                         SizedBox(width: 0.0, height: 4.h),
                         JobDetailsWidget(
                           image: AppImages.iconNote,
-                          text: petNotes,
+                          text: model!.petNotes.toString(),
                         ),
                       ],
                     ),

@@ -1,6 +1,7 @@
 import 'package:dust_buster/app/data/models/location_models/location.dart';
 import 'package:dust_buster/app/modules/home/exports.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class DeleteLocationWidget extends StatelessWidget {
   final Location? model;
@@ -86,9 +87,9 @@ class DeleteLocationWidget extends StatelessWidget {
                           )
                         ],
                       ),
-                      child: const CircularProgressIndicator(
-                        backgroundColor: AppColors.kGray200Color,
-                        color: AppColors.kBrightPurpleColor,
+                      child: LoadingAnimationWidget.threeArchedCircle(
+                        color: AppColors.white,
+                        size: 50.r,
                       ),
                     ),
                 ],

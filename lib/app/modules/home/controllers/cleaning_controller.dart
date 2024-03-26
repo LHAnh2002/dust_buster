@@ -1,6 +1,6 @@
 import 'dart:math';
-
 import 'package:dust_buster/app/common/util/navigator.dart';
+import 'package:dust_buster/app/common/util/notification_sevice.dart';
 import 'package:dust_buster/app/data/models/customer_promotions_models/customer_promotions.dart';
 import 'package:dust_buster/app/data/models/location_models/location.dart';
 import 'package:dust_buster/app/data/models/service_duration_models/ServiceDurationModel.dart';
@@ -10,6 +10,8 @@ import 'package:dust_buster/app/data/repository/api_helper.dart';
 import 'package:dust_buster/app/modules/home/exports.dart';
 import 'package:dust_buster/app/modules/navigation_bar/controllers/navigation_bar_controller.dart';
 import 'package:dust_buster/app/modules/widgets/custom_svg.dart';
+import 'package:dust_buster/app/modules/work/controllers/waiting_controller.dart';
+import 'package:dust_buster/app/modules/work/exports.dart';
 import 'package:dust_buster/app/routes/app_pages.dart';
 import 'package:intl/intl.dart';
 
@@ -24,9 +26,12 @@ class CleaningController extends GetxController
   late LocationController locationController;
   late HomeController homeController;
   late NavigationBarController navigationBarController;
+  late WaitingController waitingController;
 
   DateTime now = DateTime.now();
   var dateTime = DateTime.now().add(const Duration(hours: 1)).obs;
+  late RxString selectedDate =
+      'Hôm nay, ${DateFormat('dd/MM/yyyy').format(now)}'.obs;
   var selectedTimeOption = 0.obs;
   var selectedIndex = 0.obs;
   var selectedLocation = 0.obs;
@@ -71,6 +76,27 @@ class CleaningController extends GetxController
   var textCodePromotions = "".obs;
   var textlabelKM = 0.obs;
   var textlabelSV = 0.obs;
+  void tabControllerIndex(index) {
+    selectedIndex.value = index;
+    tabController.animateTo(index);
+  }
+
+  @override
+  void onInit() {
+    tabController = TabController(length: 3, vsync: this);
+    locationController = Get.put(LocationController());
+    homeController = Get.put(HomeController());
+    navigationBarController = Get.put(NavigationBarController());
+    waitingController = Get.put(WaitingController());
+    gettServiceDuration();
+    getCustomerPromotions();
+    getDateAll();
+    loadLocations();
+    loadUrse();
+    formatDate();
+
+    super.onInit();
+  }
 
   posttCreateInvoice() async {
     try {
@@ -87,6 +113,8 @@ class CleaningController extends GetxController
       if (textRepeat == "") {
         repeat = 0;
       }
+      String formattedDate =
+          Utils.replaceTodayWithDayOfWeek(selectedDate.toString());
       String roomArea = '${textAcreage} m2 / ${textRoomNumber} phòng';
       final response = await _apiHelper.postCreateInvoice(
           idP: textIdPromotions.toString(),
@@ -100,7 +128,7 @@ class CleaningController extends GetxController
           repeat: textRepeat.toString(),
           petNote: textPetEditingController.text,
           employeeNote: textEmployeeNotesEditingController.text,
-          workingDay: selectedDate.toString(),
+          workingDay: formattedDate,
           workTime: textTimeAll.toString(),
           roomArea: roomArea,
           price: finalMoney.toInt(),
@@ -109,6 +137,13 @@ class CleaningController extends GetxController
           petStatus: pet,
           repeatState: repeat);
       if (response['detail'] == 0) {
+        await NotificationService.showNotification(
+          title: "Lịch dọn dẹp nhà",
+          body: "Gói dọn dẹp: $formattedDate",
+          payload: {
+            "navigate": "work",
+          },
+        );
         goPresent(
           // isDismissibles: false,
           children: [
@@ -132,6 +167,7 @@ class CleaningController extends GetxController
             SizedBox(width: 0.0, height: 32.h),
             ButtonWidget(
               onTap: () {
+                waitingController.getPendingInvoicee();
                 navigationBarController.selecteIndex.value = 1;
                 Get.toNamed(Routes.navigationBar);
               },
@@ -207,6 +243,7 @@ class CleaningController extends GetxController
     ];
 
     List<int> selectedDays = [];
+
     for (int i = 0; i < isSelectedList.length; i++) {
       if (isSelectedList[i] == true) {
         // Nếu ngày thứ i được chọn, thêm i vào danh sách selectedDays
@@ -261,26 +298,8 @@ class CleaningController extends GetxController
     }
   }
 
-  @override
-  void onInit() {
-    tabController = TabController(length: 3, vsync: this);
-    locationController = Get.put(LocationController());
-    homeController = Get.put(HomeController());
-    navigationBarController = Get.put(NavigationBarController());
-    gettServiceDuration();
-    getCustomerPromotions();
-    getDateAll();
-    loadLocations();
-    loadUrse();
-    formatDate();
-
-    super.onInit();
-  }
-
   var selectedPaymentMethod = 'Tiền mặt'.obs;
   List<String> paymentMethods = ['Ví 3CleanPay', 'Tiền mặt'];
-  late RxString selectedDate =
-      'Hôm nay, ${DateFormat('dd/MM/yyyy').format(now)}'.obs;
 
   late TabController tabController;
 
@@ -289,6 +308,7 @@ class CleaningController extends GetxController
   }
 
   late DateTime parsedDate;
+
   void formatDate() {
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
 
@@ -297,10 +317,12 @@ class CleaningController extends GetxController
     String datePart = parts[1];
 
     parsedDate = dateFormat.parse(datePart);
+
     minimumDatee();
   }
 
   late DateTime minimumDate;
+
   void minimumDatee() {
     minimumDate = DateTime.now().hour > 7
         ? DateTime.now().add(const Duration(hours: 1))
@@ -387,7 +409,7 @@ class CleaningController extends GetxController
     // Add dates for the next 6 days with signs
     for (int i = 1; i <= 6; i++) {
       DateTime nextDay = now.add(Duration(days: i));
-      String sign = _getDaySign(nextDay.weekday);
+      String sign = Utils.getDaySign(nextDay.weekday);
       weekDates.add('$sign, ${DateFormat('dd/MM/yyyy').format(nextDay)}');
     }
 
@@ -395,25 +417,4 @@ class CleaningController extends GetxController
   }
 
   void getLocationn() {}
-
-  String _getDaySign(int dayOfWeek) {
-    switch (dayOfWeek) {
-      case DateTime.monday:
-        return 'Thứ 2';
-      case DateTime.tuesday:
-        return 'Thứ 3';
-      case DateTime.wednesday:
-        return 'Thứ 4';
-      case DateTime.thursday:
-        return 'Thứ 5';
-      case DateTime.friday:
-        return 'Thứ 6';
-      case DateTime.saturday:
-        return 'Thứ 7';
-      case DateTime.sunday:
-        return 'CN';
-      default:
-        return '';
-    }
-  }
 }

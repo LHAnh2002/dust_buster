@@ -16,6 +16,11 @@ class NotificationController extends GetxController
     super.onClose();
   }
 
+  void tabControllerIndex(index) {
+    selectedIndex.value = index;
+    tabController.animateTo(index);
+  }
+
   var selectedIndex = 0.obs;
 
   void selectTab(int index) {

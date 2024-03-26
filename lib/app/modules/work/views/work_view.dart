@@ -1,4 +1,5 @@
-
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:dust_buster/app/common/util/notification_sevice.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:dust_buster/app/modules/home/exports.dart';
 import '../exports.dart';
@@ -22,7 +23,23 @@ class WorkView extends GetView<WorkController> {
         ),
         actions: [
           InkWell(
-            onTap: (() {}),
+            onTap: () async {
+              await NotificationService.showNotification(
+                title: "Lịch dọn dẹp nhà",
+                body: "Gói dọn dẹp: ",
+                payload: {
+                  "navigate": "work",
+                },
+                actionButtons: [
+                  NotificationActionButton(
+                    key: 'check',
+                    label: 'Check it out',
+                    actionType: ActionType.SilentAction,
+                    color: Colors.green,
+                  )
+                ],
+              );
+            },
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             child: Container(

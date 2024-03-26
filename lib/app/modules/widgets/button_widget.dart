@@ -11,6 +11,7 @@ class ButtonWidget extends StatelessWidget {
   final Color? colorBackGroud;
   final TextStyle? textStyle;
   final RxBool? boder;
+  final RxBool? boxShadow;
   const ButtonWidget({
     Key? key,
     required this.onTap,
@@ -21,6 +22,7 @@ class ButtonWidget extends StatelessWidget {
     this.textStyle,
     this.width,
     this.height,
+    this.boxShadow,
   }) : super(key: key);
 
   @override
@@ -42,12 +44,14 @@ class ButtonWidget extends StatelessWidget {
                       color: AppColors.kGray1000Color,
                     )
                   : null,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.kButtonColor.withOpacity(0.2),
-                  blurRadius: 10,
-                )
-              ],
+              boxShadow: boxShadow == true
+                  ? [
+                      BoxShadow(
+                        color: AppColors.kButtonColor.withOpacity(0.2),
+                        blurRadius: 10,
+                      )
+                    ]
+                  : null,
             ),
             child: Text(
               text ?? "",

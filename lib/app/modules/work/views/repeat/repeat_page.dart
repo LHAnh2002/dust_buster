@@ -4,7 +4,6 @@ import 'package:dust_buster/app/modules/work/controllers/waiting_controller.dart
 import 'package:dust_buster/app/modules/work/views/empt/empt_work.dart';
 import 'package:dust_buster/app/modules/work/views/loading/work_loading.dart';
 import 'package:dust_buster/app/modules/work/views/waitings/waitings_widget.dart';
-import 'package:flutter/material.dart';
 
 class RepeatPage extends GetView<WaitingController> {
   const RepeatPage({Key? key}) : super(key: key);
@@ -16,8 +15,9 @@ class RepeatPage extends GetView<WaitingController> {
       child: RefreshIndicator(
         onRefresh: () => controller.getPendingInvoicee(),
         child: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16).r,
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16).r,
           child: ListView(
+            // physics: const ClampingScrollPhysics(),
             children: [
               controller.obx(
                 (state) {
@@ -28,28 +28,15 @@ class RepeatPage extends GetView<WaitingController> {
                     itemBuilder: (BuildContext context, int index) {
                       final PendingInvoices? model =
                           state![index] as PendingInvoices?;
-                      controller.hasRepeatStateOne.value =
-                          state.any((model) => model.repeatState == 1);
-                      if (model!.repeatState == 1) {
+
+                      if (model!.repeatState == 1 && model.invoiceStatus == 1) {
                         return WaitingsWidget(
-                          lable: controller.getLabel(model.label!),
-                          time: controller.formatTimeAgo(model.postingTime!),
-                          workingDay: model.workingDay!,
-                          repeat: model.repeat!,
-                          price: '${Utils.formatNumber(model.price!)}đ',
-                          location: model.location!,
-                          employeeNotes: model.employeeNotes!,
-                          petNotes: model.petNotes!,
-                          workTime: model.workTime!,
-                          status: controller.getStatus(model.orderStatus!),
+                          model: model,
+                          title: Utils
+                              .getLabel(int.parse(model.label.toString())),
+                          controller: controller,
                         );
                       } else {
-                        if (!controller.hasRepeatStateOne.value) {
-                          return Padding(
-                            padding: const EdgeInsets.only(top: 200).r,
-                            child: const EmptWork(),
-                          );
-                        }
                         return const SizedBox.shrink();
                       }
                     },

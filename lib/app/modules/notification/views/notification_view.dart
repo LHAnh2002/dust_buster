@@ -1,4 +1,5 @@
 import 'package:dust_buster/app/modules/notification/exports.dart';
+import 'package:dust_buster/app/modules/notification/views/calendar/calendar_page.dart';
 import 'package:dust_buster/app/modules/notification/views/widgets/notification_widget.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../home/exports.dart';
@@ -75,27 +76,30 @@ class NotificationView extends GetView<NotificationController> {
                   title: 'Ngô Vũ Thủy Tiên',
                   content: 'Công việc đã hoàn thành chị nhé',
                   image: AppImages.iconAvtTest,
+                  time: '',
+                  idIVD: '',
+                  id: '',
                 ),
+                CalendarPage(),
                 NotificationWidget(
-                  label: 1,
-                  title: 'Lịch dọn dẹp nhà',
-                  content: 'Gói dọn dẹp nhà Premium',
-                  image: AppImages.iconJob,
-                  color: AppColors.kButtonColor,
-                ),
-                NotificationWidget(
-                  label: 1,
+                  label: 2,
                   title: 'Thay đổi chính sách',
                   content: 'Thay đổi chính sách sử dụng',
                   image: AppImages.iconCompany,
                   color: AppColors.kBlue500Color,
+                  time: '',
+                  idIVD: '',
+                  id: '',
                 ),
                 NotificationWidget(
-                  label: 1,
+                  label: 3,
                   title: 'Giảm 25% các dịch vụ',
                   content: 'Giảm giá tất cả các dịch vụ từ a sang b',
                   image: AppImages.iconPromotion,
                   color: AppColors.kYellowColor,
+                  time: '',
+                  idIVD: '',
+                  id: '',
                 ),
               ],
             ),

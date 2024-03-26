@@ -9,14 +9,6 @@ class CleaningHoursPage extends GetView<CleaningController> {
 
   @override
   Widget build(BuildContext context) {
-    // final Map<String, dynamic> data = Get.arguments;
-
-    // if (data != null) {
-    //   final String? id = data["id"];
-    //   final String? idL = data["idL"];
-    //   final String? location2 = data["location2"];
-    //   final String? nameSV = data["nameSV"];
-    // }
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(

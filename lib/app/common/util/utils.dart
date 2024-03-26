@@ -99,6 +99,73 @@ class Utils {
     );
   }
 
+  static String formatTimeAgo(String time) {
+    DateTime dateTime = DateTime.parse(time);
+
+    final now = DateTime.now();
+    final difference = now.difference(dateTime);
+
+    if (difference.inSeconds < 60) {
+      return '${difference.inSeconds} giây trước';
+    } else if (difference.inMinutes < 60) {
+      return '${difference.inMinutes} phút trước';
+    } else if (difference.inHours < 24) {
+      return '${difference.inHours} giờ trước';
+    } else if (difference.inDays < 5) {
+      return '${difference.inDays} ngày trước';
+    } else {
+      // Format the DateTime object using intl library
+      final formatter = DateFormat('dd/MM/yyyy HH:mm');
+      return formatter.format(dateTime);
+    }
+  }
+
+  static String getDaySign(int dayOfWeek) {
+    switch (dayOfWeek) {
+      case DateTime.monday:
+        return 'Thứ 2';
+      case DateTime.tuesday:
+        return 'Thứ 3';
+      case DateTime.wednesday:
+        return 'Thứ 4';
+      case DateTime.thursday:
+        return 'Thứ 5';
+      case DateTime.friday:
+        return 'Thứ 6';
+      case DateTime.saturday:
+        return 'Thứ 7';
+      case DateTime.sunday:
+        return 'CN';
+      default:
+        return '';
+    }
+  }
+static   String getLabel(int label) {
+    if (label == 1) {
+      return "Dọn dẹp nhà theo giờ";
+    } else if (label == 2) {
+    } else if (label == 3) {
+    } else if (label == 4) {
+    } else if (label == 5) {
+    } else if (label == 6) {
+    } else if (label == 7) {}
+    return "Unknown label";
+  }
+  static String replaceTodayWithDayOfWeek(String selectedDateStr) {
+    final DateTime now = DateTime.now();
+    final String todayStr = DateFormat('dd/MM/yyyy').format(now);
+    final String todayDayOfWeek = getDaySign(now.weekday);
+
+    if (selectedDateStr.contains('Hôm nay')) {
+      return selectedDateStr.replaceFirst('Hôm nay', todayDayOfWeek);
+    } else if (selectedDateStr.contains(todayStr)) {
+      return selectedDateStr.replaceFirst(
+          todayStr, '$todayDayOfWeek, $todayStr');
+    }
+
+    return selectedDateStr;
+  }
+
   static void loadingDialog() {
     Utils.closeDialog();
 

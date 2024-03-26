@@ -1,3 +1,4 @@
+import 'package:dust_buster/app/common/util/notification_sevice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,8 @@ void main() {
   Initializer.instance.init(() async {
     // WidgetsFlutterBinding.ensureInitialized();
     // await Firebase.initializeApp();
+    WidgetsFlutterBinding.ensureInitialized();
+    await NotificationService.initializeNotification();
     runApp(const MyApp());
   });
 }

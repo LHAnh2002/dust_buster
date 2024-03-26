@@ -1,4 +1,6 @@
 PODS:
+  - awesome_notifications (0.0.1):
+    - FlutterMacOS
   - file_selector_macos (0.0.1):
     - FlutterMacOS
   - Firebase/Auth (10.22.0):
@@ -84,6 +86,7 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - awesome_notifications (from `Flutter/ephemeral/.symlinks/plugins/awesome_notifications/macos`)
   - file_selector_macos (from `Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos`)
   - firebase_auth (from `Flutter/ephemeral/.symlinks/plugins/firebase_auth/macos`)
   - firebase_core (from `Flutter/ephemeral/.symlinks/plugins/firebase_core/macos`)
@@ -110,6 +113,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  awesome_notifications:
+    :path: Flutter/ephemeral/.symlinks/plugins/awesome_notifications/macos
   file_selector_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos
   firebase_auth:
@@ -132,6 +137,7 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
 
 SPEC CHECKSUMS:
+  awesome_notifications: 428f5c15a700b117418aed09e29c21c5806fcf69
   file_selector_macos: 468fb6b81fac7c0e88d71317f3eec34c3b008ff9
   Firebase: 797fd7297b7e1be954432743a0b3f90038e45a71
   firebase_auth: 7c693e2314a8b2cd8b925d8e8a4c15f8883863ce

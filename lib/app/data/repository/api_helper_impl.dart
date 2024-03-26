@@ -621,4 +621,66 @@ class ApiHelperImpl implements ApiHelper {
       }
     });
   }
+
+  @override
+  Future<Map<String, dynamic>> getNotificationCalendar() async {
+    return await ApiErrorHandler.handleError(() async {
+      final url = '$apiUrl/get-calendar/';
+      String? accessToken = Storage.getValue<String>('access_token');
+      final response = await http
+          .get(
+            Uri.parse(url),
+            headers: getHeaders(accessToken!),
+          )
+          .timeout(myTimeout);
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+
+        return jsonResponse;
+      } else {
+        throw Exception('Sửa địa chỉ mặc định thất bại');
+      }
+    });
+  }
+
+  @override
+  Future<Map<String, dynamic>> getJobDetails({required String id}) async {
+    return await ApiErrorHandler.handleError(() async {
+      final url = '$apiUrl/get-job-details/?id=$id';
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json'
+        }, // Có thể bỏ header nếu không cần
+      ).timeout(myTimeout);
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+
+        return jsonResponse;
+      } else {
+        throw Exception('Sửa địa chỉ mặc định thất bại');
+      }
+    });
+  }
+
+  @override
+  Future<Map<String, dynamic>> putNotification({required String id}) async {
+    return await ApiErrorHandler.handleError(() async {
+      final url = '$apiUrl/put-notification/?id=$id';
+      final response = await http.put(
+        Uri.parse(url),
+        headers: {'Content-Type': 'application/json'},
+      ).timeout(myTimeout);
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+
+        return jsonResponse;
+      } else {
+        throw Exception('Sửa địa chỉ mặc định thất bại');
+      }
+    });
+  }
 }

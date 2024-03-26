@@ -12,6 +12,8 @@ abstract class Routes {
   static const String findLocation = _Paths.findLocation;
   static const String cleaningHouer = _Paths.cleaningHouer;
   static const String promotionDetails = _Paths.promotionDetails;
+  static const String jobDetails = _Paths.jobDetails;
+  static const String jobDetailss = _Paths.jobDetailss;
 
 }
 
@@ -26,4 +28,6 @@ abstract class _Paths {
   static const String findLocation = '/findLocation';
   static const String cleaningHouer = '/cleaningHouer';
   static const String promotionDetails = '/promotionDetails';
+  static const String jobDetails = '/jobDetails';
+  static const String jobDetailss = '/jobDetailss';
 }

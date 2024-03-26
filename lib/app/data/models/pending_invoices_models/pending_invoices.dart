@@ -6,18 +6,26 @@ class PendingInvoices {
   int? label;
   String? imagePT;
   String? namePT;
+  String? phoneNumber;
+  String? nameU;
   String? postingTime;
   String? workingDay;
   String? workTime;
   String? repeat;
   String? location;
   int? price;
+  String? roomArea;
   String? petNotes;
   String? employeeNotes;
   int? orderStatus;
   int? invoiceStatus;
-  int? paymentMethods;
   int? repeatState;
+  int? paymentMethods;
+  int? oneStar;
+  int? twoStar;
+  int? threeStar;
+  int? fourStar;
+  int? fiveStar;
   List<Partner>? partner;
 
   PendingInvoices(
@@ -26,18 +34,26 @@ class PendingInvoices {
       this.label,
       this.imagePT,
       this.namePT,
+      this.phoneNumber,
+      this.nameU,
       this.postingTime,
       this.workingDay,
       this.workTime,
       this.repeat,
       this.location,
       this.price,
+      this.roomArea,
       this.petNotes,
       this.employeeNotes,
       this.orderStatus,
       this.invoiceStatus,
       this.repeatState,
       this.paymentMethods,
+      this.oneStar,
+      this.twoStar,
+      this.threeStar,
+      this.fourStar,
+      this.fiveStar,
       this.partner});
 
   PendingInvoices.fromJson(Map<String, dynamic> json) {
@@ -46,18 +62,26 @@ class PendingInvoices {
     label = json['label'];
     imagePT = json['imagePT'];
     namePT = json['namePT'];
-    postingTime = json['posting_time'];
-    workingDay = json['working_day'];
-    workTime = json['work_time'];
+    phoneNumber = json['phoneNumber'];
+    nameU = json['nameU'];
+    postingTime = json['postingTime'];
+    workingDay = json['workingDay'];
+    workTime = json['workTime'];
     repeat = json['repeat'];
     location = json['location'];
     price = json['price'];
-    petNotes = json['pet_notes'];
-    employeeNotes = json['employee_notes'];
-    orderStatus = json['order_status'];
-    invoiceStatus = json['invoice_status'];
-    repeatState = json['repeat_state'];
+    roomArea = json['roomArea'];
+    petNotes = json['petNotes'];
+    employeeNotes = json['employeeNotes'];
+    orderStatus = json['orderStatus'];
+    invoiceStatus = json['invoiceStatus'];
+    repeatState = json['repeatState'];
     paymentMethods = json['payment_methods'];
+    oneStar = json['oneStar'];
+    twoStar = json['twoStar'];
+    threeStar = json['threeStar'];
+    fourStar = json['fourStar'];
+    fiveStar = json['fiveStar'];
     if (json['partner'] != null) {
       partner = <Partner>[];
       json['partner'].forEach((v) {
@@ -73,18 +97,26 @@ class PendingInvoices {
     data['label'] = this.label;
     data['imagePT'] = this.imagePT;
     data['namePT'] = this.namePT;
-    data['posting_time'] = this.postingTime;
-    data['working_day'] = this.workingDay;
-    data['work_time'] = this.workTime;
+    data['phoneNumber'] = this.phoneNumber;
+    data['nameU'] = this.nameU;
+    data['postingTime'] = this.postingTime;
+    data['workingDay'] = this.workingDay;
+    data['workTime'] = this.workTime;
     data['repeat'] = this.repeat;
     data['location'] = this.location;
     data['price'] = this.price;
-    data['pet_notes'] = this.petNotes;
-    data['employee_notes'] = this.employeeNotes;
-    data['order_status'] = this.orderStatus;
-    data['invoice_status'] = this.invoiceStatus;
-    data['repeat_state'] = this.repeatState;
+    data['roomArea'] = this.roomArea;
+    data['petNotes'] = this.petNotes;
+    data['employeeNotes'] = this.employeeNotes;
+    data['orderStatus'] = this.orderStatus;
+    data['invoiceStatus'] = this.invoiceStatus;
+    data['repeatState'] = this.repeatState;
     data['payment_methods'] = this.paymentMethods;
+    data['oneStar'] = this.oneStar;
+    data['twoStar'] = this.twoStar;
+    data['threeStar'] = this.threeStar;
+    data['fourStar'] = this.fourStar;
+    data['fiveStar'] = this.fiveStar;
     if (this.partner != null) {
       data['partner'] = this.partner!.map((v) => v.toJson()).toList();
     }

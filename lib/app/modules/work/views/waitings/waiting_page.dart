@@ -15,8 +15,9 @@ class WaitingPage extends GetView<WaitingController> {
       child: RefreshIndicator(
         onRefresh: () => controller.getPendingInvoicee(),
         child: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16).r,
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16).r,
           child: ListView(
+            physics: const ClampingScrollPhysics(),
             children: [
               controller.obx(
                 (state) {
@@ -29,16 +30,10 @@ class WaitingPage extends GetView<WaitingController> {
                           state![index] as PendingInvoices?;
 
                       return WaitingsWidget(
-                        lable: controller.getLabel(model!.label!),
-                        time: controller.formatTimeAgo(model.postingTime!),
-                        workingDay: model.workingDay!,
-                        repeat: model.repeat!,
-                        price: '${Utils.formatNumber(model.price!)}đ',
-                        location: model.location!,
-                        employeeNotes: model.employeeNotes!,
-                        petNotes: model.petNotes!,
-                        workTime: model.workTime!,
-                        status: controller.getStatus(model.orderStatus!),
+                        model: model,
+                        title: Utils
+                            .getLabel(int.parse(model!.label.toString())),
+                        controller: controller,
                       );
                     },
                     separatorBuilder: (context, index) =>
